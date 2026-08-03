@@ -5,7 +5,7 @@ banner:
   button_primary:
     enable: true
     label: "Start Your 14-day Free Trial"
-    link: "/pricing"
+    link: "/contact"
   button_secondary:
     enable: true
     label: "Book a Demo"
@@ -122,7 +122,7 @@ growth_process:
   button:
     enable: true
     label: "Start Your 14-Day Free Trial"
-    link: "/pricing"
+    link: "/contact"
 
 integrations:
   enable: true
@@ -145,26 +145,4 @@ integrations:
     - image: "/images/integrations/asana.png"
       alt: "asana"
 
-lead_generation:
-  enable: true
-  title: "Free Resource for <strong>Local Business Owners</strong>"
-  subtitle: 'The "Leaking Bucket" Audit: 5 Ways You''re Losing Local Leads (And How to Fix Them).'
-  content: |
-    Did you know that most small businesses lose up to 50% of their potential sales simply because of slow follow-up?
-
-    Download our <strong>FREE</strong> Checklist to identify the "lead leaks" in your current business and learn how to plug them with simple software automation.
-  list:
-    - "<strong>The Follow-Up Audit:</strong> A step-by-step guide to measuring your lead response time."
-    - "<strong>Automation Quick-Wins:</strong> 3 workflows you can set up today to start booking more local appointments."
-    - "<strong>The Tech Stack Check:</strong> Stop paying for 5 different software tools."
-  image: "/images/ebook.png"
-  button:
-    enable: true
-    label: "Get Free Checklist"
-    link: "/contact"
-
-pricing:
-  enable: true
-  title: "Affordable <strong>Pricing Plans</strong>"
-  content: "Choose the plan that fits your local business and start growing automatically."
 ---

@@ -15,17 +15,15 @@
   },
   "params": {
     "contact_form_action": "#",
-    "checklist_form_action": "#",
-    "apply_form_action": "#",
-    "copyright": "Copyright &copy; 2026 <strong><a target=\"_blank\" href=\"https://themefisher.com/\">Themefisher</a></strong> All Rights Reserved",
+    "copyright": "Copyright &copy; 2026 Automark. All Rights Reserved",
     "footer_tagline": "Empowering Marketing businesses through intelligent automation.",
     "footer_email": "contact@Automark.com",
     "footer_phone": "(+1) 165-320-0102"
   },
   "navigation_button": {
-    "enable": true,
-    "label": "Get This Template",
-    "link": "https://themefisher.com/products/automark-astro?aff=automarkdemo"
+    "enable": false,
+    "label": "",
+    "link": ""
   },
   "google_tag_manager": {
     "enable": false,

@@ -22,9 +22,4 @@ contact_info:
       detail: "+1 (800) 123-4567"
       link: "tel:+18001234567"
       icon: "FaPhone"
-    - type: "calendar"
-      title: "Book A Demo"
-      detail: "Schedule your one-on-one setup call"
-      link: "https://api.leadconnectorhq.com/widget/booking/huqDO6gbH3SQmdp73TjE"
-      icon: "FaCalendarCheck"
 ---

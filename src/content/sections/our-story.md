@@ -16,5 +16,5 @@ closing_content: "Stop wasting money on scattered tools that don't talk to each 
 button:
   enable: true
   label: "Start Your 14-Day Free Trial"
-  link: "/pricing"
+  link: "/contact"
 ---

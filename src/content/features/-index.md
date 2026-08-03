@@ -11,7 +11,7 @@ banner:
   button_primary:
     enable: true
     label: "Start Free Trial"
-    link: "/pricing"
+    link: "/contact"
   button_secondary:
     enable: true
     label: "Book a Demo"

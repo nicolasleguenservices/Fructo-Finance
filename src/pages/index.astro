@@ -4,7 +4,6 @@ import Base from "@/layouts/Base.astro";
 import ValueCard from "@/layouts/components/ValueCard.astro";
 import BusinessNeeds from "@/layouts/components/BusinessNeeds.astro";
 import ComparisonRow from "@/layouts/components/ComparisonRow.astro";
-import PricingSection from "@/layouts/components/PricingSection.astro";
 import ProcessCard from "@/layouts/components/ProcessCard.astro";
 import GradientBlob from "@/layouts/components/GradientBlob.astro";
 import BrandsCarousel from "@/layouts/components/BrandsCarousel.astro";
@@ -12,8 +11,6 @@ import OurStory from "@/layouts/components/OurStory.astro";
 import Faq from "@/layouts/components/Faq.astro";
 import CallToAction from "@/layouts/components/CallToAction.astro";
 import VideoShowcase from "@/layouts/components/VideoShowcase.astro";
-import LeadGeneration from "@/layouts/components/LeadGeneration.astro";
-import config from "@/config/config.json";
 import { getListPage } from "@/lib/contentParser.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import Testimonial from "@/partials/Testimonial.astro";
@@ -21,8 +18,6 @@ import Features from "@/partials/Features.astro";
 import type { Homepage } from "@/types";
 const homepage = await getListPage("homepage", "-index");
 const homepageData: Homepage = homepage.data;
-
-const { checklist_form_action } = config.params;
 ---
 
 <Base>
@@ -554,22 +549,6 @@ const { checklist_form_action } = config.params;
           <div class="size-180 xl:size-225 bg-radial from-primary-light/40 to-transparent from-0% to-70% rounded-full" />
         </div>
       </section>
-    )
-  }
-
-  <!-- Lead Generation -->
-  {
-    homepageData.lead_generation.enable && (
-      <LeadGeneration lead_generation={homepageData.lead_generation} />
-    )
-  }
-
-  {
-    homepageData.pricing.enable && (
-      <PricingSection
-        title={homepageData.pricing.title}
-        content={homepageData.pricing.content}
-      />
     )
   }
 
