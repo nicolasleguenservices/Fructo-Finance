@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Disallow: /api/*
+Sitemap: https://finance-quebec.pages.dev/sitemap-index.xml

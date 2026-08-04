@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Finance Québec",
-    "base_url": "https://financequebec.ca",
+    "base_url": "https://finance-quebec.pages.dev",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",

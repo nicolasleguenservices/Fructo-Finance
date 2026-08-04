@@ -1,8 +1,19 @@
 ---
 import Base from "@/layouts/Base.astro";
+
+const clusters = [
+  { href: "/investir", label: "Investir" },
+  { href: "/cartes-credit", label: "Cartes de crédit" },
+  { href: "/epargne", label: "Épargne" },
+];
 ---
 
-<Base title="Page Not Found">
+<Base
+  title="Page introuvable"
+  meta_title="Page introuvable (404) | Finance Québec"
+  description="Cette page n'existe pas ou plus. Retrouvez nos comparatifs sur l'investissement, les cartes de crédit et l'épargne."
+  noindex
+>
   <section class="section-ph text-center relative overflow-hidden">
     <div class="container relative">
       <div class="absolute top-0 left-0 w-full">
@@ -14,14 +25,23 @@ import Base from "@/layouts/Base.astro";
       <div class="row justify-center">
         <div class="sm:col-10 md:col-8 lg:col-6">
           <span class="text-[8rem] block font-bold text-primary"> 404 </span>
-          <h1 class="h2 mb-4">Page not found</h1>
+          <h1 class="h2 mb-4">Page introuvable</h1>
           <div class="content">
             <p>
-              The page you are looking for might have been removed, had its name
-              changed, or is temporarily unavailable.
+              La page que vous cherchez n'existe pas ou a été déplacée. Voici
+              où continuer :
             </p>
           </div>
-          <a href="/" class="btn btn-primary mt-8">Back to home</a>
+          <div class="flex flex-wrap justify-center gap-4 mt-8">
+            <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+            {
+              clusters.map((cluster) => (
+                <a href={cluster.href} class="btn btn-outline">
+                  {cluster.label}
+                </a>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
