@@ -1,5 +1,5 @@
 .btn {
-  @apply inline-block rounded-full px-8 py-3 font-normal capitalize transition cursor-pointer select-none;
+  @apply inline-block rounded-full px-8 py-3 font-normal transition cursor-pointer select-none;
 }
 
 .btn-sm {

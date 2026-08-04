@@ -5,24 +5,26 @@ import ComparisonTable from "@/layouts/components/ComparisonTable.astro";
 import ProductCard from "@/layouts/components/ProductCard.astro";
 import AffiliateDisclosure from "@/layouts/components/AffiliateDisclosure.astro";
 import CallToAction from "@/layouts/components/CallToAction.astro";
-import Faq from "@/layouts/components/Faq.astro";
+import Accordion from "@/layouts/components/Accordion.astro";
 import { getProductsByClusterRanked } from "@/data/products";
+import { clusterContent } from "@/data/cluster-content";
 import type { ClusterId } from "@/data/types";
 
 interface Props {
   cluster: ClusterId;
-  title: string;
-  subtitle: string;
-  metaTitle?: string;
-  description?: string;
 }
 
-const { cluster, title, subtitle, metaTitle, description } = Astro.props;
+const { cluster } = Astro.props;
 const products = getProductsByClusterRanked(cluster);
+const content = clusterContent[cluster];
 ---
 
-<Base title={title} meta_title={metaTitle} description={description}>
-  <PageHeader title={title} subtitle={subtitle} />
+<Base
+  title={content.heroTitle}
+  meta_title={content.metaTitle}
+  description={content.metaDescription}
+>
+  <PageHeader title={content.heroTitle} subtitle={content.heroIntro} />
 
   <!-- Divulgation d'affiliation (bandeau visible avant le comparatif) -->
   <section class="pt-0 pb-10 md:pb-14">
@@ -53,8 +55,43 @@ const products = getProductsByClusterRanked(cluster);
     </div>
   </section>
 
+  <!-- Sections pédagogiques -->
+  {
+    content.pedagogicalSections.length > 0 && (
+      <section class="section pt-0">
+        <div class="container">
+          <div class="content mx-auto max-w-220">
+            {content.pedagogicalSections.map((sectionItem) => (
+              <div id={sectionItem.id}>
+                <h2>{sectionItem.heading}</h2>
+                {sectionItem.paragraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <!-- FAQ -->
-  <Faq />
+  {
+    content.faqs.length > 0 && (
+      <section class="section pt-0">
+        <div class="container">
+          <div class="section-intro centralize mb-10">
+            <h2 class="title hasHighlight">Questions fréquentes</h2>
+          </div>
+          <div class="mx-auto max-w-220 space-y-4">
+            {content.faqs.map((item) => (
+              <Accordion title={item.question} content={item.answer} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <!-- Call to Action -->
   <CallToAction />

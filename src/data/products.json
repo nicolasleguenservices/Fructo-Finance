@@ -1,106 +1,206 @@
 {
   "_meta": {
-    "description": "Source unique de données produits. Alimente les tableaux comparatifs et les cartes produit. NE PAS coder les chiffres en dur ailleurs.",
-    "avertissement": "TODO Étape 5 : ces fiches sont des exemples de structure, pas de vraies données. Elles seront remplacées par le contenu réel porté depuis la v1 (src/data/products.json).",
-    "derniere_maj": "TODO"
+    "description": "Source unique de données produits. Alimente les tableaux comparatifs et les pages programmatiques (X vs Y). NE PAS coder les chiffres en dur ailleurs.",
+    "avertissement": "Tous les chiffres (frais, taux, bonus) doivent être vérifiés sur le site officiel avant publication. Ils changent souvent. Mettre à jour 'last_verified' à chaque révision.",
+    "derniere_maj": "2026-07-30"
   },
 
   "brokers": [
     {
-      "id": "exemple-courtier",
-      "name": "Exemple Courtier",
-      "slug": "exemple-courtier",
+      "id": "wealthsimple",
+      "name": "Wealthsimple",
+      "slug": "wealthsimple",
       "category": "courtier",
-      "rating": 0,
+      "rating": 4.7,
       "cluster": "investir",
       "rank": 1,
-      "tagline": "TODO Étape 5 : fiche à remplacer par le contenu réel de la v1",
-      "verdict": "TODO",
+      "score_global": 8.6,
+      "score_breakdown": {
+        "frais": 9,
+        "experience_numerique": 9.5,
+        "choix_produits": 7.5,
+        "service_client": 8
+      },
+      "tagline": "La plateforme la plus simple pour débuter",
+      "verdict": "Wealthsimple se démarque par sa simplicité et l'absence totale de commission, ce qui en fait le point d'entrée le plus accessible pour investir au Québec.",
       "affiliate": {
         "type": "parrainage",
-        "network": "TODO",
-        "url": "TODO",
-        "commission_note": "TODO",
+        "network": "direct",
+        "url": "REMPLACER_PAR_TON_LIEN_DE_PARRAINAGE",
+        "commission_note": "Bonus de parrainage + bonus de transfert 1 à 3 % pour le référé",
         "rel": "sponsored"
       },
-      "resume": "TODO",
-      "highlights": ["TODO"],
-      "pros": ["TODO"],
-      "cons": ["TODO"],
+      "resume": "Le courtier le plus simple pour débuter : 0 $ de commission, application primée, tout-en-un.",
+      "highlights": [
+        "0 $ de commission sur actions et FNB",
+        "Application mobile primée",
+        "CELI, REER, CELIAPP et comptant",
+        "Bonus de transfert 1 à 3 %"
+      ],
+      "pros": [
+        "Aucune commission de négociation",
+        "Interface épurée, idéale pour débutants",
+        "Écosystème complet (investir, épargne, crypto, impôts)"
+      ],
+      "cons": [
+        "Frais de conversion de devises (spread) sur les positions en USD",
+        "Peu d'outils pour les traders actifs avancés",
+        "Pas de comptes corporatifs ni de compte de marge"
+      ],
       "fees": {
-        "trading_actions_fnb": "TODO"
+        "trading_actions_fnb": "0 $",
+        "frais_gestion_compte": "0 $",
+        "spread_devise_usd": "~1,5 % par conversion"
       },
-      "comptes_supportes": ["TODO"],
-      "ideal_pour": ["TODO"],
-      "regulateur": "TODO",
-      "url_officiel": "https://example.com",
-      "last_verified": "TODO"
+      "comptes_supportes": ["CELI", "REER", "CELIAPP", "Comptant", "Crypto"],
+      "ideal_pour": ["débutants", "investisseurs passifs", "portefeuille de FNB"],
+      "regulateur": "OCRI / FCPE (jusqu'à 1 M$)",
+      "url_officiel": "https://www.wealthsimple.com",
+      "last_verified": "2026-07-30"
+    },
+    {
+      "id": "questrade",
+      "name": "Questrade",
+      "slug": "questrade",
+      "category": "courtier",
+      "rating": 4.3,
+      "cluster": "investir",
+      "rank": 2,
+      "score_global": 8.1,
+      "score_breakdown": {
+        "frais": 8.5,
+        "experience_numerique": 7,
+        "choix_produits": 9,
+        "service_client": 7.5
+      },
+      "tagline": "Pour les investisseurs actifs qui veulent plus d'outils",
+      "verdict": "Questrade se distingue par son compte USD natif et un plus grand choix de types de comptes, un bon compromis pour les portefeuilles plus actifs.",
+      "affiliate": {
+        "type": "parrainage",
+        "network": "direct",
+        "url": "REMPLACER_PAR_TON_LIEN_DE_PARRAINAGE",
+        "commission_note": "À confirmer selon le programme partenaire",
+        "rel": "sponsored"
+      },
+      "resume": "Le choix des investisseurs plus actifs : compte en USD natif, outils avancés, 0 $ sur actions et FNB.",
+      "highlights": [
+        "0 $ de commission sur actions et FNB (depuis 2025)",
+        "Compte en dollars US natif",
+        "Plateforme IQ Edge pour traders",
+        "Comptes REEE, corporatif, marge"
+      ],
+      "pros": [
+        "Compte USD évite les frais de conversion répétés",
+        "Outils de trading avancés (ordres, données de niveau 2)",
+        "Plus de types de comptes que Wealthsimple"
+      ],
+      "cons": [
+        "Application mobile jugée moins moderne",
+        "Courbe d'apprentissage plus élevée pour un débutant"
+      ],
+      "fees": {
+        "trading_actions_fnb": "0 $",
+        "frais_gestion_compte": "0 $ (selon conditions)",
+        "options": "9,95 $ + 1 $/contrat"
+      },
+      "comptes_supportes": ["CELI", "REER", "CELIAPP", "REEE", "Comptant", "Marge", "Corporatif"],
+      "ideal_pour": ["investisseurs actifs", "détenteurs d'actions US", "gros portefeuilles"],
+      "regulateur": "OCRI / FCPE (jusqu'à 1 M$)",
+      "url_officiel": "https://www.questrade.com",
+      "last_verified": "2026-07-30"
     }
   ],
 
   "credit_cards": [
     {
-      "id": "exemple-carte",
-      "name": "Exemple Carte",
-      "slug": "exemple-carte",
+      "id": "scotiabank-exemple",
+      "name": "Carte Scotiabank (exemple)",
+      "slug": "scotiabank-exemple",
       "category": "carte_credit",
-      "rating": 0,
+      "rating": 4.0,
       "cluster": "cartes-credit",
       "rank": 1,
-      "tagline": "TODO Étape 5 : fiche à remplacer par le contenu réel de la v1",
-      "verdict": "TODO",
+      "score_global": 7.0,
+      "score_breakdown": {
+        "frais": 7,
+        "experience_numerique": 7,
+        "choix_produits": 7,
+        "service_client": 7
+      },
+      "tagline": "Fiche d'exemple — à remplacer une fois inscrit au réseau d'affiliation",
+      "verdict": "Fiche d'exemple : verdict à rédiger une fois les vraies caractéristiques du produit confirmées auprès de l'émetteur.",
       "affiliate": {
         "type": "cpa",
-        "network": "TODO",
-        "url": "TODO",
-        "commission_note": "TODO",
+        "network": "FlexOffers / Impact / CJ",
+        "url": "REMPLACER_PAR_TON_LIEN_RESEAU",
+        "commission_note": "~99 $ CA par demande approuvée (à confirmer selon le réseau)",
+        "cookie_days": 30,
         "rel": "sponsored"
       },
-      "resume": "TODO",
-      "highlights": ["TODO"],
-      "pros": ["TODO"],
-      "cons": ["TODO"],
+      "resume": "Exemple de fiche carte. Remplacer par les vraies cartes une fois inscrit aux réseaux.",
+      "highlights": [
+        "Marque bancaire canadienne reconnue",
+        "Programme de récompenses / remises",
+        "REMPLIR après vérification"
+      ],
+      "pros": ["À COMPLÉTER"],
+      "cons": ["À COMPLÉTER"],
       "card_details": {
-        "frais_annuels": "TODO",
-        "taux_interet_achats": "TODO"
+        "frais_annuels": "À VÉRIFIER",
+        "taux_interet_achats": "À VÉRIFIER",
+        "type_recompenses": "remises en argent / points / voyage",
+        "bonus_bienvenue": "À VÉRIFIER"
       },
-      "ideal_pour": ["TODO"],
-      "emetteur": "TODO",
-      "url_officiel": "https://example.com",
-      "last_verified": "TODO"
+      "ideal_pour": ["remises en argent", "voyage", "sans frais annuels"],
+      "emetteur": "Banque Scotia",
+      "url_officiel": "https://www.scotiabank.com",
+      "last_verified": "2026-07-30"
     }
   ],
 
   "savings_accounts": [
     {
-      "id": "exemple-epargne",
-      "name": "Exemple Épargne",
-      "slug": "exemple-epargne",
+      "id": "eq-bank-exemple",
+      "name": "EQ Bank (exemple)",
+      "slug": "eq-bank-exemple",
       "category": "compte_epargne",
-      "rating": 0,
+      "rating": 4.4,
       "cluster": "epargne",
       "rank": 1,
-      "tagline": "TODO Étape 5 : fiche à remplacer par le contenu réel de la v1",
-      "verdict": "TODO",
+      "score_global": 7.5,
+      "score_breakdown": {
+        "frais": 8,
+        "experience_numerique": 7.5,
+        "choix_produits": 7,
+        "service_client": 7.5
+      },
+      "tagline": "Fiche d'exemple — à remplacer une fois inscrit au programme",
+      "verdict": "Fiche d'exemple : verdict à rédiger une fois les vraies caractéristiques du produit confirmées auprès de l'émetteur.",
       "affiliate": {
         "type": "parrainage",
-        "network": "TODO",
-        "url": "TODO",
-        "commission_note": "TODO",
+        "network": "direct / réseau selon l'émetteur",
+        "url": "REMPLACER_PAR_TON_LIEN",
+        "commission_note": "À confirmer",
         "rel": "sponsored"
       },
-      "resume": "TODO",
-      "highlights": ["TODO"],
-      "pros": ["TODO"],
-      "cons": ["TODO"],
+      "resume": "Exemple de fiche compte épargne. Remplacer par les vrais produits une fois les programmes rejoints.",
+      "highlights": [
+        "Taux d'intérêt élevé",
+        "Aucuns frais mensuels",
+        "REMPLIR après vérification"
+      ],
+      "pros": ["À COMPLÉTER"],
+      "cons": ["À COMPLÉTER"],
       "account_details": {
-        "taux_interet": "TODO",
-        "frais_mensuels": "TODO"
+        "taux_interet": "À VÉRIFIER",
+        "frais_mensuels": "0 $",
+        "assurance_depots": "SADC",
+        "types_comptes": ["Compte épargne", "CELI", "CELIAPP"]
       },
-      "ideal_pour": ["TODO"],
-      "emetteur": "TODO",
-      "url_officiel": "https://example.com",
-      "last_verified": "TODO"
+      "ideal_pour": ["épargne d'urgence", "taux élevé", "sans frais"],
+      "emetteur": "EQ Bank",
+      "url_officiel": "https://www.eqbank.ca",
+      "last_verified": "2026-07-30"
     }
   ]
 }

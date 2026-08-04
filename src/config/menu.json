@@ -22,8 +22,8 @@
     }
   ],
   "footer_col_1_title": "Comparatifs",
-  "footer_col_2_title": "Resource",
-  "footer_col_3_title": "Legal",
+  "footer_col_2_title": "Ressources",
+  "footer_col_3_title": "Légal",
   "footer_primary": [
     {
       "name": "Investir",
@@ -38,7 +38,7 @@
       "url": "/epargne"
     },
     {
-      "name": "About Us",
+      "name": "À propos",
       "url": "/about"
     },
     {
@@ -66,12 +66,8 @@
       "url": "/divulgation-affiliation"
     },
     {
-      "name": "Privacy Policy",
-      "url": "/privacy-policy"
-    },
-    {
-      "name": "Terms and Conditions",
-      "url": "/term-and-condition"
+      "name": "Mentions légales",
+      "url": "/mentions-legales"
     }
   ]
 }

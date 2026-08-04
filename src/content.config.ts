@@ -29,43 +29,6 @@ const pagesCollection = defineCollection({
   schema: z.object({ ...commonFields }),
 });
 
-const aboutCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/about" }),
-  schema: z.object({
-    ...commonFields,
-    page_header: z.object({
-      title: z.string(),
-      subtitle: z.string(),
-      image: z.string(),
-    }),
-    stats: z.object({
-      enable: z.boolean(),
-      items: z.array(z.object({ value: z.string(), label: z.string() })),
-    }),
-    our_team: z.object({
-      enable: z.boolean(),
-      badge: z.string().optional(),
-      title: z.string(),
-      members: z.array(
-        z.object({ image: z.string(), name: z.string(), role: z.string() }),
-      ),
-    }),
-    core_values: z.object({
-      enable: z.boolean(),
-      badge: z.string().optional(),
-      title: z.string(),
-      subtitle: z.string(),
-      items: z.array(
-        z.object({
-          logo: z.string(),
-          title: z.string(),
-          is_starred: z.boolean(),
-        }),
-      ),
-    }),
-  }),
-});
-
 const contactCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/contact" }),
   schema: z.object({
@@ -394,7 +357,6 @@ export const collections = {
   blog: blogCollection,
   blogIndex: blogIndexCollection,
   pages: pagesCollection,
-  about: aboutCollection,
   contact: contactCollection,
   homepage: homepageCollection,
   features: featuresCollection,

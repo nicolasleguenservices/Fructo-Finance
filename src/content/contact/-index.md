@@ -1,25 +1,15 @@
 ---
-title: "Contact Us"
-meta_title: "Contact Us - All-In-One Local Business Software"
-description: "Have a question about streamlining your business? Send us a message."
+title: "Contactez-nous"
+meta_title: "Contact - Finance Québec"
+description: "Une question, une correction à signaler ou une suggestion de produit à comparer ? Écrivez-nous."
 image: ""
 draft: false
 
 page_header:
-  title: "Have a question? <strong>Send us a message</strong>"
-  subtitle: "Our team is here to help. Whether you want to learn more about the Missed Call Auto-Responder, or how to set up your Unified Inbox, our support team is ready to assist you."
+  title: "Une question ? <strong>Écrivez-nous</strong>"
+  subtitle: "Une erreur à signaler dans un comparatif, une suggestion de produit, ou simplement une question ? Notre équipe éditoriale vous répond."
 
 contact_info:
-  enable: true
-  items:
-    - type: "email"
-      title: "Email Us"
-      detail: "hello@yoursoftware.com"
-      link: "mailto:hello@yoursoftware.com"
-      icon: "FaEnvelope"
-    - type: "phone"
-      title: "Call or Text Us"
-      detail: "+1 (800) 123-4567"
-      link: "tel:+18001234567"
-      icon: "FaPhone"
+  enable: false
+  items: []
 ---

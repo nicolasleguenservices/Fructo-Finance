@@ -1,15 +1,15 @@
 ---
 banner:
-  title: "The All-In-One Growth Software for <strong>Local Business Owners</strong>"
-  content: "The complete automated system designed to capture more leads, follow up instantly, and grow your local business - all in one place."
+  title: "Trouvez les <strong>meilleurs produits financiers</strong> au Québec"
+  content: "Des comparatifs indépendants, à jour et gratuits sur les courtiers en ligne, les cartes de crédit et les comptes d'épargne offerts aux Québécois."
   button_primary:
     enable: true
-    label: "Start Your 14-day Free Trial"
-    link: "/contact"
+    label: "Comparer les courtiers"
+    link: "/investir"
   button_secondary:
     enable: true
-    label: "Book a Demo"
-    link: "/contact"
+    label: "Voir les comptes épargne"
+    link: "/epargne"
 
 main_features:
   enable: true

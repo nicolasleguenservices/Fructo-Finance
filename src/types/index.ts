@@ -5,7 +5,6 @@ import type { CollectionEntry } from "astro:content";
 
 export type Blog = CollectionEntry<"blog">["data"];
 export type BlogIndex = CollectionEntry<"blogIndex">["data"];
-export type About = CollectionEntry<"about">["data"];
 export type Contact = CollectionEntry<"contact">["data"];
 export type Homepage = CollectionEntry<"homepage">["data"];
 export type Features = CollectionEntry<"features">["data"];

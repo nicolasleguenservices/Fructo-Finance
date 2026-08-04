@@ -1,24 +1,24 @@
 {
   "site": {
-    "title": "Automark",
-    "base_url": "https://automark-astro.vercel.app",
+    "title": "Finance Québec",
+    "base_url": "https://financequebec.ca",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
     "logo": "/images/logo.svg",
     "logo_width": "160",
     "logo_height": "45",
-    "logo_text": "Automark"
+    "logo_text": "Finance Québec"
   },
   "settings": {
     "sticky_header": true
   },
   "params": {
     "contact_form_action": "#",
-    "copyright": "Copyright &copy; 2026 Automark. All Rights Reserved",
-    "footer_tagline": "Empowering Marketing businesses through intelligent automation.",
-    "footer_email": "contact@Automark.com",
-    "footer_phone": "(+1) 165-320-0102"
+    "copyright": "Copyright &copy; 2026 Finance Québec. Tous droits réservés.",
+    "footer_tagline": "Comparatifs indépendants sur les courtiers en ligne, cartes de crédit et comptes d'épargne au Québec.",
+    "footer_email": "",
+    "footer_phone": ""
   },
   "navigation_button": {
     "enable": false,
@@ -30,8 +30,8 @@
     "gtm_id": "GTM-XXXXXX"
   },
   "metadata": {
-    "meta_author": "Automark",
+    "meta_author": "Finance Québec",
     "meta_image": "/images/og-image.png",
-    "meta_description": "The all-in-one marketing and sales automation platform"
+    "meta_description": "Comparatifs indépendants sur les courtiers en ligne, cartes de crédit et comptes d'épargne au Québec."
   }
 }

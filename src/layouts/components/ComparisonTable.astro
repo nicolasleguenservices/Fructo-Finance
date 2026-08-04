@@ -23,6 +23,11 @@ function detailsOf(product: Product): Record<string, string> {
 const detailKeys = [
   ...new Set(products.flatMap((product) => Object.keys(detailsOf(product)))),
 ];
+
+function labelOf(key: string): string {
+  const spaced = key.replaceAll("_", " ");
+  return spaced.charAt(0).toUpperCase() + spaced.slice(1);
+}
 ---
 
 <div class="overflow-hidden rounded-2xl border border-border">
@@ -65,9 +70,9 @@ const detailKeys = [
             <tr>
               <th
                 scope="row"
-                class="border-b border-border p-4 font-semibold text-text-dark capitalize"
+                class="border-b border-border p-4 font-semibold text-text-dark"
               >
-                {key.replaceAll("_", " ")}
+                {labelOf(key)}
               </th>
               {products.map((product) => (
                 <td class="border-b border-border p-4 text-text">
@@ -122,9 +127,7 @@ const detailKeys = [
           <dl class="mb-4">
             {detailKeys.map((key) => (
               <div class="flex items-center justify-between gap-4 border-b border-border py-2 last:border-b-0">
-                <dt class="capitalize text-text-dark">
-                  {key.replaceAll("_", " ")}
-                </dt>
+                <dt class="text-text-dark">{labelOf(key)}</dt>
                 <dd class="m-0 text-right font-semibold text-text">
                   {detailsOf(product)[key] ?? "—"}
                 </dd>

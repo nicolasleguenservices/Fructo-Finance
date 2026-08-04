@@ -31,14 +31,23 @@ const { main: socialLinks } = social as SocialType;
           alt="logo"
         />
         <p class="mt-6">{config.params.footer_tagline}</p>
-        <a
-          class="link mt-6 inline-block underline"
-          href={`mailto:${config.params.footer_email}`}
-          >{config.params.footer_email}</a
-        >
-        <a class="link mt-4 block" href={`tel:${config.params.footer_phone}`}
-          >{config.params.footer_phone}</a
-        >
+        {
+          config.params.footer_email && (
+            <a
+              class="link mt-6 inline-block underline"
+              href={`mailto:${config.params.footer_email}`}
+            >
+              {config.params.footer_email}
+            </a>
+          )
+        }
+        {
+          config.params.footer_phone && (
+            <a class="link mt-4 block" href={`tel:${config.params.footer_phone}`}>
+              {config.params.footer_phone}
+            </a>
+          )
+        }
       </div>
       <!-- Column 2 - Primary -->
       <div>

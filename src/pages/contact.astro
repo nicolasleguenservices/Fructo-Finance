@@ -9,6 +9,9 @@ import type { Contact } from "@/types";
 
 const contact = await getListPage("contact", "-index");
 const contactData: Contact = contact.data;
+const hasContactInfo =
+  contactData.contact_info?.enable &&
+  (contactData.contact_info.items.length ?? 0) > 0;
 const contactEmail =
   contactData.contact_info?.items.find((i) => i.type === "email")?.detail ??
   "";
@@ -25,11 +28,11 @@ const contactEmail =
     <div class="container">
       <div class="row g-7 max-lg:gap-5">
         <!-- Left Column - Contact Cards -->
-        <div class="col-12 lg:col-5">
-          <div class="flex flex-col gap-5">
-            {
-              contactData.contact_info?.enable &&
-                contactData.contact_info.items.map((item) => {
+        {
+          hasContactInfo && (
+            <div class="col-12 lg:col-5">
+              <div class="flex flex-col gap-5">
+                {contactData.contact_info!.items.map((item) => {
                   const href =
                     item.link ||
                     (item.type === "email"
@@ -43,27 +46,28 @@ const contactEmail =
                       href={href}
                       class="flex flex-col gap-5 p-7 md:p-8 bg-light border border-border rounded-2xl cursor-pointer hover:border-primary/50 transition-all duration-300 group hover:scale-[1.02]"
                     >
-                    <div class="w-10 h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                      <DynamicIcon
-                        icon={item.icon ?? ""}
-                        className="w-10 h-10 text-primary"
-                      />
-                    </div>
-                    <div class="flex flex-col gap-3">
-                      <h3 class="font-secondary font-bold text-2xl text-secondary">
-                        {item.title}
-                      </h3>
-                      <p class="text-text text-lg">{item.detail}</p>
-                    </div>
+                      <div class="w-10 h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                        <DynamicIcon
+                          icon={item.icon ?? ""}
+                          className="w-10 h-10 text-primary"
+                        />
+                      </div>
+                      <div class="flex flex-col gap-3">
+                        <h3 class="font-secondary font-bold text-2xl text-secondary">
+                          {item.title}
+                        </h3>
+                        <p class="text-text text-lg">{item.detail}</p>
+                      </div>
                     </a>
                   );
-                })
-            }
-          </div>
-        </div>
+                })}
+              </div>
+            </div>
+          )
+        }
 
         <!-- Right Column - Contact Form -->
-        <div class="col-12 lg:col-7">
+        <div class:list={["col-12", hasContactInfo ? "lg:col-7" : "lg:col-8 lg:mx-auto"]}>
           <div class="p-8 md:p-10 bg-light border border-border rounded-2xl">
             <form
               action={`mailto:${contactEmail}`}
@@ -76,7 +80,7 @@ const contactEmail =
                   <input
                     type="text"
                     name="name"
-                    placeholder="Name"
+                    placeholder="Nom"
                     required
                     class="w-full rounded-full bg-light px-8 py-5 border border-border text-text placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors"
                   />
@@ -85,7 +89,7 @@ const contactEmail =
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email Address"
+                    placeholder="Adresse courriel"
                     required
                     class="w-full rounded-full bg-light px-8 py-5 border border-border text-text placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors"
                   />
@@ -94,14 +98,14 @@ const contactEmail =
                   <input
                     type="tel"
                     name="phone"
-                    placeholder="Phone number"
+                    placeholder="Téléphone (optionnel)"
                     class="w-full rounded-full bg-light px-8 py-5 border border-border text-text placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors"
                   />
                 </div>
                 <div class="relative">
                   <textarea
                     name="message"
-                    placeholder="Write your message..."
+                    placeholder="Votre message..."
                     rows={4}
                     required
                     class="w-full rounded-[20px] bg-light px-8 py-5 border border-border text-text placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors resize-none"
@@ -113,7 +117,7 @@ const contactEmail =
                   type="submit"
                   class="btn btn-primary w-full py-4 text-lg font-medium"
                 >
-                  Send Message
+                  Envoyer le message
                 </button>
               </div>
             </form>
