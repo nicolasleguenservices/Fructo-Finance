@@ -6,20 +6,20 @@
 
 @theme {
   /* === Colors === */
-  --color-primary: #937AFF;
-  --color-primary-light: #4D36D0;
-  --color-secondary: #FF5353;
-  --color-body: #03010E;
-  --color-border: #202128;
-  --color-light: #0B0C17;
-  --color-dark: #040404;
-  --color-text: #DAD4DE;
-  --color-text-dark: #817E84;
-  --color-text-light: #E5E5E5;
+  --color-primary: #DC3F36;
+  --color-primary-light: #F55B52;
+  --color-secondary: #0A2540;
+  --color-body: #FFFFFF;
+  --color-border: #E4E7EB;
+  --color-light: #F7F8FA;
+  --color-dark: #0A2540;
+  --color-text: #1F2933;
+  --color-text-dark: #5B6572;
+  --color-text-light: #F7F8FA;
 
   /* === Font Families === */
-  --font-primary: Inter Tight, sans-serif;
-  --font-secondary: Urbanist, sans-serif;
+  --font-primary: Lexend, sans-serif;
+  --font-secondary: Poppins, sans-serif;
 
   /* === Font Sizes === */
   --text-base: 16px;

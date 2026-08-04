@@ -9,9 +9,11 @@ const { logo, title, content } = Astro.props;
 ---
 
 <div
-  class="p-8 xl:px-10 xl:py-11 rounded-2xl border border-border flex flex-col items-center text-center"
+  class="p-8 xl:px-10 xl:py-11 rounded-2xl border border-border bg-body flex flex-col items-center text-center"
 >
-  <ImageMod src={logo} alt={`${title} icon`} class="mb-6" />
+  <div class="mb-6 size-14 rounded-xl bg-secondary grid place-items-center">
+    <ImageMod src={logo} alt={`${title} icon`} class="size-7" />
+  </div>
   <h3 class="text-h5-sm font-bold font-secondary">{title}</h3>
   <div class="w-px h-11 my-4 bg-text-dark/30"></div>
   <p>

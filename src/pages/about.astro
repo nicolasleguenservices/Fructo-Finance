@@ -189,7 +189,7 @@ const aboutData: About = about.data;
     </div>
   </section>
   <hr
-    class="h-px bg-linear-to-r from-transparent from-10% via-white/50 to-90% to-transparent border-0"
+    class="h-px bg-linear-to-r from-transparent from-10% via-border to-90% to-transparent border-0"
   />
 
   <!-- Trusted By Section -->
@@ -203,7 +203,7 @@ const aboutData: About = about.data;
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
             {aboutData.stats.items.map((stat: any) => (
               <div class="text-center p-8 lg:p-10 lg:py-26 rounded-2xl bg-primary/10">
-                <div class="text-h2 lg:text-h1 leading-none font-bold font-secondary text-white mb-4">
+                <div class="text-h2 lg:text-h1 leading-none font-bold font-secondary text-primary mb-4">
                   {stat.value}
                 </div>
                 <p class="text-text text-h6">{stat.label}</p>

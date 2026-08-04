@@ -52,7 +52,7 @@
   @apply inline-block;
 }
 .social-icons li a {
-  @apply flex size-11 items-center justify-center rounded-full bg-white/5 hover:bg-white/20 text-center leading-9 text-white text-lg transition-all duration-200;
+  @apply flex size-11 items-center justify-center rounded-full bg-light hover:bg-primary text-center leading-9 text-secondary hover:text-white text-lg transition-all duration-200;
 }
 .social-icons li a svg {
   @apply size-5;
@@ -133,19 +133,19 @@
 
 /* accordion */
 .accordion {
-  @apply mb-6 overflow-hidden rounded-2xl border border-border bg-white/5;
+  @apply mb-6 overflow-hidden rounded-2xl border border-border bg-light;
 }
 .accordion-header {
   @apply flex w-full cursor-pointer items-center text-left justify-between pl-8 pr-4 py-4 text-lg text-text-dark border-b border-transparent;
 }
 .accordion-icon {
-  @apply size-6.5 -rotate-90 transition-transform duration-200 p-1.5 bg-white/5 rounded-full;
+  @apply size-6.5 -rotate-90 transition-transform duration-200 p-1.5 bg-border/40 rounded-full;
 }
 .accordion-content {
   @apply max-h-0 overflow-hidden px-8 py-0 text-text;
 }
 .accordion.active .accordion-header {
-  @apply text-white border-border;
+  @apply text-secondary border-border;
 }
 .accordion.active .accordion-icon {
   @apply rotate-0;
@@ -174,7 +174,7 @@
 /* content style */
 .content {
   @apply prose max-w-none;
-  @apply prose-headings:mb-[.3em] prose-headings:mt-[.6em] prose-headings:text-white;
+  @apply prose-headings:mb-[.3em] prose-headings:mt-[.6em] prose-headings:text-secondary;
   @apply prose-h1:text-h1-sm md:prose-h1:text-h1;
   @apply prose-h2:text-h2-sm md:prose-h2:text-h2;
   @apply prose-h3:text-h3-sm md:prose-h3:text-h3;
@@ -249,7 +249,7 @@ ul.green-tick-list {
 }
 
 .blob-message {
-  @apply bg-light/60 backdrop-blur-3xl py-13 rounded-t-full rounded-b-full text-center mx-auto px-20 border border-border -mb-5 text-h6 text-text-light;
+  @apply bg-light/60 backdrop-blur-3xl py-13 rounded-t-full rounded-b-full text-center mx-auto px-20 border border-border -mb-5 text-h6 text-text;
   border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
 }
 
@@ -269,9 +269,9 @@ ul.green-tick-list {
 
 /* Footer */
 .footer-label {
-  @apply text-white text-h6 font-semibold mb-11;
+  @apply text-secondary text-h6 font-semibold mb-11;
 }
 
 .footer-link {
-  @apply text-text hover:text-white transition-colors duration-200;
+  @apply text-text hover:text-primary transition-colors duration-200;
 }

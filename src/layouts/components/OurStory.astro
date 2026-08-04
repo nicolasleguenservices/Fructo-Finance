@@ -19,7 +19,7 @@ if (!ourStoryData.enable) return;
       </div>
       <div class="section-content">
         <hr
-          class="h-px bg-linear-to-r from-transparent from-3% via-white/40 to-97% to-transparent border-0"
+          class="h-px bg-linear-to-r from-transparent from-3% via-border to-97% to-transparent border-0"
         />
         <div class="relative max-w-220 mx-auto">
           <div class="p-6 py-20 xl:px-15 border-x border-text/10">
@@ -34,7 +34,7 @@ if (!ourStoryData.enable) return;
                   src={ourStoryData.ceo.image}
                   alt={ourStoryData.ceo.name}
                 />
-                <p class="text-white font-semibold">
+                <p class="text-secondary font-semibold">
                   {ourStoryData.ceo.name}
                 </p>
                 <p class="text-text-dark text-sm">{ourStoryData.ceo.role}</p>
@@ -47,14 +47,14 @@ if (!ourStoryData.enable) return;
                 ourStoryData.letter_points &&
                   ourStoryData.letter_points.length > 0 && (
                     <>
-                      <div class="text-h6 text-white font-semibold text-center mb-7">
+                      <div class="text-h6 text-secondary font-semibold text-center mb-7">
                         {ourStoryData.letter_points_title ??
                           "Here's how we do it:"}
                       </div>
                       <div class="flex flex-col gap-y-7 relative vertical-bg-line ">
                         {ourStoryData.letter_points.map((point) => (
                           <div class="bg-linear-to-tl from-border to-body border border-border px-8 w-full py-2.5 rounded-full flex items-center justify-center relative z-10 gap-x-2">
-                            <span class="font-semibold text-white text-lg">
+                            <span class="font-semibold text-secondary text-lg">
                               {point}
                             </span>
                           </div>
@@ -87,24 +87,24 @@ if (!ourStoryData.enable) return;
             </div>
           </div>
           <div
-            class="size-2 bg-white absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2"
+            class="size-2 bg-secondary absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2"
           >
           </div>
           <div
-            class="size-2 bg-white absolute right-0 top-0 translate-x-1/2 -translate-y-1/2"
+            class="size-2 bg-secondary absolute right-0 top-0 translate-x-1/2 -translate-y-1/2"
           >
           </div>
           <div
-            class="size-2 bg-white absolute left-0 bottom-0 -translate-x-1/2 translate-y-1/2"
+            class="size-2 bg-secondary absolute left-0 bottom-0 -translate-x-1/2 translate-y-1/2"
           >
           </div>
           <div
-            class="size-2 bg-white absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2"
+            class="size-2 bg-secondary absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2"
           >
           </div>
         </div>
         <hr
-          class="h-px bg-linear-to-r from-transparent from-3% via-white/40 to-97% to-transparent border-0"
+          class="h-px bg-linear-to-r from-transparent from-3% via-border to-97% to-transparent border-0"
         />
       </div>
     </div>

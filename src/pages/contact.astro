@@ -41,16 +41,16 @@ const contactEmail =
                   return (
                     <a
                       href={href}
-                      class="flex flex-col gap-5 p-7 md:p-8 bg-white/5 rounded-2xl cursor-pointer hover:bg-white/10 transition-all duration-300 ring-1 ring-white/10 hover:ring-primary/50 group hover:scale-[1.02]"
+                      class="flex flex-col gap-5 p-7 md:p-8 bg-light border border-border rounded-2xl cursor-pointer hover:border-primary/50 transition-all duration-300 group hover:scale-[1.02]"
                     >
                     <div class="w-10 h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                       <DynamicIcon
                         icon={item.icon ?? ""}
-                        className="w-10 h-10 text-white"
+                        className="w-10 h-10 text-primary"
                       />
                     </div>
                     <div class="flex flex-col gap-3">
-                      <h3 class="font-secondary font-bold text-2xl text-white">
+                      <h3 class="font-secondary font-bold text-2xl text-secondary">
                         {item.title}
                       </h3>
                       <p class="text-text text-lg">{item.detail}</p>
@@ -64,7 +64,7 @@ const contactEmail =
 
         <!-- Right Column - Contact Form -->
         <div class="col-12 lg:col-7">
-          <div class="p-8 md:p-10 bg-white/5 rounded-2xl">
+          <div class="p-8 md:p-10 bg-light border border-border rounded-2xl">
             <form
               action={`mailto:${contactEmail}`}
               method="post"
@@ -78,7 +78,7 @@ const contactEmail =
                     name="name"
                     placeholder="Name"
                     required
-                    class="w-full rounded-full bg-white/5 backdrop-blur-[44px] px-8 py-5 border border-border text-white placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors"
+                    class="w-full rounded-full bg-light px-8 py-5 border border-border text-text placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors"
                   />
                 </div>
                 <div class="relative">
@@ -87,7 +87,7 @@ const contactEmail =
                     name="email"
                     placeholder="Email Address"
                     required
-                    class="w-full rounded-full bg-white/5 backdrop-blur-[44px] px-8 py-5 border border-border text-white placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors"
+                    class="w-full rounded-full bg-light px-8 py-5 border border-border text-text placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors"
                   />
                 </div>
                 <div class="relative">
@@ -95,7 +95,7 @@ const contactEmail =
                     type="tel"
                     name="phone"
                     placeholder="Phone number"
-                    class="w-full rounded-full bg-white/5 backdrop-blur-[44px] px-8 py-5 border border-border text-white placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors"
+                    class="w-full rounded-full bg-light px-8 py-5 border border-border text-text placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors"
                   />
                 </div>
                 <div class="relative">
@@ -104,7 +104,7 @@ const contactEmail =
                     placeholder="Write your message..."
                     rows={4}
                     required
-                    class="w-full rounded-[20px] bg-white/5 backdrop-blur-[44px] px-8 py-5 border border-border text-white placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors resize-none"
+                    class="w-full rounded-[20px] bg-light px-8 py-5 border border-border text-text placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors resize-none"
                   ></textarea>
                 </div>
               </div>

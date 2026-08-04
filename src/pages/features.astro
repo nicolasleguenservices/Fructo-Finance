@@ -64,7 +64,7 @@ const featuresData: Features = features.data;
     </div>
   </section>
   <hr
-    class="h-px bg-linear-to-r from-transparent from-10% via-white/50 to-90% to-transparent border-0"
+    class="h-px bg-linear-to-r from-transparent from-10% via-border to-90% to-transparent border-0"
   />
 
   <!-- Trusted Partners -->
@@ -113,7 +113,7 @@ const featuresData: Features = features.data;
           }
         >
           <div class="container">
-            <div class="rounded-3xl bg-light/6 overflow-hidden">
+            <div class="rounded-3xl bg-light overflow-hidden">
               <div class="grid lg:grid-cols-2">
                 <div
                   class={`p-8 lg:p-12 xl:p-14 ${feature.reverse ? "" : "lg:order-1"}`}
@@ -126,13 +126,13 @@ const featuresData: Features = features.data;
                   <div class="grid sm:grid-cols-2 gap-8 lg:gap-10">
                     {feature.items.map((item: any) => (
                       <article>
-                        <div class="size-10 rounded-xl bg-white/6 border border-border grid place-items-center mb-4">
+                        <div class="size-10 rounded-xl bg-body border border-border grid place-items-center mb-4">
                           <DynamicIcon
                             icon={item.icon}
-                            className="text-text-light text-lg"
+                            className="text-primary text-lg"
                           />
                         </div>
-                        <h3 class="text-h5-sm font-bold text-white mb-2">
+                        <h3 class="text-h5-sm font-bold text-secondary mb-2">
                           {item.title}
                         </h3>
                         <p class="text-text">{item.content}</p>

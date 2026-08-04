@@ -211,7 +211,7 @@ const homepageData: Homepage = homepage.data;
     </div>
   </section>
   <hr
-    class="h-px bg-linear-to-r from-transparent from-10% via-white/50 to-90% to-transparent border-0"
+    class="h-px bg-linear-to-r from-transparent from-10% via-border to-90% to-transparent border-0"
   />
 
   <!-- Main Features -->
@@ -246,7 +246,7 @@ const homepageData: Homepage = homepage.data;
                           fill="var(--color-secondary)"
                         />
                       </svg>
-                      <span class="font-semibold text-white text-lg">
+                      <span class="font-semibold text-secondary text-lg">
                         {text}
                       </span>
                     </div>
@@ -270,7 +270,7 @@ const homepageData: Homepage = homepage.data;
                           fill="var(--color-secondary)"
                         />
                       </svg>
-                      <span class="font-semibold text-white text-lg">
+                      <span class="font-semibold text-secondary text-lg">
                         {text}
                       </span>
                     </div>
@@ -340,17 +340,17 @@ const homepageData: Homepage = homepage.data;
               />
             </div>
             <div class="section-content">
-              <hr class="h-px bg-linear-to-r from-transparent from-5% via-white/40 to-95% to-transparent border-0" />
+              <hr class="h-px bg-linear-to-r from-transparent from-5% via-border to-95% to-transparent border-0" />
               <div class="relative max-w-220 mx-auto">
-                <blockquote class="text-center text-h6 text-white p-6 xl:p-10 xl:px-15 border-x border-text/20">
+                <blockquote class="text-center text-h6 text-secondary p-6 xl:p-10 xl:px-15 border-x border-text/20">
                   "{homepageData.testimonial_quote.quote}"
                 </blockquote>
-                <div class="size-2 bg-white absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2" />
-                <div class="size-2 bg-white absolute right-0 top-0 translate-x-1/2 -translate-y-1/2" />
-                <div class="size-2 bg-white absolute left-0 bottom-0 -translate-x-1/2 translate-y-1/2" />
-                <div class="size-2 bg-white absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2" />
+                <div class="size-2 bg-secondary absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2" />
+                <div class="size-2 bg-secondary absolute right-0 top-0 translate-x-1/2 -translate-y-1/2" />
+                <div class="size-2 bg-secondary absolute left-0 bottom-0 -translate-x-1/2 translate-y-1/2" />
+                <div class="size-2 bg-secondary absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2" />
               </div>
-              <hr class="h-px bg-linear-to-r from-transparent from-5% via-white/40 to-95% to-transparent border-0" />
+              <hr class="h-px bg-linear-to-r from-transparent from-5% via-border to-95% to-transparent border-0" />
             </div>
           </div>
         </div>
@@ -376,7 +376,7 @@ const homepageData: Homepage = homepage.data;
                         <div
                           class={`blob-message relative z-${i + 1} ${i === 1 ? "lg:w-10/12" : ""}`}
                         >
-                          <span class="font-semibold text-white">
+                          <span class="font-semibold text-secondary">
                             {stat.value}
                           </span>{" "}
                           {stat.label}
@@ -387,7 +387,7 @@ const homepageData: Homepage = homepage.data;
                 </div>
                 <div class="lg:col-7 max-lg:mt-10">
                   <div class="rounded-4xl corner-squircle bg-light px-7 py-10">
-                    <div class="text-white">
+                    <div class="text-primary">
                       <svg
                         width="45"
                         height="28"
@@ -401,7 +401,7 @@ const homepageData: Homepage = homepage.data;
                         />
                       </svg>
                     </div>
-                    <blockquote class="mt-10 text-h6 text-white">
+                    <blockquote class="mt-10 text-h6 text-secondary">
                       {homepageData.single_testimonial.testimonial.quote}
                     </blockquote>
                     <div class="mt-12.5 flex items-center">
