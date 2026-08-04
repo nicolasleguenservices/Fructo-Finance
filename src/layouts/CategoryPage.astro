@@ -1,0 +1,61 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/layouts/components/PageHeader.astro";
+import ComparisonTable from "@/layouts/components/ComparisonTable.astro";
+import ProductCard from "@/layouts/components/ProductCard.astro";
+import AffiliateDisclosure from "@/layouts/components/AffiliateDisclosure.astro";
+import CallToAction from "@/layouts/components/CallToAction.astro";
+import Faq from "@/layouts/components/Faq.astro";
+import { getProductsByClusterRanked } from "@/data/products";
+import type { ClusterId } from "@/data/types";
+
+interface Props {
+  cluster: ClusterId;
+  title: string;
+  subtitle: string;
+  metaTitle?: string;
+  description?: string;
+}
+
+const { cluster, title, subtitle, metaTitle, description } = Astro.props;
+const products = getProductsByClusterRanked(cluster);
+---
+
+<Base title={title} meta_title={metaTitle} description={description}>
+  <PageHeader title={title} subtitle={subtitle} />
+
+  <!-- Divulgation d'affiliation (bandeau visible avant le comparatif) -->
+  <section class="pt-0 pb-10 md:pb-14">
+    <div class="container">
+      <AffiliateDisclosure compact />
+    </div>
+  </section>
+
+  <!-- Comparatif -->
+  <section class="section pt-0">
+    <div class="container">
+      <div class="section-intro centralize mb-10">
+        <h2 class="title hasHighlight">Comparatif</h2>
+      </div>
+      <ComparisonTable products={products} />
+    </div>
+  </section>
+
+  <!-- Cartes produit -->
+  <section class="section pt-0">
+    <div class="container">
+      <div class="section-intro centralize mb-10">
+        <h2 class="title hasHighlight">Nos avis détaillés</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {products.map((product) => <ProductCard product={product} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <Faq />
+
+  <!-- Call to Action -->
+  <CallToAction />
+</Base>

@@ -1,0 +1,149 @@
+---
+import type { Product } from "@/data/types";
+import Rating from "./Rating.astro";
+import AffiliateButton from "./AffiliateButton.astro";
+import ProductLogo from "./ProductLogo.astro";
+
+interface Props {
+  products: Product[];
+}
+
+const { products } = Astro.props;
+
+function detailsOf(product: Product): Record<string, string> {
+  const source =
+    product.fees ?? product.card_details ?? product.account_details ?? {};
+  const entries = Object.entries(source).map(([key, value]) => [
+    key,
+    Array.isArray(value) ? value.join(", ") : value,
+  ]);
+  return Object.fromEntries(entries) as Record<string, string>;
+}
+
+const detailKeys = [
+  ...new Set(products.flatMap((product) => Object.keys(detailsOf(product)))),
+];
+---
+
+<div class="overflow-hidden rounded-2xl border border-border">
+  <div class="hidden overflow-x-auto md:block">
+    <table class="w-full border-collapse text-left">
+      <thead>
+        <tr class="bg-light">
+          <th scope="col" class="w-40 border-b border-border p-4 text-secondary"
+            >Critère</th
+          >
+          {
+            products.map((product) => (
+              <th scope="col" class="border-b border-border p-4">
+                <div class="flex items-center gap-3">
+                  <ProductLogo product={product} size={32} />
+                  <span class="font-secondary font-bold text-secondary">
+                    {product.name}
+                  </span>
+                </div>
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" class="border-b border-border p-4 font-semibold text-text-dark"
+            >Note</th
+          >
+          {
+            products.map((product) => (
+              <td class="border-b border-border p-4">
+                <Rating rating={product.rating} />
+              </td>
+            ))
+          }
+        </tr>
+        {
+          detailKeys.map((key) => (
+            <tr>
+              <th
+                scope="row"
+                class="border-b border-border p-4 font-semibold text-text-dark capitalize"
+              >
+                {key.replaceAll("_", " ")}
+              </th>
+              {products.map((product) => (
+                <td class="border-b border-border p-4 text-text">
+                  {detailsOf(product)[key] ?? "—"}
+                </td>
+              ))}
+            </tr>
+          ))
+        }
+        <tr>
+          <th scope="row" class="border-b border-border p-4 font-semibold text-text-dark"
+            >Idéal pour</th
+          >
+          {
+            products.map((product) => (
+              <td class="border-b border-border p-4 text-text">
+                {product.ideal_pour.join(", ")}
+              </td>
+            ))
+          }
+        </tr>
+        <tr>
+          <th scope="row" class="p-4"><span class="sr-only">Action</span></th>
+          {
+            products.map((product) => (
+              <td class="p-4">
+                <AffiliateButton
+                  affiliate={product.affiliate}
+                  label={`Choisir ${product.name}`}
+                />
+              </td>
+            ))
+          }
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex flex-col gap-6 p-4 md:hidden">
+    {
+      products.map((product) => (
+        <article class="rounded-2xl border border-border bg-body p-6 shadow-sm">
+          <header class="mb-4 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3">
+              <ProductLogo product={product} size={32} />
+              <h3 class="m-0 text-base font-bold text-secondary">
+                {product.name}
+              </h3>
+            </div>
+            <Rating rating={product.rating} />
+          </header>
+          <dl class="mb-4">
+            {detailKeys.map((key) => (
+              <div class="flex items-center justify-between gap-4 border-b border-border py-2 last:border-b-0">
+                <dt class="capitalize text-text-dark">
+                  {key.replaceAll("_", " ")}
+                </dt>
+                <dd class="m-0 text-right font-semibold text-text">
+                  {detailsOf(product)[key] ?? "—"}
+                </dd>
+              </div>
+            ))}
+            <div class="flex items-center justify-between gap-4 py-2">
+              <dt class="text-text-dark">Idéal pour</dt>
+              <dd class="m-0 text-right font-semibold text-text">
+                {product.ideal_pour.join(", ")}
+              </dd>
+            </div>
+          </dl>
+          <AffiliateButton
+            affiliate={product.affiliate}
+            label={`Choisir ${product.name}`}
+            class="w-full text-center"
+          />
+        </article>
+      ))
+    }
+  </div>
+</div>

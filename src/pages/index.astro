@@ -11,6 +11,7 @@ import OurStory from "@/layouts/components/OurStory.astro";
 import Faq from "@/layouts/components/Faq.astro";
 import CallToAction from "@/layouts/components/CallToAction.astro";
 import VideoShowcase from "@/layouts/components/VideoShowcase.astro";
+import ClusterCards from "@/layouts/components/ClusterCards.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import Testimonial from "@/partials/Testimonial.astro";
@@ -213,6 +214,9 @@ const homepageData: Homepage = homepage.data;
   <hr
     class="h-px bg-linear-to-r from-transparent from-10% via-border to-90% to-transparent border-0"
   />
+
+  <!-- Les 3 univers Finance Québec -->
+  <ClusterCards />
 
   <!-- Main Features -->
   {

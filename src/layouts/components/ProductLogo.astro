@@ -1,0 +1,78 @@
+---
+import type { Product } from "@/data/types";
+
+interface Props {
+  product: Product;
+  /** Taille carrée en pixels. */
+  size?: number;
+  class?: string;
+}
+
+const { product, size = 44, class: className = "" } = Astro.props;
+
+function domainFrom(url: string): string | null {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
+
+const domain = domainFrom(product.url_officiel);
+
+// Service de logo par domaine — fonctionne sans clé (Clearbit). Si LOGO_DEV_TOKEN
+// est défini dans l'environnement, on utilise Logo.dev à la place (meilleure qualité).
+const logoDevToken = import.meta.env.LOGO_DEV_TOKEN;
+const autoLogoUrl = domain
+  ? logoDevToken
+    ? `https://img.logo.dev/${domain}?token=${logoDevToken}&size=128&format=png`
+    : `https://logo.clearbit.com/${domain}`
+  : null;
+
+// Le champ `logo` local (public/logos/…) a toujours priorité sur le logo automatique.
+const src = product.logo ?? autoLogoUrl;
+
+const initial = product.name.trim().charAt(0).toUpperCase() || "?";
+---
+
+<span
+  class={`product-logo relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border bg-light ${className}`}
+  style={`width: ${size}px; height: ${size}px;`}
+>
+  {
+    src && (
+      <img
+        class="product-logo__img h-[72%] w-[72%] object-contain"
+        src={src}
+        alt={`Logo ${product.name}`}
+        loading="lazy"
+        width={size}
+        height={size}
+      />
+    )
+  }
+  <span
+    class:list={[
+      "product-logo__fallback absolute inset-0 items-center justify-center rounded-lg bg-secondary font-secondary font-semibold text-white",
+      src ? "hidden" : "flex",
+    ]}
+    style={`font-size: ${size * 0.42}px;`}
+    aria-hidden={src ? "true" : "false"}
+  >
+    {initial}
+  </span>
+</span>
+
+<script>
+  document
+    .querySelectorAll<HTMLImageElement>(".product-logo__img")
+    .forEach((img) => {
+      img.addEventListener("error", () => {
+        img.remove();
+        const fallback = img.nextElementSibling as HTMLElement | null;
+        fallback?.setAttribute("aria-hidden", "false");
+        fallback?.classList.remove("hidden");
+        fallback?.classList.add("flex");
+      });
+    });
+</script>

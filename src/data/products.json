@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "description": "Source unique de données produits. Alimente les tableaux comparatifs et les cartes produit. NE PAS coder les chiffres en dur ailleurs.",
+    "avertissement": "TODO Étape 5 : ces fiches sont des exemples de structure, pas de vraies données. Elles seront remplacées par le contenu réel porté depuis la v1 (src/data/products.json).",
+    "derniere_maj": "TODO"
+  },
+
+  "brokers": [
+    {
+      "id": "exemple-courtier",
+      "name": "Exemple Courtier",
+      "slug": "exemple-courtier",
+      "category": "courtier",
+      "rating": 0,
+      "cluster": "investir",
+      "rank": 1,
+      "tagline": "TODO Étape 5 : fiche à remplacer par le contenu réel de la v1",
+      "verdict": "TODO",
+      "affiliate": {
+        "type": "parrainage",
+        "network": "TODO",
+        "url": "TODO",
+        "commission_note": "TODO",
+        "rel": "sponsored"
+      },
+      "resume": "TODO",
+      "highlights": ["TODO"],
+      "pros": ["TODO"],
+      "cons": ["TODO"],
+      "fees": {
+        "trading_actions_fnb": "TODO"
+      },
+      "comptes_supportes": ["TODO"],
+      "ideal_pour": ["TODO"],
+      "regulateur": "TODO",
+      "url_officiel": "https://example.com",
+      "last_verified": "TODO"
+    }
+  ],
+
+  "credit_cards": [
+    {
+      "id": "exemple-carte",
+      "name": "Exemple Carte",
+      "slug": "exemple-carte",
+      "category": "carte_credit",
+      "rating": 0,
+      "cluster": "cartes-credit",
+      "rank": 1,
+      "tagline": "TODO Étape 5 : fiche à remplacer par le contenu réel de la v1",
+      "verdict": "TODO",
+      "affiliate": {
+        "type": "cpa",
+        "network": "TODO",
+        "url": "TODO",
+        "commission_note": "TODO",
+        "rel": "sponsored"
+      },
+      "resume": "TODO",
+      "highlights": ["TODO"],
+      "pros": ["TODO"],
+      "cons": ["TODO"],
+      "card_details": {
+        "frais_annuels": "TODO",
+        "taux_interet_achats": "TODO"
+      },
+      "ideal_pour": ["TODO"],
+      "emetteur": "TODO",
+      "url_officiel": "https://example.com",
+      "last_verified": "TODO"
+    }
+  ],
+
+  "savings_accounts": [
+    {
+      "id": "exemple-epargne",
+      "name": "Exemple Épargne",
+      "slug": "exemple-epargne",
+      "category": "compte_epargne",
+      "rating": 0,
+      "cluster": "epargne",
+      "rank": 1,
+      "tagline": "TODO Étape 5 : fiche à remplacer par le contenu réel de la v1",
+      "verdict": "TODO",
+      "affiliate": {
+        "type": "parrainage",
+        "network": "TODO",
+        "url": "TODO",
+        "commission_note": "TODO",
+        "rel": "sponsored"
+      },
+      "resume": "TODO",
+      "highlights": ["TODO"],
+      "pros": ["TODO"],
+      "cons": ["TODO"],
+      "account_details": {
+        "taux_interet": "TODO",
+        "frais_mensuels": "TODO"
+      },
+      "ideal_pour": ["TODO"],
+      "emetteur": "TODO",
+      "url_officiel": "https://example.com",
+      "last_verified": "TODO"
+    }
+  ]
+}

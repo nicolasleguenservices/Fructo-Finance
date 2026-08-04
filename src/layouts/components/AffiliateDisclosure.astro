@@ -1,0 +1,22 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<aside
+  class:list={[
+    "rounded-2xl border border-border bg-light text-text",
+    compact ? "px-4 py-3 text-xs" : "p-6 text-sm",
+  ]}
+>
+  <p class="m-0">
+    <strong class="text-secondary">Divulgation :</strong> certains liens sur cette
+    page sont des liens d'affiliation. Si vous ouvrez un compte ou faites une demande
+    via ces liens, nous pouvons recevoir une commission, sans frais additionnels pour
+    vous. Cela n'influence pas notre évaluation : nos avis reflètent notre analyse
+    indépendante des produits. <a href="/divulgation-affiliation" class="link font-semibold underline">En savoir plus</a>.
+  </p>
+</aside>

@@ -1,8 +1,16 @@
 {
   "main": [
     {
-      "name": "Features",
-      "url": "/features"
+      "name": "Investir",
+      "url": "/investir"
+    },
+    {
+      "name": "Cartes de crédit",
+      "url": "/cartes-credit"
+    },
+    {
+      "name": "Épargne",
+      "url": "/epargne"
     },
     {
       "name": "Blog",
@@ -13,21 +21,25 @@
       "url": "/contact"
     }
   ],
-  "footer_col_1_title": "Primary",
+  "footer_col_1_title": "Comparatifs",
   "footer_col_2_title": "Resource",
   "footer_col_3_title": "Legal",
   "footer_primary": [
     {
-      "name": "Home",
-      "url": "/"
+      "name": "Investir",
+      "url": "/investir"
+    },
+    {
+      "name": "Cartes de crédit",
+      "url": "/cartes-credit"
+    },
+    {
+      "name": "Épargne",
+      "url": "/epargne"
     },
     {
       "name": "About Us",
       "url": "/about"
-    },
-    {
-      "name": "Features",
-      "url": "/features"
     },
     {
       "name": "Contact",
@@ -42,9 +54,17 @@
     {
       "name": "Blog",
       "url": "/blog"
+    },
+    {
+      "name": "Features",
+      "url": "/features"
     }
   ],
   "footer_legal": [
+    {
+      "name": "Divulgation d'affiliation",
+      "url": "/divulgation-affiliation"
+    },
     {
       "name": "Privacy Policy",
       "url": "/privacy-policy"

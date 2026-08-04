@@ -1,0 +1,21 @@
+---
+import type { Affiliate } from "@/data/types";
+
+interface Props {
+  affiliate: Affiliate;
+  label: string;
+  class?: string;
+}
+
+const { affiliate, label, class: className = "" } = Astro.props;
+---
+
+<a
+  class={`btn btn-primary ${className}`}
+  href={affiliate.url}
+  target="_blank"
+  rel={`${affiliate.rel} noopener noreferrer`}
+  data-network={affiliate.network}
+>
+  {label}
+</a>
