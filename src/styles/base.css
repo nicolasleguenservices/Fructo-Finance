@@ -78,19 +78,6 @@ select:-webkit-autofill:focus {
   transition: background-color 9999s ease-in-out 0s;
 }
 
-/* Champ e-mail de l'infolettre : posé sur une section bleu nuit (.bg-secondary).
-   Autofill → fond navy plein + texte pâle, pour rester lisible ET cohérent avec
-   la section sombre. */
-.newsletter-email:-webkit-autofill,
-.newsletter-email:-webkit-autofill:hover,
-.newsletter-email:-webkit-autofill:focus,
-.newsletter-email:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0px 1000px var(--color-secondary) inset;
-  box-shadow: 0 0 0px 1000px var(--color-secondary) inset;
-  -webkit-text-fill-color: var(--color-text-light);
-  caret-color: var(--color-text-light);
-}
-
 /* Navigateurs non-WebKit (Firefox) : pseudo-classe standard :autofill. Le fond
    d'autofill n'est pas surchargeable → on garantit au moins un texte sombre
    lisible sur ce fond clair. */
