@@ -1,13 +1,19 @@
 ---
 import Base from "@/layouts/Base.astro";
-import PageHeader from "@/layouts/components/PageHeader.astro";
+import Breadcrumb from "@/layouts/components/Breadcrumb.astro";
 import ComparisonTable from "@/layouts/components/ComparisonTable.astro";
-import ProductCard from "@/layouts/components/ProductCard.astro";
+import FilterBar from "@/layouts/components/FilterBar.astro";
+import ProductBox from "@/layouts/components/ProductBox.astro";
 import AffiliateDisclosure from "@/layouts/components/AffiliateDisclosure.astro";
 import CallToAction from "@/layouts/components/CallToAction.astro";
+import ImageMod from "@/layouts/components/ImageMod.astro";
 import Accordion from "@/layouts/components/Accordion.astro";
 import { getProductsByClusterRanked } from "@/data/products";
 import { clusterContent } from "@/data/cluster-content";
+import { clusterFilters } from "@/data/cluster-filters";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import frenchDate from "@/lib/utils/frenchDate";
+import config from "@/config/config.json";
 import type { ClusterId } from "@/data/types";
 
 interface Props {
@@ -17,57 +23,296 @@ interface Props {
 const { cluster } = Astro.props;
 const products = getProductsByClusterRanked(cluster);
 const content = clusterContent[cluster];
+const filterGroups = clusterFilters[cluster];
+
+// Produits qui ont une page « avis complet » publiée (pour le lien de la box).
+// Jointure par productId : le slug de la page avis peut différer du slug du produit.
+const reviewSlugByProductId = new Map(
+  (await getSinglePage("reviews"))
+    .filter((review) => review.data.pillar === cluster)
+    .map((review) => [review.data.productId, review.data.slug ?? review.id]),
+);
+
+const categoryLabel: Record<ClusterId, string> = {
+  investir: "Investir",
+  "cartes-credit": "Cartes de crédit",
+  epargne: "Épargne",
+};
+const productLabel: Record<ClusterId, string> = {
+  investir: "Courtier",
+  "cartes-credit": "Carte",
+  epargne: "Compte",
+};
+const feeLabel: Record<ClusterId, string> = {
+  investir: "Commission actions/FNB",
+  "cartes-credit": "Frais annuels",
+  epargne: "Taux / frais",
+};
+const comparatifTitle: Record<ClusterId, string> = {
+  investir: "Comparatif des courtiers en ligne du Québec en un coup d'œil",
+  "cartes-credit": "Comparatif des cartes de crédit en un coup d'œil",
+  epargne: "Comparatif des comptes d'épargne en un coup d'œil",
+};
+const produitsTitle: Record<ClusterId, string> = {
+  investir: "Les courtiers en ligne du Québec en détail",
+  "cartes-credit": "Les cartes de crédit en détail",
+  epargne: "Les comptes d'épargne en détail",
+};
+
+const lastVerified =
+  products.map((p) => p.last_verified).find((d) => d && d !== "[DATE]") ??
+  "[DATE]";
+
+// Guides du même pilier — crée les liens entrants vers les articles de blog.
+const guides = (await getSinglePage("blog"))
+  .filter((post) => post.data.pillar === cluster)
+  .sort(
+    (a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf(),
+  );
+
+const canonical = `${config.site.base_url}/${cluster}`;
+
+const jsonLd: Record<string, unknown>[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Accueil",
+        item: `${config.site.base_url}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: categoryLabel[cluster],
+        item: canonical,
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: products.map((product, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: product.name,
+      url: `${config.site.base_url}/${cluster}/${product.slug}`,
+    })),
+  },
+];
+if (content.faqs.length > 0) {
+  jsonLd.push({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: content.faqs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  });
+}
 ---
 
 <Base
-  title={content.heroTitle}
+  title={content.metaTitle}
   meta_title={content.metaTitle}
   description={content.metaDescription}
+  canonical={canonical}
 >
-  <PageHeader title={content.heroTitle} subtitle={content.heroIntro} />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-  <!-- Divulgation d'affiliation (bandeau visible avant le comparatif) -->
-  <section class="pt-0 pb-10 md:pb-14">
+  <!-- Section 1 : introduction + 2 CTA -->
+  <section class="section-ph pt-16 md:pt-20 pb-14 md:pb-18">
     <div class="container">
-      <AffiliateDisclosure compact />
+      <Breadcrumb
+        items={[{ name: "Accueil", url: "/" }, { name: categoryLabel[cluster] }]}
+      />
+      <h1 class="mb-6 max-w-3xl">{content.heroTitle}</h1>
+      <p class="mb-8 max-w-3xl text-lg text-text">{content.heroIntro}</p>
+      <div class="flex flex-wrap gap-4">
+        <!-- Mobile : le tableau comparatif est masqué → un seul CTA, vers les fiches. -->
+        <a href="#produits" class="btn btn-primary md:hidden">
+          Comparer chaque {productLabel[cluster].toLowerCase()} en détail
+        </a>
+        <!-- Desktop / tablette : les deux CTA (tableau + fiches). -->
+        <a href="#comparatif" class="btn btn-primary hidden md:inline-block">
+          Voir le tableau comparatif
+        </a>
+        <a href="#produits" class="btn btn-outline hidden md:inline-block">
+          Comparer chaque {productLabel[cluster].toLowerCase()} en détail
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Comparatif -->
-  <section class="section pt-0">
+  <!-- Section 2 : tableau comparatif (masqué en mobile, cf. section détaillée) -->
+  <section id="comparatif" class="section pt-0 scroll-mt-24 hidden md:block">
     <div class="container">
       <div class="section-intro centralize mb-10">
-        <h2 class="title hasHighlight">Comparatif</h2>
+        <h2 class="title hasHighlight">{comparatifTitle[cluster]}</h2>
       </div>
-      <ComparisonTable products={products} />
+      <ComparisonTable
+        products={products}
+        productLabel={productLabel[cluster]}
+        feeLabel={feeLabel[cluster]}
+        cluster={cluster}
+      />
+      <div class="mt-6 flex flex-col gap-3">
+        <AffiliateDisclosure compact />
+        <p class="text-sm text-text-dark">
+          Dernière vérification : {lastVerified}. Confirmez les frais actuels
+          sur le site officiel de chaque {productLabel[cluster].toLowerCase()}.
+        </p>
+        {
+          cluster === "cartes-credit" && (
+            <p class="text-sm text-text-dark">
+              Frais, taux et primes vérifiés en août 2026, sous réserve de
+              modifications par l'émetteur.
+            </p>
+          )
+        }
+        {
+          cluster === "epargne" && (
+            <p class="text-sm text-text-dark">
+              Taux vérifiés en août 2026, sous réserve de modifications (les
+              taux d'épargne varient avec la Banque du Canada).
+            </p>
+          )
+        }
+      </div>
+      {
+        cluster === "epargne" && (
+          <div class="mt-6 rounded-lg border border-border bg-light p-5">
+            <h3 class="mb-2 text-sm font-bold text-secondary">
+              Bon à savoir au Québec
+            </h3>
+            <ul class="m-0 flex flex-col gap-1.5 text-sm text-text">
+              <li class="flex gap-2">
+                <span aria-hidden="true" class="shrink-0 text-primary">
+                  •
+                </span>
+                <span>
+                  Simplii Financial n'est pas offert au Québec, contrairement
+                  à ce qu'indiquent beaucoup de comparateurs canadiens.
+                </span>
+              </li>
+              <li class="flex gap-2">
+                <span aria-hidden="true" class="shrink-0 text-primary">
+                  •
+                </span>
+                <span>
+                  Les dépôts chez Desjardins sont protégés par l'Autorité des
+                  marchés financiers (AMF), le régime d'assurance-dépôts du
+                  Québec, et non par la SADC fédérale.
+                </span>
+              </li>
+            </ul>
+          </div>
+        )
+      }
     </div>
   </section>
 
-  <!-- Cartes produit -->
-  <section class="section pt-0">
+  <!-- Section 3 : filtres + boxes produit -->
+  <section id="produits" class="section pt-0 scroll-mt-24">
     <div class="container">
       <div class="section-intro centralize mb-10">
-        <h2 class="title hasHighlight">Nos avis détaillés</h2>
+        <h2 class="title hasHighlight">{produitsTitle[cluster]}</h2>
       </div>
-      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {products.map((product) => <ProductCard product={product} />)}
+      {
+        filterGroups.length > 0 && (
+          <FilterBar groups={filterGroups} totalCount={products.length} />
+        )
+      }
+      <div class="flex flex-col gap-6">
+        {
+          products.map((product) => (
+            <ProductBox
+              product={product}
+              cluster={cluster}
+              avisHref={
+                reviewSlugByProductId.has(product.id)
+                  ? `/${cluster}/${reviewSlugByProductId.get(product.id)}`
+                  : null
+              }
+            />
+          ))
+        }
       </div>
+      {
+        content.additionalNote && (
+          <p class="mt-8 text-center text-sm text-text-dark">
+            {content.additionalNote}
+          </p>
+        )
+      }
+      {
+        cluster === "cartes-credit" && (
+          <p class="mt-4 text-center text-sm text-text-dark">
+            Frais, taux et primes vérifiés en août 2026, sous réserve de
+            modifications par l'émetteur.
+          </p>
+        )
+      }
+      {
+        cluster === "epargne" && (
+          <p class="mt-4 text-center text-sm text-text-dark">
+            Taux vérifiés en août 2026, sous réserve de modifications (les
+            taux d'épargne varient avec la Banque du Canada).
+          </p>
+        )
+      }
     </div>
   </section>
 
-  <!-- Sections pédagogiques -->
+  <!-- Section Guides : articles de blog du pilier -->
   {
-    content.pedagogicalSections.length > 0 && (
+    guides.length > 0 && (
       <section class="section pt-0">
         <div class="container">
-          <div class="content mx-auto max-w-220">
-            {content.pedagogicalSections.map((sectionItem) => (
-              <div id={sectionItem.id}>
-                <h2>{sectionItem.heading}</h2>
-                {sectionItem.paragraphs.map((paragraph) => (
-                  <p>{paragraph}</p>
-                ))}
-              </div>
+          <div class="section-intro centralize mb-10">
+            <h2 class="title hasHighlight">Nos guides {categoryLabel[cluster].toLowerCase()}</h2>
+          </div>
+          <div class="mx-auto grid max-w-4xl gap-4 md:grid-cols-2">
+            {guides.map((post) => (
+              <a
+                href={`/blog/${post.data.slug ?? post.id}`}
+                class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-body transition-colors hover:border-primary"
+              >
+                <div class="shrink-0 overflow-hidden bg-secondary">
+                  <ImageMod
+                    src={post.data.coverImage}
+                    alt={post.data.coverAlt}
+                    width={600}
+                    height={340}
+                    fit={post.data.coverFit}
+                    position="left"
+                    loading="lazy"
+                    class:list={[
+                      "aspect-[600/340] h-auto w-full object-left transition-transform duration-300 group-hover:scale-[1.03]",
+                      post.data.coverFit === "contain"
+                        ? "object-contain"
+                        : "object-cover",
+                    ]}
+                  />
+                </div>
+                <div class="flex flex-col gap-2 p-6">
+                  <span class="text-xs font-semibold uppercase tracking-wide text-text-dark">
+                    Guide · {frenchDate(post.data.datePublished, "MMMM yyyy")}
+                  </span>
+                  <span class="text-h5-sm font-bold text-secondary">
+                    {post.data.title}
+                  </span>
+                  <span class="text-sm text-text">
+                    {post.data.description}
+                  </span>
+                  <span class="mt-1 text-sm font-semibold text-primary">
+                    Lire le guide →
+                  </span>
+                </div>
+              </a>
             ))}
           </div>
         </div>
@@ -75,7 +320,7 @@ const content = clusterContent[cluster];
     )
   }
 
-  <!-- FAQ -->
+  <!-- Section 4 : FAQ -->
   {
     content.faqs.length > 0 && (
       <section class="section pt-0">
@@ -93,6 +338,6 @@ const content = clusterContent[cluster];
     )
   }
 
-  <!-- Call to Action -->
+  <!-- Bandeau CTA final -->
   <CallToAction />
 </Base>

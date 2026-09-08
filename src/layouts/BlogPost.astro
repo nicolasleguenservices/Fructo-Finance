@@ -1,0 +1,399 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumb from "@/layouts/components/Breadcrumb.astro";
+import Accordion from "@/layouts/components/Accordion.astro";
+import ImageMod from "@/layouts/components/ImageMod.astro";
+import PillarCta from "@/layouts/components/PillarCta.astro";
+import Share from "@/layouts/components/Share.astro";
+import TableOfContents from "@/layouts/components/TableOfContents.astro";
+import config from "@/config/config.json";
+import frenchDate from "@/lib/utils/frenchDate";
+import readingTime from "@/lib/utils/readingTime";
+import { getAuthor } from "@/data/authors";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const d = post.data;
+const slug = d.slug ?? post.id;
+
+const { Content, headings } = await render(post);
+
+const pillarMeta: Record<
+  CollectionEntry<"blog">["data"]["pillar"],
+  { label: string; url: string }
+> = {
+  investir: { label: "Investir", url: "/investir" },
+  "cartes-credit": { label: "Cartes de crédit", url: "/cartes-credit" },
+  epargne: { label: "Épargne", url: "/epargne" },
+};
+const pillar = pillarMeta[d.pillar];
+
+const baseUrl = config.site.base_url;
+const url = `${baseUrl}/blog/${slug}`;
+const published = d.datePublished;
+const modified = d.dateModified ?? d.datePublished;
+const author = getAuthor(d.author);
+const coverUrl = `${baseUrl}${d.coverImage}`;
+const readTime = readingTime(post.body ?? "");
+
+// Sommaire : H2 + H3 uniquement, affiché pour les articles longs.
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const showToc = toc.length >= 3;
+
+// Maillage interne « À lire aussi » : priorité au même pilier, + 1 autre pilier.
+const otherPosts = (await getSinglePage("blog"))
+  .filter((p) => p.id !== post.id)
+  .sort(
+    (a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf(),
+  );
+const samePillar = otherPosts.filter((p) => p.data.pillar === d.pillar);
+const crossPillar = otherPosts.filter((p) => p.data.pillar !== d.pillar);
+const relatedPosts = [
+  ...samePillar.slice(0, 2),
+  ...crossPillar.slice(0, 1),
+  ...samePillar.slice(2),
+].slice(0, 3);
+
+const jsonLd: Record<string, unknown>[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: `${baseUrl}/` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${baseUrl}/blog`,
+      },
+      { "@type": "ListItem", position: 3, name: d.title, item: url },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: d.title,
+    description: d.description,
+    image: [coverUrl],
+    datePublished: published.toISOString(),
+    dateModified: modified.toISOString(),
+    inLanguage: "fr-CA",
+    ...(d.keyword ? { keywords: d.keyword } : {}),
+    author: {
+      "@type": "Person",
+      name: author.name,
+      ...(author.url ? { url: `${baseUrl}${author.url}` } : {}),
+    },
+    publisher: {
+      "@type": "Organization",
+      name: config.site.title,
+      logo: { "@type": "ImageObject", url: `${baseUrl}${config.site.logo}` },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  },
+];
+
+if (d.faq.length > 0) {
+  jsonLd.push({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: d.faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  });
+}
+---
+
+<Base
+  title={d.title}
+  meta_title={d.meta_title ?? d.title}
+  description={d.description}
+  image={d.coverImage}
+  canonical={url}
+  og_type="article"
+>
+  <Fragment slot="head">
+    <meta property="article:published_time" content={published.toISOString()} />
+    <meta property="article:modified_time" content={modified.toISOString()} />
+    <meta property="article:author" content={author.name} />
+    <meta property="article:section" content={pillar.label} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+      is:inline
+    />
+  </Fragment>
+
+  <article class="section-ph pt-16 pb-16 md:pt-20 md:pb-20">
+    <div class="container">
+      <!--
+        Grille à 3 voies sur desktop :
+        [ sommaire (gauche) | colonne de lecture ~44rem (centre) | marge (droite) ].
+        Tous les blocs de l'article vivent dans la colonne de lecture (`lg:col-start-2`)
+        et partagent donc exactement le même bord gauche que le titre et l'image.
+        Le sommaire occupe sa propre voie et ne « pousse » plus le texte.
+      -->
+      <div
+        class:list={[
+          "mx-auto",
+          showToc
+            ? "lg:grid lg:max-w-6xl lg:grid-cols-[13rem_minmax(0,44rem)_minmax(0,1fr)] lg:items-start lg:gap-x-8"
+            : "max-w-[44rem]",
+        ]}
+      >
+        {
+          showToc && (
+            <aside class="hidden self-start lg:col-start-1 lg:row-start-1 lg:block lg:sticky lg:top-28 lg:max-h-[calc(100vh-9rem)] lg:overflow-y-auto">
+              <p class="mb-3 font-secondary text-xs font-semibold uppercase tracking-wide text-text-dark">
+                Sur cette page
+              </p>
+              <TableOfContents headings={toc} />
+            </aside>
+          )
+        }
+
+        <div
+          class:list={[
+            "mx-auto max-w-[44rem]",
+            showToc && "lg:col-start-2 lg:row-start-1 lg:mx-0 lg:max-w-none",
+          ]}
+        >
+          <!-- En-tête -->
+          <Breadcrumb
+            items={[
+              { name: "Accueil", url: "/" },
+              { name: "Blog", url: "/blog" },
+              { name: d.title },
+            ]}
+          />
+
+          <a
+            href={pillar.url}
+            class="inline-flex items-center gap-1.5 rounded-full bg-secondary/8 px-3 py-1 text-xs font-semibold text-secondary hover:bg-secondary hover:text-white"
+          >
+            {pillar.label}
+          </a>
+
+          <h1 class="mb-4 mt-4 text-h3-sm md:text-h2 text-secondary">
+            {d.title}
+          </h1>
+          <p class="mb-6 text-lg text-text-dark">{d.description}</p>
+
+          <div
+            class="flex flex-wrap items-center gap-x-5 gap-y-2 border-y border-border py-4 text-sm text-text-dark"
+          >
+            <span class="inline-flex items-center gap-2">
+              <ImageMod
+                src={author.image}
+                alt={author.name}
+                width={28}
+                height={28}
+                fit="cover"
+                class="size-7 rounded-full"
+              />
+              <span class="font-medium text-text">
+                {author.name} — {author.shortRole ?? author.role}
+              </span>
+            </span>
+            <span>
+              Publié le <time datetime={published.toISOString()}
+                >{frenchDate(published)}</time
+              >
+            </span>
+            <span>
+              Mis à jour le <time datetime={modified.toISOString()}
+                >{frenchDate(modified)}</time
+              >
+            </span>
+            <span>{readTime}</span>
+          </div>
+
+          {
+            d.hasAffiliateLinks && (
+              <p class="mt-2 text-xs text-text-dark">
+                <a
+                  href="/divulgation-affiliation"
+                  class="underline hover:text-primary"
+                >
+                  Divulgation d'affiliation
+                </a>
+              </p>
+            )
+          }
+
+          <!-- Image de couverture : épouse la largeur de la colonne de lecture -->
+          <figure class="mt-8">
+            <div
+              class="overflow-hidden rounded-2xl border border-border bg-secondary"
+            >
+              <ImageMod
+                src={d.coverImage}
+                alt={d.coverAlt}
+                title={d.coverTitle}
+                width={d.coverWidth}
+                height={d.coverHeight}
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                fit={d.coverFit}
+                class:list={[
+                  "h-auto w-full",
+                  d.coverFit === "contain" ? "object-contain" : "object-cover",
+                ]}
+                style={{ aspectRatio: `${d.coverWidth} / ${d.coverHeight}` }}
+              />
+            </div>
+            {
+              d.coverCaption && (
+                <figcaption class="mt-2 text-sm text-text-dark">
+                  {d.coverCaption}
+                </figcaption>
+              )
+            }
+          </figure>
+
+          <!-- Corps de texte -->
+          <div
+            class="content mt-10 lg:mt-12 [&_h2]:scroll-mt-28 [&_h3]:scroll-mt-28 [&_h2]:text-h4-sm md:[&_h2]:text-h3 [&_h3]:text-h5 [&_a:not(.btn)]:text-primary [&_a:not(.btn)]:underline"
+          >
+            <Content />
+          </div>
+
+          <!-- FAQ : accordéon « boîte cliquable », identique aux pages catégories -->
+          {
+            d.faq.length > 0 && (
+              <section class="mt-16" aria-labelledby="faq-titre">
+                <h2
+                  id="faq-titre"
+                  class="mb-6 text-h4-sm md:text-h3 text-secondary"
+                >
+                  Foire aux questions
+                </h2>
+                <div class="space-y-4">
+                  {d.faq.map((item) => (
+                    <Accordion title={item.question} content={item.answer} />
+                  ))}
+                </div>
+              </section>
+            )
+          }
+
+          <!-- Partage + mention légale -->
+          <div class="mt-14 flex flex-col gap-6">
+            <div class="flex flex-wrap items-center gap-4">
+              <span class="font-secondary font-semibold text-secondary"
+                >Partager :</span
+              >
+              <Share
+                className="social-icons"
+                slug={`blog/${slug}`}
+                title={d.title}
+                description={d.description}
+              />
+            </div>
+
+            <p class="text-xs text-text-dark">
+              Cet article est informatif et à jour au {frenchDate(modified)}. Il
+              ne constitue pas un conseil financier personnalisé. Les conditions
+              des produits financiers peuvent changer : reportez-vous au site
+              officiel de l'institution avant d'ouvrir un compte.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Maillage interne : autres articles à lire (entre la FAQ et la CTA) -->
+  {
+    relatedPosts.length > 0 && (
+      <section class="section pt-0">
+        <div class="container">
+          <div class="section-intro centralize mb-10">
+            <h2 class="title hasHighlight">À lire aussi</h2>
+          </div>
+          <div class="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {relatedPosts.map((p) => (
+              <a
+                href={`/blog/${p.data.slug ?? p.id}`}
+                class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-body transition-colors hover:border-primary"
+              >
+                <div class="shrink-0 overflow-hidden bg-secondary">
+                  <ImageMod
+                    src={p.data.coverImage}
+                    alt={p.data.coverAlt}
+                    width={600}
+                    height={340}
+                    fit={p.data.coverFit}
+                    position="left"
+                    loading="lazy"
+                    class:list={[
+                      "aspect-[600/340] h-auto w-full object-left transition-transform duration-300 group-hover:scale-[1.03]",
+                      p.data.coverFit === "contain"
+                        ? "object-contain"
+                        : "object-cover",
+                    ]}
+                  />
+                </div>
+                <div class="flex flex-1 flex-col gap-2 p-5">
+                  <span class="text-xs font-semibold uppercase tracking-wide text-text-dark">
+                    {frenchDate(p.data.datePublished)}
+                  </span>
+                  <span class="text-h6-sm font-bold text-secondary group-hover:text-primary">
+                    {p.data.title}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Section CTA vers la page pilier (dernière section avant le footer) -->
+  <PillarCta pillar={d.pillar} />
+</Base>
+
+<script>
+  // Surligne la section active du sommaire au défilement (desktop).
+  const tocLinks = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>('[data-toc] a[href^="#"]'),
+  );
+  if (tocLinks.length > 0) {
+    const linkById = new Map<string, HTMLAnchorElement>();
+    const targets: HTMLElement[] = [];
+    tocLinks.forEach((link) => {
+      const id = decodeURIComponent(link.hash.slice(1));
+      const el = document.getElementById(id);
+      if (el) {
+        linkById.set(id, link);
+        targets.push(el);
+      }
+    });
+
+    const setActive = (id: string) => {
+      tocLinks.forEach((l) => l.classList.remove("is-active"));
+      linkById.get(id)?.classList.add("is-active");
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
+    );
+    targets.forEach((el) => observer.observe(el));
+  }
+</script>

@@ -27,8 +27,13 @@ export interface Product {
    */
   logo?: string;
   category: string;
-  rating: number;
+  /** @deprecated Pas de note affichée sans méthodologie publique documentée — conservé uniquement si déjà présent dans d'anciennes fiches. */
+  rating?: number;
   cluster: ClusterId;
+  /** Jetons de filtre (slugs) pour la barre de filtres de la page catégorie, ex. ["celi", "reer", "debutant"]. */
+  filters?: string[];
+  /** Badges courts affichés sur le tableau/la box, ex. "En vedette", "Choix québécois". */
+  badges?: string[];
   affiliate: Affiliate;
   resume: string;
   highlights: string[];
@@ -36,6 +41,9 @@ export interface Product {
   cons: string[];
   fees?: Record<string, string>;
   card_details?: Record<string, string>;
+  /** Résumé court (clés selon le cluster) pour les cellules du tableau comparatif, qui
+   * n'ont pas la place pour le texte complet de card_details/account_details. */
+  comparatif?: Record<string, string>;
   account_details?: Record<string, string | string[]>;
   comptes_supportes?: string[];
   ideal_pour: string[];

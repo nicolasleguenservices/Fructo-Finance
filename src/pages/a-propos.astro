@@ -1,0 +1,501 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumb from "@/layouts/components/Breadcrumb.astro";
+import ProcessCard from "@/layouts/components/ProcessCard.astro";
+import ImageMod from "@/layouts/components/ImageMod.astro";
+import BlogCard from "@/layouts/components/BlogCard.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { getAuthor } from "@/data/authors";
+import frenchDate from "@/lib/utils/frenchDate";
+import readingTime from "@/lib/utils/readingTime";
+import config from "@/config/config.json";
+
+const baseUrl = config.site.base_url;
+const canonical = `${baseUrl}/a-propos`;
+
+const metaTitle = "À propos de Fructo Finance | Notre méthode";
+const metaDescription =
+  "Qui est derrière Fructo Finance, comment nous comparons les produits financiers offerts au Québec, et comment nous gagnons de l'argent. Transparence totale.";
+
+const author = getAuthor("Nicolas Le Guen");
+
+// Maillage interne : guides récents du blog (mêmes cartes que /blog/ et l'accueil).
+const pillarMeta = {
+  investir: { label: "Investir", url: "/investir" },
+  "cartes-credit": { label: "Cartes de crédit", url: "/cartes-credit" },
+  epargne: { label: "Épargne", url: "/epargne" },
+} as const;
+
+const guides = (await getSinglePage("blog"))
+  .sort(
+    (a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf(),
+  )
+  .slice(0, 3);
+
+const methode = [
+  {
+    icon: "search",
+    title: "1. On part de la source officielle",
+    content:
+      "Frais, taux, récompenses et conditions sont relevés d'abord sur les sites officiels des institutions financières.",
+  },
+  {
+    icon: "shield",
+    title: "2. On recoupe avec les organismes",
+    content:
+      "Chaque donnée est vérifiée avec l'ARC, l'Autorité des marchés financiers (AMF) et l'Organisme canadien de réglementation des investissements (OCRI).",
+  },
+  {
+    icon: "scale",
+    title: "3. On date chaque information",
+    content:
+      "Les frais et les taux bougent souvent. Chaque fiche affiche sa date de dernière vérification, et nous invitons à confirmer auprès de l'émetteur.",
+  },
+];
+
+const neFaitPas = [
+  {
+    title: "Pas de conseil personnalisé",
+    content:
+      "Fructo Finance n'est pas inscrit à titre de conseiller auprès de l'Autorité des marchés financiers (AMF). Notre contenu est informatif et général. Pour votre situation personnelle, consultez un professionnel inscrit à l'AMF.",
+  },
+  {
+    title: "Pas de prévisions de marché",
+    content:
+      "Nous n'essayons pas de deviner où iront les taux ou les marchés.",
+  },
+  {
+    title: "Pas de publicité déguisée",
+    content:
+      "Un texte qui vante un seul produit sans nuance n'est pas un comparatif. Nous présentons les avantages ET les inconvénients de chaque produit.",
+  },
+];
+
+const piliers = [
+  { label: "Courtiers en ligne", url: "/investir" },
+  { label: "Cartes de crédit", url: "/cartes-credit" },
+  { label: "Comptes d'épargne", url: "/epargne" },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: metaTitle,
+    description: metaDescription,
+    url: canonical,
+    inLanguage: "fr-CA",
+    isPartOf: { "@type": "WebSite", name: config.site.title, url: `${baseUrl}/` },
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Accueil", item: `${baseUrl}/` },
+        { "@type": "ListItem", position: 2, name: "À propos", item: canonical },
+      ],
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: config.site.title,
+    url: `${baseUrl}/`,
+    logo: `${baseUrl}${config.site.logo}`,
+    description:
+      "Comparateur indépendant de produits financiers offerts au Québec : courtiers en ligne, cartes de crédit et comptes d'épargne.",
+    founder: { "@type": "Person", name: author.name },
+    knowsLanguage: "fr-CA",
+    areaServed: { "@type": "AdministrativeArea", name: "Québec, Canada" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: author.name,
+    url: canonical,
+    jobTitle: author.shortRole ?? author.role,
+    description: author.bio,
+    worksFor: { "@type": "Organization", name: config.site.title },
+  },
+];
+---
+
+<Base
+  title={metaTitle}
+  meta_title={metaTitle}
+  description={metaDescription}
+  canonical={canonical}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+
+  <noscript>
+    <style>
+      [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    </style>
+  </noscript>
+
+  <!-- 1. Hero -->
+  <section class="section-ph pt-16 md:pt-20 pb-16 md:pb-20 relative overflow-hidden">
+    <div class="container relative">
+      <div class="mx-auto max-w-3xl text-center">
+        <Breadcrumb
+          items={[{ name: "Accueil", url: "/" }, { name: "À propos" }]}
+        />
+        <h1 class="hasHighlight mb-6">À propos de Fructo Finance</h1>
+        <p class="text-lg text-text" data-reveal>
+          Fructo Finance est un comparateur indépendant de produits financiers
+          offerts au Québec, en français. Voici qui est derrière le site,
+          comment nous vérifions nos données, et comment nous gagnons de
+          l'argent, en toute transparence.
+        </p>
+      </div>
+    </div>
+    <div
+      class="pointer-events-none absolute left-1/2 top-0 -z-10 size-160 xl:size-260 -translate-x-1/2 -translate-y-1/2 blur-2xl"
+      style="background: radial-gradient(circle, color-mix(in srgb, var(--color-primary) 24%, transparent) 0%, transparent 70%);"
+    >
+    </div>
+  </section>
+
+  <hr
+    class="h-px border-0 bg-linear-to-r from-transparent from-10% via-border to-90% to-transparent"
+  />
+
+  <!-- 2. Pourquoi ce site existe -->
+  <section class="section">
+    <div class="container">
+      <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div data-reveal>
+          <h2 class="mb-6 text-h3-sm md:text-h3 text-secondary">
+            Pourquoi ce site existe
+          </h2>
+          <div class="flex flex-col gap-4 text-text">
+            <p>
+              La finance personnelle en français au Canada est souvent mal
+              servie : trop de jargon d'un côté, trop peu de rigueur de
+              l'autre, et surtout des comparatifs pensés pour l'ensemble du
+              Canada qui ignorent les réalités du Québec.
+            </p>
+            <p>
+              Or le Québec a ses propres règles. L'assurance-dépôts y passe par
+              l'Autorité des marchés financiers (AMF) plutôt que par la SADC
+              pour Desjardins. Certaines banques en ligne populaires ailleurs au
+              pays ne sont même pas offertes ici. La fiscalité provinciale
+              change le calcul entre un CELI et un REER. Un bon conseil en
+              Ontario n'est pas toujours le bon conseil au Québec.
+            </p>
+            <p>
+              Fructo Finance a été créé pour combler ce vide : comparer les
+              produits réellement accessibles aux Québécois, dans un français
+              clair, avec des données vérifiées à la source.
+            </p>
+          </div>
+        </div>
+        <div data-reveal>
+          <ImageMod
+            src="/images/pourquoi-fructo-finance-quebec.webp"
+            alt="Réunion de travail : comparer les produits financiers au Québec"
+            width={1200}
+            height={800}
+            fit="cover"
+            loading="lazy"
+            class="aspect-[1200/800] h-auto w-full rounded-[16px] object-cover shadow-sm"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Comment nous comparons -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="section-container">
+        <div class="section-intro centralize" data-reveal>
+          <h2 class="title hasHighlight">Comment nous comparons</h2>
+          <p class="subtitle text-text-dark">
+            Nos comparatifs ne sortent pas de nulle part. La même méthode
+            s'applique à chaque courtier, carte ou compte d'épargne.
+          </p>
+        </div>
+        <div class="section-content">
+          <div class="grid gap-8 md:grid-cols-3 xl:gap-12">
+            {
+              methode.map((step) => (
+                <div data-reveal>
+                  <ProcessCard
+                    icon={step.icon}
+                    title={step.title}
+                    content={step.content}
+                  />
+                </div>
+              ))
+            }
+          </div>
+          <p
+            class="mx-auto mt-10 max-w-160 text-center text-sm text-text-dark"
+            data-reveal
+          >
+            Les frais et les taux changent souvent, surtout du côté de
+            l'épargne et des primes de bienvenue : confirmez toujours les
+            conditions actuelles directement auprès de l'émetteur avant de
+            prendre une décision.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Comment nous gagnons de l'argent -->
+  <section class="section">
+    <div class="container">
+      <div
+        class="mx-auto max-w-3xl rounded-[16px] border border-primary/25 bg-primary/5 p-8 md:p-10"
+        data-reveal
+      >
+        <h2 class="mb-5 text-h3-sm md:text-h3 text-secondary">
+          Comment nous gagnons de l'argent
+        </h2>
+        <div class="flex flex-col gap-4 text-text">
+          <p>
+            Fructo Finance est gratuit pour vous. Le site est financé par des
+            liens d'affiliation : lorsque vous ouvrez un compte ou demandez un
+            produit via certains de nos liens, nous pouvons recevoir une
+            commission de l'institution, sans aucun coût supplémentaire pour
+            vous.
+          </p>
+          <p>
+            Cette rémunération n'influence pas nos comparaisons. Si le meilleur
+            compte d'épargne pour vous ne nous verse aucune commission, il reste
+            présenté comme le meilleur. Et si un produit paie une commission
+            généreuse mais ne convient pas à votre profil, il n'est pas hissé en
+            tête pour autant.
+          </p>
+        </div>
+        <a
+          href="/divulgation-affiliation"
+          class="mt-6 inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
+        >
+          Lire la divulgation d'affiliation complète
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Ce que Fructo Finance ne fait pas -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="section-intro centralize mb-12" data-reveal>
+        <h2 class="title hasHighlight">Ce que Fructo Finance ne fait pas</h2>
+      </div>
+      <div class="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
+        {
+          neFaitPas.map((item) => (
+            <div
+              class="flex flex-col gap-3 rounded-[14px] border border-border bg-body p-6 shadow-sm"
+              data-reveal
+            >
+              <span class="grid size-10 shrink-0 place-items-center rounded-full bg-primary/10">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--color-primary)"
+                  stroke-width="2.25"
+                  stroke-linecap="round"
+                  aria-hidden="true"
+                >
+                  <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+              </span>
+              <h3 class="font-secondary text-h6-sm font-bold text-secondary">
+                {item.title}
+              </h3>
+              <p class="text-sm text-text">{item.content}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. L'auteur derrière Fructo Finance -->
+  <section class="section bg-secondary text-white">
+    <div class="container">
+      <div class="section-intro centralize mb-12" data-reveal>
+        <h2 class="title text-white">L'auteur derrière Fructo Finance</h2>
+      </div>
+      <div
+        class="mx-auto flex max-w-3xl flex-col items-center gap-6 rounded-[16px] border border-white/15 bg-white/5 p-8 text-center md:flex-row md:gap-8 md:p-10 md:text-left"
+        data-reveal
+      >
+        <ImageMod
+          src="/images/nicolas-le-guen-fondateur-fructo-finance.webp"
+          alt="Nicolas Le Guen, fondateur de Fructo Finance"
+          width={192}
+          height={192}
+          fit="cover"
+          loading="lazy"
+          class="size-24 shrink-0 rounded-full border-2 border-primary object-cover"
+        />
+        <div class="flex flex-col gap-2">
+          <p class="font-secondary text-xl font-bold text-white">
+            {author.name}
+          </p>
+          <p class="text-sm font-semibold text-yellow">
+            {author.shortRole ?? author.role}
+          </p>
+          <p class="mt-1 text-sm leading-relaxed text-white/80">
+            Le contenu est rédigé et vérifié par {author.name}, spécialiste du
+            référencement web. Sa démarche : appliquer à la finance personnelle
+            québécoise la même rigueur qu'un bon travail éditorial, soit aller à
+            la source, vérifier les chiffres, dater les informations, et écrire
+            dans un français accessible aux débutants. Fructo Finance est un
+            projet indépendant, sans lien de propriété avec une institution
+            financière.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Une question ? Une correction ? -->
+  <section class="section">
+    <div class="container">
+      <div class="mx-auto max-w-3xl" data-reveal>
+        <h2 class="mb-5 text-h3-sm md:text-h3 text-secondary">
+          Une question ? Une correction ?
+        </h2>
+        <p class="text-text">
+          Les taux, les règles et les conditions des produits évoluent vite. Si
+          vous repérez une erreur ou une information périmée, nous voulons le
+          savoir. Écrivez-nous via la <a
+            href="/contact"
+            class="font-semibold text-primary hover:underline">page contact</a
+          >.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7b. Nos guides — mêmes cartes d'aperçu que /blog/ et l'accueil -->
+  {
+    guides.length > 0 && (
+      <section class="section pt-0 overflow-hidden">
+        <div class="container">
+          <div class="section-intro centralize mb-12" data-reveal>
+            <h2 class="title hasHighlight">Nos guides</h2>
+            <p class="subtitle text-text-dark">
+              Des guides pratiques pour comprendre et choisir vos produits
+              financiers au Québec.
+            </p>
+          </div>
+          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3" data-reveal>
+            {guides.map((post) => {
+              const d = post.data;
+              const postAuthor = getAuthor(d.author);
+              const pillar = pillarMeta[d.pillar];
+              return (
+                <BlogCard
+                  image={d.coverImage}
+                  imageAlt={d.coverAlt}
+                  imageFit={d.coverFit}
+                  title={d.title}
+                  description={d.description}
+                  author={postAuthor.name}
+                  authorImage={postAuthor.image}
+                  date={frenchDate(d.datePublished)}
+                  readTime={readingTime(post.body ?? "")}
+                  pillarLabel={pillar.label}
+                  pillarUrl={pillar.url}
+                  href={`/blog/${d.slug ?? post.id}`}
+                />
+              );
+            })}
+          </div>
+          <div class="mt-12 flex justify-center" data-reveal>
+            <a href="/blog" class="btn btn-outline">
+              Voir tous les articles
+            </a>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- 8. Bandeau CTA final -->
+  <section class="section">
+    <div
+      class="container relative isolate overflow-hidden rounded-4xl bg-light py-16 md:py-20"
+    >
+      <div class="section-intro centralize" data-reveal>
+        <h2 class="title hasHighlight lg:col-7">Prêt à comparer ?</h2>
+        <p class="subtitle text-h6-sm lg:col-6">
+          Choisissez le comparatif qui vous concerne : données vérifiées à la
+          source, avantages et inconvénients de chaque produit.
+        </p>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+          {
+            piliers.map((p) => (
+              <a href={p.url} class="btn btn-primary">
+                {p.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <div
+        class="pointer-events-none absolute bottom-0 right-0 -z-10 size-120 xl:size-260 translate-x-2/5 translate-y-1/2 blur-2xl"
+        style="background: radial-gradient(circle, color-mix(in srgb, var(--color-primary) 55%, white) 0%, var(--color-primary) 12%, transparent 60%);"
+      >
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const items = document.querySelectorAll<HTMLElement>("[data-reveal]");
+  const reduce = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  if (reduce || !("IntersectionObserver" in window)) {
+    items.forEach((el) => el.classList.add("is-visible"));
+  } else {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
+    );
+    items.forEach((el) => io.observe(el));
+  }
+</script>

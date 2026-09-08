@@ -4,203 +4,1675 @@
     "avertissement": "Tous les chiffres (frais, taux, bonus) doivent être vérifiés sur le site officiel avant publication. Ils changent souvent. Mettre à jour 'last_verified' à chaque révision.",
     "derniere_maj": "2026-07-30"
   },
-
   "brokers": [
     {
       "id": "wealthsimple",
       "name": "Wealthsimple",
       "slug": "wealthsimple",
       "category": "courtier",
-      "rating": 4.7,
       "cluster": "investir",
       "rank": 1,
-      "score_global": 8.6,
-      "score_breakdown": {
-        "frais": 9,
-        "experience_numerique": 9.5,
-        "choix_produits": 7.5,
-        "service_client": 8
-      },
-      "tagline": "La plateforme la plus simple pour débuter",
-      "verdict": "Wealthsimple se démarque par sa simplicité et l'absence totale de commission, ce qui en fait le point d'entrée le plus accessible pour investir au Québec.",
+      "badges": [
+        "En vedette",
+        "Populaire au Québec"
+      ],
       "affiliate": {
-        "type": "parrainage",
+        "type": "affiliation",
         "network": "direct",
-        "url": "REMPLACER_PAR_TON_LIEN_DE_PARRAINAGE",
+        "url": "[LIEN_AFFILIATION]",
         "commission_note": "Bonus de parrainage + bonus de transfert 1 à 3 % pour le référé",
         "rel": "sponsored"
       },
-      "resume": "Le courtier le plus simple pour débuter : 0 $ de commission, application primée, tout-en-un.",
+      "resume": "Le courtier le plus simple pour débuter, avec 0 $ de commission sur actions et FNB.",
       "highlights": [
-        "0 $ de commission sur actions et FNB",
-        "Application mobile primée",
-        "CELI, REER, CELIAPP et comptant",
-        "Bonus de transfert 1 à 3 %"
+        "Commission actions/FNB canadiens : 0 $",
+        "Frais de change USD : ~1,5 % par conversion (0 $ sur actions US avec l'offre Premium à ~10 $/mois)",
+        "Comptes offerts : CELI, REER, CELIAPP, compte non enregistré. REEE en placements autonomes : — historiquement non pris en charge; le robot Invest ne serait pas fournisseur autorisé au Québec pour l'IQEE",
+        "Frais d'administration : 0 $ de frais de tenue de compte, aucun dépôt minimum",
+        "Réglementation : membre OCRI et FCPE"
       ],
       "pros": [
-        "Aucune commission de négociation",
-        "Interface épurée, idéale pour débutants",
-        "Écosystème complet (investir, épargne, crypto, impôts)"
+        "Interface française épurée",
+        "Aucune commission",
+        "Idéal pour commencer",
+        "Application mobile réputée"
       ],
       "cons": [
-        "Frais de conversion de devises (spread) sur les positions en USD",
-        "Peu d'outils pour les traders actifs avancés",
-        "Pas de comptes corporatifs ni de compte de marge"
+        "Frais de change USD élevés",
+        "Produits/outils avancés limités",
+        "Pas de REEE en autonome"
       ],
       "fees": {
-        "trading_actions_fnb": "0 $",
-        "frais_gestion_compte": "0 $",
-        "spread_devise_usd": "~1,5 % par conversion"
+        "commission_actions_fnb": "0 $",
+        "frais_change_usd": "~1,5 % par conversion",
+        "frais_administration": "0 $, aucun dépôt minimum"
       },
-      "comptes_supportes": ["CELI", "REER", "CELIAPP", "Comptant", "Crypto"],
-      "ideal_pour": ["débutants", "investisseurs passifs", "portefeuille de FNB"],
-      "regulateur": "OCRI / FCPE (jusqu'à 1 M$)",
+      "comptes_supportes": [
+        "CELI",
+        "REER",
+        "CELIAPP",
+        "non enregistré"
+      ],
+      "ideal_pour": [
+        "débutants",
+        "investisseurs FNB passifs",
+        "adeptes du mobile"
+      ],
+      "regulateur": "OCRI et FCPE",
       "url_officiel": "https://www.wealthsimple.com",
-      "last_verified": "2026-07-30"
+      "last_verified": "2026-08-21",
+      "filters": [
+        "celi",
+        "reer",
+        "celiapp",
+        "non-enregistre",
+        "debutant",
+        "passif",
+        "sans-commission",
+        "sans-frais-admin"
+      ]
     },
     {
       "id": "questrade",
       "name": "Questrade",
       "slug": "questrade",
       "category": "courtier",
-      "rating": 4.3,
       "cluster": "investir",
       "rank": 2,
-      "score_global": 8.1,
-      "score_breakdown": {
-        "frais": 8.5,
-        "experience_numerique": 7,
-        "choix_produits": 9,
-        "service_client": 7.5
-      },
-      "tagline": "Pour les investisseurs actifs qui veulent plus d'outils",
-      "verdict": "Questrade se distingue par son compte USD natif et un plus grand choix de types de comptes, un bon compromis pour les portefeuilles plus actifs.",
+      "badges": [
+        "En vedette"
+      ],
       "affiliate": {
-        "type": "parrainage",
+        "type": "affiliation",
         "network": "direct",
-        "url": "REMPLACER_PAR_TON_LIEN_DE_PARRAINAGE",
+        "url": "[LIEN_AFFILIATION]",
         "commission_note": "À confirmer selon le programme partenaire",
         "rel": "sponsored"
       },
-      "resume": "Le choix des investisseurs plus actifs : compte en USD natif, outils avancés, 0 $ sur actions et FNB.",
+      "resume": "Achat de FNB gratuit et vente d'actions/FNB dès ~4,95 $, pour investisseurs intermédiaires.",
       "highlights": [
-        "0 $ de commission sur actions et FNB (depuis 2025)",
-        "Compte en dollars US natif",
-        "Plateforme IQ Edge pour traders",
-        "Comptes REEE, corporatif, marge"
+        "Commission : achat de FNB gratuit; vente de FNB et actions dès ~4,95 $ (jusqu'à ~9,95 $)",
+        "Frais de change USD : (comptes en USD possibles)",
+        "Comptes offerts : CELI, REER, CELIAPP, REEE, FERR, non enregistré",
+        "Réglementation : membre OCRI et FCPE"
       ],
       "pros": [
-        "Compte USD évite les frais de conversion répétés",
-        "Outils de trading avancés (ordres, données de niveau 2)",
-        "Plus de types de comptes que Wealthsimple"
+        "Achat de FNB gratuit",
+        "Outils avancés (Questrade Edge)",
+        "Large choix de comptes",
+        "Bonne évolutivité"
       ],
       "cons": [
-        "Application mobile jugée moins moderne",
-        "Courbe d'apprentissage plus élevée pour un débutant"
+        "Vente de FNB payante",
+        "Courbe d'apprentissage un peu plus élevée pour un pur débutant"
       ],
       "fees": {
-        "trading_actions_fnb": "0 $",
-        "frais_gestion_compte": "0 $ (selon conditions)",
-        "options": "9,95 $ + 1 $/contrat"
+        "commission_actions_fnb": "Achat FNB 0 $, actions dès ~4,95 $",
+        "frais_change_usd": "",
+        "frais_administration": ""
       },
-      "comptes_supportes": ["CELI", "REER", "CELIAPP", "REEE", "Comptant", "Marge", "Corporatif"],
-      "ideal_pour": ["investisseurs actifs", "détenteurs d'actions US", "gros portefeuilles"],
-      "regulateur": "OCRI / FCPE (jusqu'à 1 M$)",
+      "comptes_supportes": [
+        "CELI",
+        "REER",
+        "CELIAPP",
+        "REEE",
+        "FERR",
+        "non enregistré"
+      ],
+      "ideal_pour": [
+        "investisseurs intermédiaires",
+        "portefeuille multi-comptes"
+      ],
+      "regulateur": "OCRI et FCPE",
       "url_officiel": "https://www.questrade.com",
-      "last_verified": "2026-07-30"
+      "last_verified": "2026-08-21",
+      "filters": [
+        "celi",
+        "reer",
+        "celiapp",
+        "reee",
+        "non-enregistre"
+      ]
+    },
+    {
+      "id": "bncd",
+      "name": "Banque Nationale Courtage direct (BNCD)",
+      "slug": "bncd",
+      "category": "courtier",
+      "cluster": "investir",
+      "rank": 3,
+      "badges": [
+        "En vedette",
+        "Populaire au Québec"
+      ],
+      "affiliate": {
+        "type": "affiliation",
+        "network": "direct",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "resume": "0 $ de commission depuis 2021, institution québécoise avec service en français.",
+      "highlights": [
+        "Commission actions/FNB : 0 $ (depuis 2021)",
+        "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
+        "Réglementation : membre OCRI et FCPE"
+      ],
+      "pros": [
+        "Sans commission",
+        "Avantageux pour un volume élevé de transactions US",
+        "Appartenance à une grande institution québécoise",
+        "Service en français"
+      ],
+      "cons": [
+        "Plateforme jugée moins moderne que les nouveaux entrants",
+        "Frais d'administration possibles sous un certain seuil"
+      ],
+      "fees": {
+        "commission_actions_fnb": "0 $ (depuis 2021)",
+        "frais_administration": ""
+      },
+      "comptes_supportes": [
+        "CELI",
+        "REER",
+        "CELIAPP",
+        "REEE",
+        "non enregistré"
+      ],
+      "ideal_pour": [
+        "marchés US",
+        "clientèle québécoise"
+      ],
+      "regulateur": "OCRI et FCPE",
+      "url_officiel": "https://www.bnc.ca",
+      "last_verified": "2026-08-21",
+      "filters": [
+        "celi",
+        "reer",
+        "celiapp",
+        "reee",
+        "non-enregistre",
+        "sans-commission",
+        "quebecois"
+      ]
+    },
+    {
+      "id": "disnat",
+      "name": "Disnat (Desjardins Courtage en ligne)",
+      "slug": "disnat",
+      "category": "courtier",
+      "cluster": "investir",
+      "rank": 4,
+      "badges": [
+        "Populaire au Québec"
+      ],
+      "affiliate": {
+        "type": "affiliation",
+        "network": "direct",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "resume": "Courtage en ligne de Desjardins, intégré à AccèsD, pour les membres qui veulent centraliser leurs comptes.",
+      "highlights": [
+        "Comptes offerts : CELI, REER, CELIAPP, REEE, FERR, non enregistré",
+        "Frais d'administration : possibles sous un solde minimal (souvent ~15 000 $)",
+        "Réglementation : membre OCRI et FCPE"
+      ],
+      "pros": [
+        "Intégration complète avec AccèsD",
+        "Service client en français au Québec",
+        "Gamme de comptes complète (dont REEE)"
+      ],
+      "cons": [
+        "Tarification potentiellement plus élevée que les plateformes 0 $ selon l'offre choisie"
+      ],
+      "fees": {
+        "commission_actions_fnb": "—",
+        "frais_administration": "~15 000 $ de solde minimal évoqué"
+      },
+      "comptes_supportes": [
+        "CELI",
+        "REER",
+        "CELIAPP",
+        "REEE",
+        "FERR",
+        "non enregistré"
+      ],
+      "ideal_pour": [
+        "membres Desjardins",
+        "francophones qui veulent centraliser avec AccèsD"
+      ],
+      "regulateur": "OCRI et FCPE",
+      "url_officiel": "https://www.disnat.com",
+      "last_verified": "2026-08-21",
+      "filters": [
+        "celi",
+        "reer",
+        "celiapp",
+        "reee",
+        "non-enregistre",
+        "quebecois"
+      ]
+    },
+    {
+      "id": "qtrade",
+      "name": "Qtrade (Investissement Direct)",
+      "slug": "qtrade",
+      "category": "courtier",
+      "cluster": "investir",
+      "rank": 5,
+      "badges": [],
+      "affiliate": {
+        "type": "affiliation",
+        "network": "direct",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "resume": "FNB sélectionnés à 0 $, outils d'analyse de portefeuille orientés investisseurs autonomes.",
+      "highlights": [
+        "Commission : FNB sélectionnés à 0 $; actions ~8,75 $ (ou ~6,95 $ au niveau « investisseur plus », sous conditions de volume/actifs)",
+        "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
+        "Frais d'administration : ~25 $/trimestre sous un certain solde",
+        "Réglementation : membre OCRI et FCPE"
+      ],
+      "pros": [
+        "FNB sélectionnés gratuits",
+        "Outils d'analyse de portefeuille solides",
+        "Bien noté au Canada"
+      ],
+      "cons": [
+        "Commissions d'actions plus élevées hors FNB gratuits",
+        "Frais d'administration sous seuil"
+      ],
+      "fees": {
+        "commission_actions_fnb": "FNB sélectionnés 0 $, actions ~6,95–8,75 $",
+        "frais_administration": "~25 $/trimestre sous seuil"
+      },
+      "comptes_supportes": [
+        "CELI",
+        "REER",
+        "CELIAPP",
+        "REEE",
+        "non enregistré"
+      ],
+      "ideal_pour": [
+        "investisseurs qui veulent de bons outils d'analyse",
+        "FNB sans commission"
+      ],
+      "regulateur": "OCRI et FCPE",
+      "url_officiel": "https://www.qtrade.ca",
+      "last_verified": "2026-08-21",
+      "filters": [
+        "celi",
+        "reer",
+        "celiapp",
+        "reee",
+        "non-enregistre"
+      ]
+    },
+    {
+      "id": "moomoo",
+      "name": "moomoo Canada",
+      "slug": "moomoo",
+      "category": "courtier",
+      "cluster": "investir",
+      "rank": 6,
+      "badges": [],
+      "affiliate": {
+        "type": "affiliation",
+        "network": "direct",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "resume": "0 $ de commission et outils d'analyse avancés, pour traders actifs.",
+      "highlights": [
+        "Commission actions/FNB : 0 $",
+        "Réglementation : Moomoo Financial Canada, courtier d'exécution d'ordres, enregistré au Québec, membre du FCPE (protection jusqu'à 1 M$)"
+      ],
+      "pros": [
+        "Sans commission",
+        "Outils d'analyse et données de marché poussés",
+        "Application moderne"
+      ],
+      "cons": [
+        "Service d'exécution seulement (pas de conseil)",
+        "Gamme de comptes enregistrés possiblement limitée"
+      ],
+      "fees": {
+        "commission_actions_fnb": "0 $"
+      },
+      "comptes_supportes": [],
+      "ideal_pour": [
+        "traders actifs",
+        "amateurs d'outils d'analyse avancés"
+      ],
+      "regulateur": "Moomoo Financial Canada, membre du FCPE (jusqu'à 1 M$)",
+      "url_officiel": "https://www.moomoo.com/ca",
+      "last_verified": "2026-08-21",
+      "filters": [
+        "actif",
+        "sans-commission",
+        "international"
+      ]
+    },
+    {
+      "id": "webull",
+      "name": "Webull Canada",
+      "slug": "webull",
+      "category": "courtier",
+      "cluster": "investir",
+      "rank": 7,
+      "badges": [],
+      "affiliate": {
+        "type": "affiliation",
+        "network": "direct",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "resume": "0 $ de commission, plateforme axée trading actif.",
+      "highlights": [
+        "Commission actions/FNB : 0 $"
+      ],
+      "pros": [
+        "Sans commission",
+        "Intérêts sur les liquidités non investies",
+        "Application axée trading"
+      ],
+      "cons": [
+        "Disponibilité Québec et offre en français à confirmer",
+        "Orienté trading plutôt que débutants"
+      ],
+      "fees": {
+        "commission_actions_fnb": "0 $"
+      },
+      "comptes_supportes": [],
+      "ideal_pour": [
+        "traders actifs"
+      ],
+      "regulateur": "",
+      "url_officiel": "https://www.webull.ca",
+      "last_verified": "2026-08-21",
+      "filters": [
+        "actif",
+        "sans-commission",
+        "international"
+      ]
+    },
+    {
+      "id": "interactive-brokers",
+      "name": "Interactive Brokers (Canada)",
+      "slug": "interactive-brokers",
+      "category": "courtier",
+      "cluster": "investir",
+      "rank": 8,
+      "badges": [],
+      "affiliate": {
+        "type": "affiliation",
+        "network": "direct",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "resume": "Frais parmi les plus bas et accès à de nombreux marchés mondiaux, pour investisseurs avancés.",
+      "highlights": [
+        "Commission : parmi les plus basses, structure par paliers",
+        "Frais de change : taux de change avantageux",
+        "Comptes offerts : CELI, REER, compte non enregistré; pas de CELIAPP",
+        "Réglementation : membre OCRI et FCPE"
+      ],
+      "pros": [
+        "Accès à de très nombreux marchés et devises",
+        "Frais très bas",
+        "Change avantageux"
+      ],
+      "cons": [
+        "Plateforme complexe pour un débutant",
+        "Pas de CELIAPP",
+        "Interface et support surtout en anglais"
+      ],
+      "fees": {
+        "commission_actions_fnb": "Structure par paliers, parmi les plus basses",
+        "frais_change_usd": "Taux avantageux"
+      },
+      "comptes_supportes": [
+        "CELI",
+        "REER",
+        "non enregistré"
+      ],
+      "ideal_pour": [
+        "investisseurs avancés",
+        "marchés mondiaux",
+        "gros portefeuilles"
+      ],
+      "regulateur": "OCRI et FCPE",
+      "url_officiel": "https://www.interactivebrokers.ca",
+      "last_verified": "2026-08-21",
+      "filters": [
+        "celi",
+        "reer",
+        "non-enregistre",
+        "avance",
+        "international"
+      ]
+    },
+    {
+      "id": "cibc-pro-investisseurs",
+      "name": "CIBC Pro-Investisseurs",
+      "slug": "cibc-pro-investisseurs",
+      "category": "courtier",
+      "cluster": "investir",
+      "rank": 9,
+      "badges": [
+        "Banque à petits frais"
+      ],
+      "affiliate": {
+        "type": "affiliation",
+        "network": "direct",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "resume": "La commission la moins chère des grandes banques canadiennes, à ~6,99 $/opération.",
+      "highlights": [
+        "Commission actions/FNB : ~6,99 $/opération",
+        "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
+        "Frais d'administration : ~25 $/trimestre sous seuil",
+        "Réglementation : membre OCRI et FCPE"
+      ],
+      "pros": [
+        "La moins chère des grandes banques",
+        "Intégration bancaire CIBC",
+        "Comptes complets"
+      ],
+      "cons": [
+        "Plus cher que les plateformes 0 $",
+        "Interface bancaire classique"
+      ],
+      "fees": {
+        "commission_actions_fnb": "~6,99 $/opération",
+        "frais_administration": "~25 $/trimestre sous seuil"
+      },
+      "comptes_supportes": [
+        "CELI",
+        "REER",
+        "CELIAPP",
+        "REEE",
+        "non enregistré"
+      ],
+      "ideal_pour": [
+        "clients CIBC voulant une grande banque à moindre coût"
+      ],
+      "regulateur": "OCRI et FCPE",
+      "url_officiel": "https://www.cibc.com",
+      "last_verified": "2026-08-21",
+      "filters": [
+        "celi",
+        "reer",
+        "celiapp",
+        "reee",
+        "non-enregistre",
+        "grande-banque"
+      ]
+    },
+    {
+      "id": "rbc-placements-direct",
+      "name": "RBC Placements en Direct",
+      "slug": "rbc-placements-direct",
+      "category": "courtier",
+      "cluster": "investir",
+      "rank": 10,
+      "badges": [],
+      "affiliate": {
+        "type": "affiliation",
+        "network": "direct",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "resume": "9,95 $/opération (réduit à 6,95 $ dès 150 opérations/trimestre), écosystème RBC.",
+      "highlights": [
+        "Commission actions/FNB : 9,95 $/opération (réduit à 6,95 $ dès 150 opérations/trimestre); certains FNB et fonds sans commission",
+        "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
+        "Frais d'administration : ~25 $/trimestre si le solde est sous ~15 000 $ (exemptions possibles)",
+        "Réglementation : membre OCRI et FCPE"
+      ],
+      "pros": [
+        "Écosystème RBC",
+        "Outils de recherche de qualité",
+        "Image de sécurité"
+      ],
+      "cons": [
+        "Commission parmi les plus élevées",
+        "Frais d'administration sous seuil"
+      ],
+      "fees": {
+        "commission_actions_fnb": "9,95 $ (6,95 $ si 150+/trim.)",
+        "frais_administration": "~25 $/trimestre sous ~15 000 $"
+      },
+      "comptes_supportes": [
+        "CELI",
+        "REER",
+        "CELIAPP",
+        "REEE",
+        "non enregistré"
+      ],
+      "ideal_pour": [
+        "clients RBC",
+        "investisseurs voulant sécurité et outils de recherche"
+      ],
+      "regulateur": "OCRI et FCPE",
+      "url_officiel": "https://www.rbcdirectinvesting.com",
+      "last_verified": "2026-08-21",
+      "filters": [
+        "celi",
+        "reer",
+        "celiapp",
+        "reee",
+        "non-enregistre",
+        "grande-banque"
+      ]
+    },
+    {
+      "id": "td-placements-directs",
+      "name": "TD Placements directs",
+      "slug": "td-placements-directs",
+      "category": "courtier",
+      "cluster": "investir",
+      "rank": 11,
+      "badges": [],
+      "affiliate": {
+        "type": "affiliation",
+        "network": "direct",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "resume": "~9,99 $/opération, plateforme WebBroker et intégration TD.",
+      "highlights": [
+        "Commission actions/FNB : ~9,99 $/opération",
+        "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
+        "Frais d'administration : ~25 $/trimestre sous ~15 000 $ (exemptions jeunes/étudiants possibles)",
+        "Réglementation : membre OCRI et FCPE"
+      ],
+      "pros": [
+        "Écosystème TD",
+        "Plateforme WebBroker complète",
+        "Ressources éducatives"
+      ],
+      "cons": [
+        "Commission élevée",
+        "Frais d'administration sous seuil"
+      ],
+      "fees": {
+        "commission_actions_fnb": "~9,99 $/opération",
+        "frais_administration": "~25 $/trimestre sous ~15 000 $"
+      },
+      "comptes_supportes": [
+        "CELI",
+        "REER",
+        "CELIAPP",
+        "REEE",
+        "non enregistré"
+      ],
+      "ideal_pour": [
+        "clients TD",
+        "investisseurs voulant l'intégration bancaire"
+      ],
+      "regulateur": "OCRI et FCPE",
+      "url_officiel": "https://www.td.com",
+      "last_verified": "2026-08-21",
+      "filters": [
+        "celi",
+        "reer",
+        "celiapp",
+        "reee",
+        "non-enregistre",
+        "grande-banque"
+      ]
+    },
+    {
+      "id": "bmo-ligne-daction",
+      "name": "BMO Ligne d'action",
+      "slug": "bmo-ligne-daction",
+      "category": "courtier",
+      "cluster": "investir",
+      "rank": 12,
+      "badges": [],
+      "affiliate": {
+        "type": "affiliation",
+        "network": "direct",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "resume": "9,95 $/opération; certains FNB à 0 $, écosystème BMO.",
+      "highlights": [
+        "Commission actions/FNB : 9,95 $/opération; certains FNB à 0 $",
+        "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
+        "Frais d'administration : ~25 $/trimestre sous seuil",
+        "Réglementation : membre OCRI et FCPE"
+      ],
+      "pros": [
+        "Écosystème BMO",
+        "Quelques FNB gratuits",
+        "Intégration bancaire"
+      ],
+      "cons": [
+        "Commission élevée",
+        "Frais d'administration sous seuil"
+      ],
+      "fees": {
+        "commission_actions_fnb": "9,95 $ (certains FNB 0 $)",
+        "frais_administration": "~25 $/trimestre sous seuil"
+      },
+      "comptes_supportes": [
+        "CELI",
+        "REER",
+        "CELIAPP",
+        "REEE",
+        "non enregistré"
+      ],
+      "ideal_pour": [
+        "clients BMO"
+      ],
+      "regulateur": "OCRI et FCPE",
+      "url_officiel": "https://www.bmo.com",
+      "last_verified": "2026-08-21",
+      "filters": [
+        "celi",
+        "reer",
+        "celiapp",
+        "reee",
+        "non-enregistre",
+        "grande-banque"
+      ]
+    },
+    {
+      "id": "scotia-itrade",
+      "name": "Scotia iTRADE",
+      "slug": "scotia-itrade",
+      "category": "courtier",
+      "cluster": "investir",
+      "rank": 13,
+      "badges": [],
+      "affiliate": {
+        "type": "affiliation",
+        "network": "direct",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "resume": "9,99 $/opération (réduit à 4,99 $ dès 150 opérations/trimestre), centre éducatif et écosystème Scotia.",
+      "highlights": [
+        "Commission actions/FNB : ~9,99 $/opération (réduit à ~4,99 $ dès 150 opérations/trimestre); achat de certains FNB sans commission",
+        "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
+        "Frais d'administration : applicables sous seuil",
+        "Réglementation : membre OCRI et FCPE"
+      ],
+      "pros": [
+        "Centre éducatif et rapports de recherche",
+        "Comptes fictifs pour s'exercer",
+        "Écosystème Scotia"
+      ],
+      "cons": [
+        "Commission parmi les plus élevées",
+        "Frais d'administration"
+      ],
+      "fees": {
+        "commission_actions_fnb": "9,99 $ (4,99 $ si 150+/trim.)",
+        "frais_administration": ""
+      },
+      "comptes_supportes": [
+        "CELI",
+        "REER",
+        "CELIAPP",
+        "REEE",
+        "non enregistré"
+      ],
+      "ideal_pour": [
+        "clients Scotia",
+        "investisseurs valorisant la recherche"
+      ],
+      "regulateur": "OCRI et FCPE",
+      "url_officiel": "https://www.scotiaitrade.com",
+      "last_verified": "2026-08-21",
+      "filters": [
+        "celi",
+        "reer",
+        "celiapp",
+        "reee",
+        "non-enregistre",
+        "grande-banque"
+      ]
     }
   ],
-
   "credit_cards": [
     {
-      "id": "scotiabank-exemple",
-      "name": "Carte Scotiabank (exemple)",
-      "slug": "scotiabank-exemple",
+      "id": "bn-world-elite",
+      "name": "Banque Nationale World Elite Mastercard",
+      "slug": "bn-world-elite",
       "category": "carte_credit",
-      "rating": 4.0,
       "cluster": "cartes-credit",
       "rank": 1,
-      "score_global": 7.0,
-      "score_breakdown": {
-        "frais": 7,
-        "experience_numerique": 7,
-        "choix_produits": 7,
-        "service_client": 7
-      },
-      "tagline": "Fiche d'exemple — à remplacer une fois inscrit au réseau d'affiliation",
-      "verdict": "Fiche d'exemple : verdict à rédiger une fois les vraies caractéristiques du produit confirmées auprès de l'émetteur.",
+      "badges": [
+        "En vedette",
+        "Populaire au Québec"
+      ],
+      "filters": [
+        "voyage",
+        "mastercard",
+        "assurance-voyage"
+      ],
       "affiliate": {
         "type": "cpa",
-        "network": "FlexOffers / Impact / CJ",
-        "url": "REMPLACER_PAR_TON_LIEN_RESEAU",
-        "commission_note": "~99 $ CA par demande approuvée (à confirmer selon le réseau)",
-        "cookie_days": 30,
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
         "rel": "sponsored"
       },
-      "resume": "Exemple de fiche carte. Remplacer par les vraies cartes une fois inscrit aux réseaux.",
-      "highlights": [
-        "Marque bancaire canadienne reconnue",
-        "Programme de récompenses / remises",
-        "REMPLIR après vérification"
+      "tagline": "Populaire auprès des Québécois qui voyagent",
+      "verdict": "Carte de référence pour les voyageurs qui veulent une institution québécoise et un bon programme de points.",
+      "resume": "Carte de récompenses voyage de la Banque Nationale, avec des catégories de dépenses bonifiées et une forte présence au Québec.",
+      "highlights": [],
+      "pros": [
+        "Émetteur québécois avec bon service en français",
+        "Programme de points voyage reconnu",
+        "Assurances voyage incluses (avantages World Elite Mastercard)"
       ],
-      "pros": ["À COMPLÉTER"],
-      "cons": ["À COMPLÉTER"],
+      "cons": [
+        "Frais annuels de 150 $ après la 1re année",
+        "Revenu minimum élevé exigé pour être admissible (80 000 $ / 150 000 $ familial)"
+      ],
       "card_details": {
-        "frais_annuels": "À VÉRIFIER",
-        "taux_interet_achats": "À VÉRIFIER",
-        "type_recompenses": "remises en argent / points / voyage",
-        "bonus_bienvenue": "À VÉRIFIER"
+        "frais_annuels": "150 $ (carte suppl. 50 $ ; 0 $ la 1re année, offre en cours)",
+        "taux_interet_achats": "20,99 %",
+        "taux_interet_avances": "22,49 %",
+        "type_recompenses": "5 pts/$ épicerie et resto, 2 pts/$ essence, recharge VE, factures récurrentes et voyage (plafond 2 500 $/mois), 1 pt/$ ailleurs",
+        "bonus_bienvenue": "1re année sans frais + jusqu'à 20 000 pts",
+        "frais_conversion_devises": "2,5 %",
+        "revenu_requis": "80 000 $ perso / 150 000 $ ménage",
+        "reseau": "Mastercard"
       },
-      "ideal_pour": ["remises en argent", "voyage", "sans frais annuels"],
+      "ideal_pour": [
+        "voyageurs",
+        "clientèle québécoise"
+      ],
+      "emetteur": "Banque Nationale",
+      "url_officiel": "https://www.bnc.ca",
+      "last_verified": "2026-08-21",
+      "comparatif": {
+        "frais_annuels": "150 $ (0 $ la 1re année)",
+        "recompenses": "5 pts/$ épicerie et resto",
+        "prime_bienvenue": "1re année sans frais + jusqu'à 20 000 pts"
+      }
+    },
+    {
+      "id": "scotia-momentum",
+      "name": "Scotia Momentum Visa Infinite",
+      "slug": "scotia-momentum",
+      "category": "carte_credit",
+      "cluster": "cartes-credit",
+      "rank": 2,
+      "badges": [
+        "En vedette"
+      ],
+      "filters": [
+        "remise-argent",
+        "visa"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "Un des meilleurs taux de remise sur l'épicerie",
+      "verdict": "Bon choix pour les familles qui dépensent beaucoup en épicerie et en factures récurrentes.",
+      "resume": "Carte remise en argent de la Banque Scotia, avec un taux élevé sur l'épicerie et les factures récurrentes.",
+      "highlights": [],
+      "pros": [
+        "Taux de remise élevé sur l'épicerie",
+        "Catégories utiles au quotidien (essence, transport)"
+      ],
+      "cons": [
+        "Frais annuels de 120 $ après la 1re année",
+        "Frais de conversion en devises de 2,5 %"
+      ],
+      "card_details": {
+        "frais_annuels": "120 $ (carte suppl. 50 $)",
+        "taux_interet_achats": "20,99 %",
+        "taux_interet_avances": "22,99 %",
+        "type_recompenses": "4 % épicerie et factures récurrentes, 2 % essence, transport et livraison, 1 % ailleurs",
+        "bonus_bienvenue": "Jusqu'à 300 $ + 1re année sans frais",
+        "frais_conversion_devises": "2,5 %",
+        "revenu_requis": "60 000 $ perso / 100 000 $ ménage",
+        "reseau": "Visa"
+      },
+      "ideal_pour": [
+        "familles",
+        "dépenses épicerie et factures récurrentes"
+      ],
       "emetteur": "Banque Scotia",
       "url_officiel": "https://www.scotiabank.com",
-      "last_verified": "2026-07-30"
-    }
-  ],
-
-  "savings_accounts": [
+      "last_verified": "2026-08-21",
+      "comparatif": {
+        "frais_annuels": "120 $",
+        "recompenses": "4 % épicerie et factures",
+        "prime_bienvenue": "Jusqu'à 300 $ + 1re année sans frais"
+      }
+    },
     {
-      "id": "eq-bank-exemple",
-      "name": "EQ Bank (exemple)",
-      "slug": "eq-bank-exemple",
-      "category": "compte_epargne",
-      "rating": 4.4,
-      "cluster": "epargne",
-      "rank": 1,
-      "score_global": 7.5,
-      "score_breakdown": {
-        "frais": 8,
-        "experience_numerique": 7.5,
-        "choix_produits": 7,
-        "service_client": 7.5
-      },
-      "tagline": "Fiche d'exemple — à remplacer une fois inscrit au programme",
-      "verdict": "Fiche d'exemple : verdict à rédiger une fois les vraies caractéristiques du produit confirmées auprès de l'émetteur.",
+      "id": "amex-cobalt",
+      "name": "American Express Cobalt",
+      "slug": "amex-cobalt",
+      "category": "carte_credit",
+      "cluster": "cartes-credit",
+      "rank": 3,
+      "badges": [
+        "En vedette"
+      ],
+      "filters": [
+        "points-flexibles",
+        "amex"
+      ],
       "affiliate": {
-        "type": "parrainage",
-        "network": "direct / réseau selon l'émetteur",
-        "url": "REMPLACER_PAR_TON_LIEN",
-        "commission_note": "À confirmer",
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
         "rel": "sponsored"
       },
-      "resume": "Exemple de fiche compte épargne. Remplacer par les vrais produits une fois les programmes rejoints.",
-      "highlights": [
-        "Taux d'intérêt élevé",
-        "Aucuns frais mensuels",
-        "REMPLIR après vérification"
+      "tagline": "Un des meilleurs taux épicerie et restos au pays",
+      "verdict": "Excellent choix pour qui dépense beaucoup en épicerie et restaurants et veut des points flexibles.",
+      "resume": "Carte à points American Express avec un taux élevé sur l'épicerie et les restaurants, frais facturés mensuellement.",
+      "highlights": [],
+      "pros": [
+        "Taux de points très élevé sur épicerie et restos",
+        "Points transférables vers plusieurs programmes de voyage"
       ],
-      "pros": ["À COMPLÉTER"],
-      "cons": ["À COMPLÉTER"],
-      "account_details": {
-        "taux_interet": "À VÉRIFIER",
-        "frais_mensuels": "0 $",
-        "assurance_depots": "SADC",
-        "types_comptes": ["Compte épargne", "CELI", "CELIAPP"]
+      "cons": [
+        "American Express moins accepté que Visa/Mastercard chez certains commerçants",
+        "Frais de conversion en devises de 2,5 %"
+      ],
+      "card_details": {
+        "frais_annuels": "191,88 $/an (facturés annuellement au Québec)",
+        "taux_interet_achats": "21,99 %",
+        "taux_interet_avances": "21,99 %",
+        "type_recompenses": "5 pts/$ épicerie, resto et livraison (plafond 2 500 $/mois), 3 pts/$ diffusion en continu, 2 pts/$ essence et transport, 1 pt/$ ailleurs",
+        "bonus_bienvenue": "Jusqu'à 15 000 pts",
+        "frais_conversion_devises": "2,5 %",
+        "reseau": "American Express"
       },
-      "ideal_pour": ["épargne d'urgence", "taux élevé", "sans frais"],
-      "emetteur": "EQ Bank",
+      "ideal_pour": [
+        "épicerie et restaurants",
+        "points flexibles"
+      ],
+      "emetteur": "American Express",
+      "url_officiel": "https://www.americanexpress.com/ca",
+      "last_verified": "2026-08-21",
+      "comparatif": {
+        "frais_annuels": "191,88 $/an",
+        "recompenses": "5 pts/$ épicerie et resto",
+        "prime_bienvenue": "Jusqu'à 15 000 pts"
+      }
+    },
+    {
+      "id": "scotia-passeport",
+      "name": "Scotia Passeport Visa Infinite",
+      "slug": "scotia-passeport",
+      "category": "carte_credit",
+      "cluster": "cartes-credit",
+      "rank": 4,
+      "badges": [
+        "Sans frais de change"
+      ],
+      "filters": [
+        "voyage",
+        "visa",
+        "sans-frais-conversion",
+        "assurance-voyage"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "Pensée pour les voyageurs qui dépensent à l'étranger",
+      "verdict": "Bon choix pour éviter les frais de change, en plus d'accumuler des points voyage.",
+      "resume": "Carte voyage de la Banque Scotia qui élimine les frais de conversion en devises étrangères.",
+      "highlights": [],
+      "pros": [
+        "0 % de frais de conversion en devises",
+        "Assurances voyage incluses (avantages Visa Infinite)"
+      ],
+      "cons": [
+        "Frais annuels de 150 $"
+      ],
+      "card_details": {
+        "frais_annuels": "150 $ (1re carte suppl. 0 $)",
+        "taux_interet_achats": "20,99 %",
+        "taux_interet_avances": "22,99 %",
+        "type_recompenses": "jusqu'à 3X Scène+ épicerie et divertissement, 2X resto, 1X ailleurs; 6 accès salons aéroport par an",
+        "bonus_bienvenue": "25 000 pts Scène+",
+        "frais_conversion_devises": "aucuns frais de change (0 %)",
+        "revenu_requis": "60 000 $ perso / 100 000 $ ménage",
+        "reseau": "Visa"
+      },
+      "ideal_pour": [
+        "voyage sans frais de change"
+      ],
+      "emetteur": "Banque Scotia",
+      "url_officiel": "https://www.scotiabank.com",
+      "last_verified": "2026-08-21",
+      "comparatif": {
+        "frais_annuels": "150 $",
+        "recompenses": "3X Scène+ épicerie · 0 change",
+        "prime_bienvenue": "25 000 pts Scène+"
+      }
+    },
+    {
+      "id": "tangerine-money-back",
+      "name": "Tangerine Money-Back Mastercard",
+      "slug": "tangerine-money-back",
+      "category": "carte_credit",
+      "cluster": "cartes-credit",
+      "rank": 5,
+      "badges": [
+        "Sans frais annuels"
+      ],
+      "filters": [
+        "remise-argent",
+        "mastercard",
+        "0"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "0 $ de frais, catégories au choix",
+      "verdict": "Choix simple et sans frais pour qui veut une remise en argent sur ses catégories de dépenses préférées.",
+      "resume": "Carte remise en argent sans frais annuels, avec des catégories de récompenses personnalisables.",
+      "highlights": [],
+      "pros": [
+        "Aucuns frais annuels",
+        "Catégories de remise personnalisables"
+      ],
+      "cons": [
+        "Taux de remise plus bas hors des catégories choisies",
+        "Frais de conversion en devises de 2,5 %"
+      ],
+      "card_details": {
+        "frais_annuels": "0 $",
+        "taux_interet_achats": "20,95 %",
+        "taux_interet_avances": "22,95 %",
+        "type_recompenses": "2 % sur 2 catégories au choix (3e si dépôt épargne Tangerine), 0,5 % ailleurs",
+        "bonus_bienvenue": "100 $",
+        "frais_conversion_devises": "2,5 %",
+        "reseau": "Mastercard"
+      },
+      "ideal_pour": [
+        "sans frais annuels"
+      ],
+      "emetteur": "Tangerine",
+      "url_officiel": "https://www.tangerine.ca",
+      "last_verified": "2026-08-21",
+      "comparatif": {
+        "frais_annuels": "0 $",
+        "recompenses": "2 % sur 3 catégories au choix",
+        "prime_bienvenue": "100 $"
+      }
+    },
+    {
+      "id": "pc-world-elite",
+      "name": "PC Financial World Elite Mastercard",
+      "slug": "pc-world-elite",
+      "category": "carte_credit",
+      "cluster": "cartes-credit",
+      "rank": 6,
+      "badges": [
+        "Sans frais annuels"
+      ],
+      "filters": [
+        "remise-argent",
+        "mastercard",
+        "0"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "0 $ de frais, avantageuse chez Loblaws/Maxi/Provigo/Pharmaprix",
+      "verdict": "Excellent choix sans frais pour qui magasine régulièrement dans les enseignes du groupe Loblaws.",
+      "resume": "Carte sans frais annuels axée sur les points PC Optimum, avantageuse dans les enseignes du groupe Loblaws.",
+      "highlights": [],
+      "pros": [
+        "Aucuns frais annuels",
+        "Assurance voyage et location auto incluses (avantages World Elite)",
+        "Avantageuse pour l'épicerie chez Loblaws et ses bannières"
+      ],
+      "cons": [
+        "Récompenses surtout utiles dans l'écosystème Loblaws",
+        "Revenu minimum élevé exigé malgré l'absence de frais annuels (80 000 $ / 150 000 $ familial)"
+      ],
+      "card_details": {
+        "frais_annuels": "0 $",
+        "taux_interet_achats": "21,99 %",
+        "taux_interet_avances": "22,97 %",
+        "type_recompenses": "points PC Optimum, ≈3 % (30 pts/$) épicerie du groupe Loblaws (Maxi, Provigo), ≈1 % ailleurs; assurances voyage et location auto incluses",
+        "bonus_bienvenue": "20 000 pts Optimum",
+        "revenu_requis": "80 000 $ perso / 150 000 $ ménage",
+        "reseau": "Mastercard"
+      },
+      "ideal_pour": [
+        "épicerie sans frais",
+        "clientèle Loblaws"
+      ],
+      "emetteur": "PC Financial",
+      "url_officiel": "https://www.pcfinancial.ca",
+      "last_verified": "2026-08-21",
+      "comparatif": {
+        "frais_annuels": "0 $",
+        "recompenses": "≈3 % épicerie (Loblaws, Maxi)",
+        "prime_bienvenue": "20 000 pts Optimum"
+      }
+    },
+    {
+      "id": "rbc-avion",
+      "name": "RBC Avion Visa Infinite",
+      "slug": "rbc-avion",
+      "category": "carte_credit",
+      "cluster": "cartes-credit",
+      "rank": 7,
+      "badges": [],
+      "filters": [
+        "points-flexibles",
+        "visa"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "Points voyage flexibles",
+      "verdict": "Bon choix pour les voyageurs qui veulent échanger leurs points sur plusieurs compagnies plutôt qu'un seul programme.",
+      "resume": "Carte de points RBC Avion offrant une bonne flexibilité d'échange vers plusieurs compagnies aériennes.",
+      "highlights": [],
+      "pros": [
+        "Échange de points flexible sur plusieurs compagnies",
+        "Assurances voyage incluses (avantages Visa Infinite)"
+      ],
+      "cons": [
+        "Frais annuels de 120 $",
+        "Frais de conversion en devises de 2,5 %"
+      ],
+      "card_details": {
+        "frais_annuels": "120 $ (carte suppl. 50 $)",
+        "taux_interet_achats": "19,99 %",
+        "taux_interet_avances": "22,99 %",
+        "type_recompenses": "points Avion flexibles (500+ compagnies)",
+        "bonus_bienvenue": "Jusqu'à 70 000 pts Avion",
+        "frais_conversion_devises": "2,5 %",
+        "revenu_requis": "60 000 $ perso / 100 000 $ ménage",
+        "reseau": "Visa"
+      },
+      "ideal_pour": [
+        "voyage flexible"
+      ],
+      "emetteur": "RBC",
+      "url_officiel": "https://www.rbc.com",
+      "last_verified": "2026-08-21",
+      "comparatif": {
+        "frais_annuels": "120 $",
+        "recompenses": "Points Avion flexibles",
+        "prime_bienvenue": "Jusqu'à 70 000 pts Avion"
+      }
+    },
+    {
+      "id": "td-aeroplan",
+      "name": "TD Aéroplan Visa Infinite",
+      "slug": "td-aeroplan",
+      "category": "carte_credit",
+      "cluster": "cartes-credit",
+      "rank": 8,
+      "badges": [],
+      "filters": [
+        "voyage",
+        "visa"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "Pensée pour les adeptes d'Air Canada et d'Aéroplan",
+      "verdict": "Intéressante surtout si vous volez régulièrement avec Air Canada et ses partenaires.",
+      "resume": "Carte de points Aéroplan de TD, avantageuse pour les voyageurs réguliers d'Air Canada.",
+      "highlights": [],
+      "pros": [
+        "Avantages Air Canada inclus (bagage, priorité d'embarquement, etc.)",
+        "Bon accumulateur de points Aéroplan"
+      ],
+      "cons": [
+        "Intéressante surtout pour les voyageurs Air Canada",
+        "Frais annuels de 139 $"
+      ],
+      "card_details": {
+        "frais_annuels": "139 $",
+        "taux_interet_achats": "20,99 %",
+        "taux_interet_avances": "22,99 %",
+        "type_recompenses": "points Aéroplan; 1er bagage enregistré gratuit sur Air Canada",
+        "bonus_bienvenue": "Jusqu'à 40 000 pts + 1re année sans frais",
+        "frais_conversion_devises": "2,5 %",
+        "revenu_requis": "60 000 $ perso / 100 000 $ ménage",
+        "reseau": "Visa"
+      },
+      "ideal_pour": [
+        "voyageurs Air Canada"
+      ],
+      "emetteur": "TD",
+      "url_officiel": "https://www.td.com",
+      "last_verified": "2026-08-21",
+      "comparatif": {
+        "frais_annuels": "139 $",
+        "recompenses": "Points Aéroplan",
+        "prime_bienvenue": "Jusqu'à 40 000 pts + 1re année sans frais"
+      }
+    },
+    {
+      "id": "bmo-remise",
+      "name": "BMO Remise de fonds Mastercard",
+      "slug": "bmo-remise",
+      "category": "carte_credit",
+      "cluster": "cartes-credit",
+      "rank": 9,
+      "badges": [
+        "Sans frais annuels"
+      ],
+      "filters": [
+        "remise-argent",
+        "mastercard",
+        "0"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "0 $ de frais, bon point de départ",
+      "verdict": "Bon choix pour les étudiants et jeunes adultes qui veulent bâtir leur crédit sans frais annuels.",
+      "resume": "Carte remise en argent sans frais annuels de BMO, accessible pour un premier historique de crédit.",
+      "highlights": [],
+      "pros": [
+        "Aucuns frais annuels",
+        "Accessible pour étudiants et jeunes adultes"
+      ],
+      "cons": [
+        "Plafonds et taux de remise modestes (500 $ de dépenses/mois par catégorie)"
+      ],
+      "card_details": {
+        "frais_annuels": "0 $",
+        "taux_interet_achats": "20,99 %",
+        "taux_interet_avances": "22,99 %",
+        "type_recompenses": "3 % épicerie (jusqu'à 500 $/mois), 1 % factures récurrentes, 0,5 % ailleurs",
+        "bonus_bienvenue": "5 % de remise pendant 3 mois",
+        "frais_conversion_devises": "2,5 %",
+        "reseau": "Mastercard"
+      },
+      "ideal_pour": [
+        "étudiants",
+        "jeunes adultes"
+      ],
+      "emetteur": "BMO",
+      "url_officiel": "https://www.bmo.com",
+      "last_verified": "2026-08-21",
+      "comparatif": {
+        "frais_annuels": "0 $",
+        "recompenses": "3 % épicerie, 1 % factures",
+        "prime_bienvenue": "5 % pendant 3 mois"
+      }
+    },
+    {
+      "id": "scotia-visa-minima",
+      "name": "Banque Scotia Visa Minima",
+      "slug": "scotia-visa-minima",
+      "category": "carte_credit",
+      "cluster": "cartes-credit",
+      "rank": 10,
+      "badges": [
+        "Faible taux"
+      ],
+      "filters": [
+        "faible-taux-interet"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "Le taux d'intérêt le plus bas pour qui reporte parfois un solde",
+      "verdict": "À considérer si vous reportez parfois un solde plutôt que de le rembourser en entier chaque mois — le taux d'intérêt réduit limite les frais d'intérêt.",
+      "resume": "Carte à faible taux d'intérêt de la Banque Scotia (13,99 %), pour qui garde parfois un solde d'un mois à l'autre plutôt que de miser sur les récompenses.",
+      "highlights": [],
+      "pros": [
+        "Intérêts réduits en cas de solde reporté",
+        "Taux de 0 % pendant 10 mois sur les avances de fonds"
+      ],
+      "cons": [
+        "Peu ou pas de récompenses",
+        "Frais annuels de 29 $ après la 1re année"
+      ],
+      "card_details": {
+        "frais_annuels": "29 $ (carte suppl. 0 $ ; 0 $ la 1re année, offre en cours)",
+        "taux_interet_achats": "12,99 %",
+        "taux_interet_avances": "12,99 % (0 % pendant 10 mois sur les avances)",
+        "type_recompenses": "Aucune (carte axée sur le faible taux)",
+        "bonus_bienvenue": "1re année sans frais",
+        "reseau": "Visa"
+      },
+      "ideal_pour": [
+        "ceux qui gardent parfois un solde"
+      ],
+      "emetteur": "Banque Scotia",
+      "url_officiel": "https://www.scotiabank.com",
+      "last_verified": "2026-08-21",
+      "comparatif": {
+        "frais_annuels": "29 $ (0 $ la 1re année)",
+        "recompenses": "Taux réduit 12,99 %",
+        "prime_bienvenue": "0 % avances 10 mois + 1re année sans frais"
+      }
+    }
+  ],
+  "savings_accounts": [
+    {
+      "id": "eq-bank",
+      "name": "Banque EQ (Compte d'épargne)",
+      "slug": "eq-bank",
+      "category": "compte_epargne",
+      "cluster": "epargne",
+      "rank": 1,
+      "badges": [
+        "En vedette"
+      ],
+      "filters": [
+        "epargne-interet-eleve",
+        "celi",
+        "taux-base-eleve",
+        "sans-frais-mensuels",
+        "sadc"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "Taux élevé et sans frais, 100 % en ligne",
+      "verdict": "Bon choix pour un fonds d'urgence ou une épargne à court-moyen terme : taux compétitif, aucun frais, aucun solde minimum.",
+      "resume": "Compte d'épargne à intérêt élevé d'Equitable Bank, sans frais et avec un bon taux de base.",
+      "highlights": [],
+      "pros": [
+        "Taux compétitif et sans frais",
+        "Aucun solde minimum requis"
+      ],
+      "cons": [
+        "100 % en ligne, aucune succursale physique"
+      ],
+      "account_details": {
+        "taux_interet": "Jusqu'à 2,75 % (compte à préavis 30 jours; compte courant à 2,75 % bonifié avec le dépôt direct de la paie)",
+        "frais_mensuels": "0 $, aucun solde minimum",
+        "assurance_depots": "SADC jusqu'à 100 000 $",
+        "comptes_offerts": "Épargne, CELI, CELIAPP, REER, CPG",
+        "note": "Plateforme d'Equitable Bank, banque à charte fédérale, 100 % en ligne."
+      },
+      "comparatif": {
+        "taux": "Jusqu'à 2,75 %",
+        "frais": "0 $",
+        "assurance": "SADC"
+      },
+      "ideal_pour": [
+        "fonds d'urgence",
+        "épargne court-moyen terme",
+        "CELI liquide"
+      ],
+      "emetteur": "Equitable Bank (Banque EQ)",
       "url_officiel": "https://www.eqbank.ca",
-      "last_verified": "2026-07-30"
+      "last_verified": "2026-08-21"
+    },
+    {
+      "id": "wealthsimple-epargne",
+      "name": "Wealthsimple (Comptant et épargne)",
+      "slug": "wealthsimple",
+      "category": "compte_epargne",
+      "cluster": "epargne",
+      "rank": 2,
+      "badges": [
+        "En vedette",
+        "Populaire au Québec"
+      ],
+      "filters": [
+        "epargne-interet-eleve",
+        "celi",
+        "taux-base-eleve",
+        "sans-frais-mensuels",
+        "sadc"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "Tout-en-un : épargne, placements et CELI au même endroit",
+      "verdict": "Idéal pour centraliser épargne et placements dans un seul écosystème, avec une assurance-dépôts élevée.",
+      "resume": "Compte Comptant et compte d'épargne enregistré de Wealthsimple, intégrés à la plateforme de placement.",
+      "highlights": [],
+      "pros": [
+        "Centralise épargne et placements",
+        "Assurance-dépôts élevée (jusqu'à 1 M$)"
+      ],
+      "cons": [
+        "Taux du compte Comptant de base plus modeste sans dépôt direct"
+      ],
+      "account_details": {
+        "taux_interet": "Comptant : 1,25 % à 2,25 % selon le palier et le dépôt direct; épargne enregistrée : jusqu'à 2,75 %; épargne en USD : jusqu'à 3,25 %",
+        "frais_mensuels": "0 $, aucun solde minimum",
+        "assurance_depots": "SADC jusqu'à 1 000 000 $ (répartie entre banques partenaires)",
+        "comptes_offerts": "CELI, REER, CELIAPP, REEE, non enregistré, épargne",
+        "prime": "25 $ à l'ouverture (dépôt d'au moins 1 $)",
+        "note": "Au Québec, garder une institution locale (ex. Desjardins) pour certaines opérations (Hydro-Québec, taxes) reste utile."
+      },
+      "comparatif": {
+        "taux": "1,25 % à 2,25 % (épargne jusqu'à 2,75 %)",
+        "frais": "0 $",
+        "assurance": "SADC (jusqu'à 1 M$)"
+      },
+      "ideal_pour": [
+        "centraliser épargne et placements",
+        "tout-en-un"
+      ],
+      "emetteur": "Wealthsimple",
+      "url_officiel": "https://www.wealthsimple.com",
+      "last_verified": "2026-08-21"
+    },
+    {
+      "id": "tangerine-epargne",
+      "name": "Tangerine (Compte d'épargne)",
+      "slug": "tangerine",
+      "category": "compte_epargne",
+      "cluster": "epargne",
+      "rank": 3,
+      "badges": [
+        "Populaire"
+      ],
+      "filters": [
+        "epargne-interet-eleve",
+        "taux-promotionnel",
+        "sans-frais-mensuels",
+        "sadc"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "Forfait bancaire sans frais avec un fort taux promotionnel de départ",
+      "verdict": "Le taux promotionnel de départ est attrayant, mais le taux de base retombe bas après quelques mois — à surveiller.",
+      "resume": "Compte d'épargne sans frais de Tangerine, filiale de la Banque Scotia, avec taux promotionnel sur les nouveaux dépôts.",
+      "highlights": [],
+      "pros": [
+        "Forfait bancaire complet sans frais",
+        "Accès aux guichets Banque Scotia"
+      ],
+      "cons": [
+        "Taux de base modeste une fois la promotion terminée"
+      ],
+      "account_details": {
+        "taux_interet": "Taux de base ~0,70 %; taux promotionnel jusqu'à ~4,50 % sur les nouveaux dépôts pendant environ 5 mois, puis retour au taux de base",
+        "frais_mensuels": "0 $, aucun solde minimum",
+        "assurance_depots": "SADC",
+        "prime": "250 $ pour le transfert du dépôt direct de la paie (offre en cours)",
+        "note": "Accès aux guichets de la Banque Scotia; filiale de la Banque Scotia."
+      },
+      "comparatif": {
+        "taux": "Base ~0,70 %, promo jusqu'à ~4,50 %",
+        "frais": "0 $",
+        "assurance": "SADC"
+      },
+      "ideal_pour": [
+        "forfait bancaire complet sans frais"
+      ],
+      "emetteur": "Tangerine (Banque Scotia)",
+      "url_officiel": "https://www.tangerine.ca",
+      "last_verified": "2026-08-21"
+    },
+    {
+      "id": "desjardins-epargne",
+      "name": "Desjardins (Compte d'épargne-placement)",
+      "slug": "desjardins-epargne",
+      "category": "compte_epargne",
+      "cluster": "epargne",
+      "rank": 4,
+      "badges": [
+        "Populaire au Québec"
+      ],
+      "filters": [
+        "epargne-interet-eleve",
+        "celi",
+        "sans-frais-mensuels",
+        "amf-quebec"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "L'institution québécoise pour combiner épargne et opérations quotidiennes",
+      "verdict": "Le taux n'est pas le plus élevé, mais l'intégration à AccèsD et le réseau de succursales en font un choix pratique au Québec.",
+      "resume": "Compte d'épargne-placement de Desjardins, intégré à AccèsD, protégé par l'assurance-dépôts du Québec (AMF).",
+      "highlights": [],
+      "pros": [
+        "Intégration complète avec AccèsD",
+        "Réseau de succursales au Québec"
+      ],
+      "cons": [
+        "Taux de base plus modeste que les banques en ligne"
+      ],
+      "account_details": {
+        "taux_interet": "Taux de base modeste — l'atout n'est pas le taux, mais l'intégration québécoise",
+        "frais_mensuels": "0 $ sur le produit",
+        "assurance_depots": "Protégé par l'Autorité des marchés financiers (AMF), le régime d'assurance-dépôts du Québec (et non la SADC fédérale)",
+        "comptes_offerts": "Épargne, CELI, REER, CELIAPP, épargne à terme (CPG)",
+        "note": "Intégration AccèsD et réseau de succursales; investissement minimum de 1 $."
+      },
+      "comparatif": {
+        "taux": "Taux de base modeste",
+        "frais": "0 $",
+        "assurance": "AMF"
+      },
+      "ideal_pour": [
+        "opérations quotidiennes",
+        "épargne combinée à une caisse"
+      ],
+      "emetteur": "Desjardins",
+      "url_officiel": "https://www.desjardins.com",
+      "last_verified": "2026-08-21"
+    },
+    {
+      "id": "neo-financial",
+      "name": "Neo Financial (Compte d'épargne à intérêt élevé)",
+      "slug": "neo-financial",
+      "category": "compte_epargne",
+      "cluster": "epargne",
+      "rank": 5,
+      "badges": [],
+      "filters": [
+        "epargne-interet-eleve",
+        "taux-base-eleve",
+        "sans-frais-mensuels",
+        "sadc"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "Épargne et remises en argent combinées",
+      "verdict": "Bon choix pour qui veut combiner un taux compétitif avec les remises en argent de la carte Neo Money.",
+      "resume": "Compte d'épargne à intérêt élevé 100 % en ligne de Neo Financial, combinable avec la carte Neo Money.",
+      "highlights": [],
+      "pros": [
+        "Taux compétitif",
+        "Remises en argent combinées avec la carte Neo Money"
+      ],
+      "cons": [
+        "100 % en ligne, aucune succursale physique"
+      ],
+      "account_details": {
+        "taux_interet": "Jusqu'à ~2,75 %",
+        "frais_mensuels": "0 $",
+        "assurance_depots": "SADC (via institution partenaire)",
+        "note": "Remises en argent avec la carte Neo Money; 100 % en ligne."
+      },
+      "comparatif": {
+        "taux": "Jusqu'à ~2,75 %",
+        "frais": "0 $",
+        "assurance": "SADC"
+      },
+      "ideal_pour": [
+        "combiner épargne et remises"
+      ],
+      "emetteur": "Neo Financial",
+      "url_officiel": "https://www.neofinancial.com",
+      "last_verified": "2026-08-21"
+    },
+    {
+      "id": "oaken-financial",
+      "name": "Oaken Financial (Compte d'épargne et CPG)",
+      "slug": "oaken-financial",
+      "category": "compte_epargne",
+      "cluster": "epargne",
+      "rank": 6,
+      "badges": [],
+      "filters": [
+        "epargne-interet-eleve",
+        "cpg",
+        "taux-base-eleve",
+        "sans-frais-mensuels",
+        "sadc"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "Spécialiste des CPG pour les gros dépôts",
+      "verdict": "Intéressant pour les gros dépôts grâce à l'assurance-dépôts répartie entre deux institutions, mais pas de compte chèque.",
+      "resume": "Compte d'épargne et CPG d'Oaken Financial, dépôts répartis entre Home Trust et Home Bank.",
+      "highlights": [],
+      "pros": [
+        "Assurance-dépôts doublée (jusqu'à 200 000 $)",
+        "Bons taux sur les CPG"
+      ],
+      "cons": [
+        "Aucun compte chèque",
+        "Moins adapté aux petits dépôts"
+      ],
+      "account_details": {
+        "taux_interet": "Épargne ~2,80 %; CPG 1 an ~4,10 % à 4,40 %",
+        "frais_mensuels": "0 $",
+        "assurance_depots": "SADC unique jusqu'à 200 000 $ (dépôts répartis entre Home Trust et Home Bank)",
+        "note": "Spécialisé en CPG; aucun compte chèque offert."
+      },
+      "comparatif": {
+        "taux": "Épargne ~2,80 % · CPG 1 an ~4,10-4,40 %",
+        "frais": "0 $",
+        "assurance": "SADC (jusqu'à 200 000 $)"
+      },
+      "ideal_pour": [
+        "gros dépôts (100 000 $ et plus)",
+        "placements en CPG"
+      ],
+      "emetteur": "Oaken Financial (Home Trust / Home Bank)",
+      "url_officiel": "https://www.oaken.com",
+      "last_verified": "2026-08-21"
+    },
+    {
+      "id": "koho",
+      "name": "KOHO (Compte avec intérêt sur le solde)",
+      "slug": "koho",
+      "category": "compte_epargne",
+      "cluster": "epargne",
+      "rank": 7,
+      "badges": [],
+      "filters": [
+        "compte-cheque-interet",
+        "sadc"
+      ],
+      "affiliate": {
+        "type": "cpa",
+        "network": "",
+        "url": "[LIEN_AFFILIATION]",
+        "commission_note": "",
+        "rel": "sponsored"
+      },
+      "tagline": "Gérer les dépenses du quotidien tout en épargnant",
+      "verdict": "Convient à ceux qui veulent un compte de dépenses au quotidien avec un peu d'intérêt sur le solde, plutôt qu'un compte d'épargne pur.",
+      "resume": "Compte prépayé avec intérêt sur le solde de KOHO, avec plusieurs forfaits selon les besoins.",
+      "highlights": [],
+      "pros": [
+        "Combine dépenses et épargne",
+        "Option sans frais disponible"
+      ],
+      "cons": [
+        "Taux d'intérêt et frais variables selon le forfait"
+      ],
+      "account_details": {
+        "taux_interet": "Intérêt sur le solde, selon le forfait",
+        "frais_mensuels": "Selon le forfait (option sans frais disponible)",
+        "assurance_depots": "SADC via institution partenaire"
+      },
+      "comparatif": {
+        "taux": "Selon le forfait",
+        "frais": "Selon le forfait",
+        "assurance": "SADC"
+      },
+      "ideal_pour": [
+        "gérer les dépenses du quotidien tout en gagnant un peu d'intérêt"
+      ],
+      "emetteur": "KOHO",
+      "url_officiel": "https://www.koho.ca",
+      "last_verified": "2026-08-21"
     }
   ]
 }

@@ -9,7 +9,7 @@ const clusters = [
     href: "/investir",
     title: "Investir",
     description:
-      "Comparez les courtiers en ligne pour votre CELI, REER ou CELIAPP.",
+      "Comparez les courtiers en ligne pour investir dans votre CELI, REER ou CELIAPP : frais, comptes offerts et outils.",
     icon: ["M23 6l-9.5 9.5-5-5L1 18", "M17 6h6v6"],
     dark: true,
   },
@@ -17,7 +17,7 @@ const clusters = [
     href: "/cartes-credit",
     title: "Cartes de crédit",
     description:
-      "Trouvez la carte adaptée à vos habitudes : remises, voyage, sans frais annuels.",
+      "Trouvez la carte adaptée à vos habitudes : remises en argent, voyage, sans frais annuels.",
     icon: ["M1 4h22v4H1z", "M1 10h22v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V10z", "M5 16h4"],
     dark: false,
   },
@@ -25,7 +25,7 @@ const clusters = [
     href: "/epargne",
     title: "Épargne",
     description:
-      "Comparez les comptes d'épargne à intérêt élevé et les solutions bancaires en ligne.",
+      "Comparez les comptes d'épargne à intérêt élevé et les solutions bancaires en ligne offertes au Québec.",
     icon: ["M19 12a7 7 0 1 1-7-7", "M19 5l-7 7", "M14 5h5v5"],
     dark: false,
   },
@@ -35,7 +35,7 @@ const clusters = [
 <section class="section">
   <div class="container">
     <div class="section-intro centralize mb-12">
-      <h2 class="title hasHighlight">Les trois univers Finance Québec</h2>
+      <h2 class="title hasHighlight">Les trois univers de Fructo Finance</h2>
     </div>
     <div class="grid gap-8 md:grid-cols-2">
       {
@@ -43,7 +43,7 @@ const clusters = [
           <a
             href={cluster.href}
             class:list={[
-              "group relative flex flex-col gap-2 overflow-hidden rounded-2xl border p-8 transition-all duration-300",
+              "glow-card group relative flex flex-col gap-2 overflow-hidden rounded-2xl border p-8 transition-all duration-300",
               cluster.dark
                 ? "border-transparent bg-secondary text-white md:row-span-2"
                 : "border-border bg-body text-text hover:border-primary/50",

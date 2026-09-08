@@ -7,7 +7,6 @@ export type Blog = CollectionEntry<"blog">["data"];
 export type BlogIndex = CollectionEntry<"blogIndex">["data"];
 export type Contact = CollectionEntry<"contact">["data"];
 export type Homepage = CollectionEntry<"homepage">["data"];
-export type Features = CollectionEntry<"features">["data"];
 
 // ─── Section Data Types ───────────────────────────────────────────────────────
 

@@ -1,0 +1,21 @@
+---
+import ReviewPage from "@/layouts/ReviewPage.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+
+// Pages « avis complet » (spokes) : /investir/[produit], /cartes-credit/[produit],
+// /epargne/[produit]. Une entrée par fichier dans src/content/reviews/.
+export async function getStaticPaths() {
+  const reviews = await getSinglePage("reviews");
+  return reviews.map((review) => ({
+    params: {
+      pilier: review.data.pillar,
+      produit: review.data.slug ?? review.id,
+    },
+    props: { review },
+  }));
+}
+
+const { review } = Astro.props;
+---
+
+<ReviewPage review={review} />

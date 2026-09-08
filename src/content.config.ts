@@ -11,16 +11,106 @@ const commonFields = {
   draft: z.boolean().optional(),
 };
 
+// Collection « blog » — architecture SEO commune à tous les articles Fructo Finance.
 const blogCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/blog" }),
+  loader: glob({
+    pattern: ["**/*.{md,mdx}", "!**/-*.{md,mdx}"],
+    base: "src/content/blog",
+  }),
   schema: z.object({
-    ...commonFields,
-    author: z.string().default("Admin"),
-    author_image: z.string().optional(),
-    categories: z.array(z.string()).default(() => ["others"]),
-    tags: z.array(z.string()).default(() => ["others"]),
-    tag: z.string().optional(),
-    read_time: z.string().optional(),
+    title: z.string(),
+    description: z.string(),
+    meta_title: z.string().optional(),
+    /** Segment d'URL : /blog/[slug]. Par défaut, le nom du fichier. */
+    slug: z.string().optional(),
+    /** Mot-clé principal ciblé (usage éditorial / interne). */
+    keyword: z.string().optional(),
+    author: z.string().default("Nicolas Le Guen"),
+    datePublished: z.coerce.date(),
+    dateModified: z.coerce.date().optional(),
+    coverImage: z.string(),
+    coverAlt: z.string(),
+    /** Attribut title de l'image de couverture (infobulle au survol). Optionnel. */
+    coverTitle: z.string().optional(),
+    /** Légende affichée sous l'image de couverture (<figcaption>). Optionnel. */
+    coverCaption: z.string().optional(),
+    /** Dimensions réelles de coverImage (évite tout CLS). Par défaut : format paysage standard du site. */
+    coverWidth: z.number().default(1200),
+    coverHeight: z.number().default(630),
+    /** "contain" pour une image qui ne doit pas être rognée (ex. composition avec logos à ne pas couper). */
+    coverFit: z.enum(["cover", "contain"]).default("cover"),
+    pillar: z.enum(["investir", "cartes-credit", "epargne"]),
+    draft: z.boolean().default(false),
+    /** Affiche l'encart de divulgation d'affiliation quand true. */
+    hasAffiliateLinks: z.boolean().default(false),
+    /** FAQ visible en bas d'article + source du JSON-LD FAQPage. */
+    faq: z
+      .array(z.object({ question: z.string(), answer: z.string() }))
+      .default(() => []),
+  }),
+});
+
+// Collection « reviews » — pages « avis complet » (spokes) rattachées à un pilier.
+// Le corps MDX porte les sections détaillées en prose (Frais, Comptes, Plateforme,
+// Sécurité, Pour qui, Avantages/Inconvénients, vs alternatives). Le frontmatter porte
+// les blocs structurés (avis en bref, passage ancré, case grise, étapes, FAQ, verdict).
+const reviewsCollection = defineCollection({
+  loader: glob({
+    pattern: ["**/*.{md,mdx}", "!**/-*.{md,mdx}"],
+    base: "src/content/reviews",
+    // ID scopé par pilier : le loader utilise `data.slug` comme id par défaut,
+    // ce qui provoque une collision silencieuse (entrée écrasée) dès que deux
+    // piliers différents réutilisent le même slug (ex. "wealthsimple" en
+    // investir et en épargne). Le slug reste l'unique source du segment
+    // d'URL (voir `[pilier]/[produit].astro`), seul l'id interne change.
+    generateId: ({ entry, data }) =>
+      `${data.pillar}/${entry.replace(/\.(md|mdx)$/, "")}`,
+  }),
+  schema: z.object({
+    /** <title> (≤ 60 car.) : "[Produit] : avis complet (année) | Fructo Finance". */
+    title: z.string(),
+    meta_title: z.string().optional(),
+    description: z.string(),
+    /** Segment d'URL : /[pilier]/[slug]. Par défaut, le nom du fichier. */
+    slug: z.string().optional(),
+    /** Mot-clé principal ciblé (usage éditorial / interne). */
+    keyword: z.string().optional(),
+    /** Identifiant du produit dans src/data/products.json (badges, lien affilié, logo, pilier). */
+    productId: z.string(),
+    pillar: z.enum(["investir", "cartes-credit", "epargne"]),
+    author: z.string().default("Nicolas Le Guen"),
+    datePublished: z.coerce.date(),
+    dateModified: z.coerce.date().optional(),
+    /** Date de dernière vérification affichée (ex. "septembre 2026"). */
+    lastVerified: z.string(),
+    draft: z.boolean().default(false),
+    /** Chapô sous le H1 : verdict en une phrase, avec le mot-clé. */
+    chapo: z.string(),
+    /** Encadré résumé (featured snippet) : pour qui / points forts / points faibles. */
+    enBref: z.object({
+      pourQui: z.string(),
+      forts: z.array(z.string()).min(1),
+      faibles: z.array(z.string()).min(1),
+    }),
+    /** Passage ancré : réponse directe "[Produit] est-il un bon choix au Québec ?" (150-200 mots). */
+    passageAncre: z.object({ question: z.string(), reponse: z.string() }),
+    /** "Case grise" : mêmes champs que la fiche du pilier, format label/valeur. */
+    caracteristiques: z
+      .array(z.object({ label: z.string(), valeur: z.string() }))
+      .min(1),
+    /** "Comment ouvrir un compte" : étapes courtes + CTA affilié rendu par le gabarit. */
+    ouvrir: z.object({
+      intro: z.string().optional(),
+      etapes: z.array(z.string()).min(1),
+    }),
+    /** FAQ (PAA) : accordéon + source du JSON-LD FAQPage. */
+    faq: z
+      .array(z.object({ question: z.string(), answer: z.string() }))
+      .default(() => []),
+    /** Verdict final (paragraphe) précédant le CTA. */
+    verdict: z.string(),
+    /** Ligne "Sources" du bloc de transparence. */
+    sources: z.string(),
   }),
 });
 
@@ -75,23 +165,25 @@ const homepageCollection = defineCollection({
     main_features: z.object({
       enable: z.boolean(),
       badge: z.string().optional(),
-      title: z.string(),
-      content: z.string(),
+      title: z.string().optional(),
+      content: z.string().optional(),
       items: z.array(z.string()),
     }),
-    value_props: z.object({
-      enable: z.boolean(),
-      badge: z.string().optional(),
-      title: z.string(),
-      content: z.string(),
-      items: z.array(
-        z.object({
-          logo: z.string(),
-          title: z.string(),
-          list: z.array(z.string()).optional(),
-        }),
-      ),
-    }),
+    value_props: z
+      .object({
+        enable: z.boolean(),
+        badge: z.string().optional(),
+        title: z.string(),
+        content: z.string(),
+        items: z.array(
+          z.object({
+            logo: z.string(),
+            title: z.string(),
+            list: z.array(z.string()).optional(),
+          }),
+        ),
+      })
+      .optional(),
     partners: z
       .object({ badge: z.string().optional(), title: z.string() })
       .optional(),
@@ -103,39 +195,45 @@ const homepageCollection = defineCollection({
         cards: z.array(z.object({ title: z.string(), logo: z.string() })),
       })
       .optional(),
-    our_features: z.object({
-      enable: z.boolean(),
-      badge: z.string().optional(),
-      title: z.string(),
-      content: z.string(),
-      items: z.array(
-        z.object({
-          logo: z.string(),
-          title: z.string(),
-          is_starred: z.boolean(),
-        }),
-      ),
-    }),
+    our_features: z
+      .object({
+        enable: z.boolean(),
+        badge: z.string().optional(),
+        title: z.string(),
+        content: z.string(),
+        items: z.array(
+          z.object({
+            logo: z.string(),
+            title: z.string(),
+            is_starred: z.boolean(),
+          }),
+        ),
+      })
+      .optional(),
     testimonial_quote: z.object({
       enable: z.boolean(),
       badge: z.string().optional(),
       title: z.string(),
       quote: z.string(),
     }),
-    single_testimonial: z.object({
-      enable: z.boolean(),
-      stats: z.array(z.object({ value: z.string(), label: z.string() })),
-      testimonial: z.object({
-        quote: z.string(),
-        avatar: z.string(),
-        name: z.string(),
-        company: z.string(),
-      }),
-    }),
+    single_testimonial: z
+      .object({
+        enable: z.boolean(),
+        stats: z.array(z.object({ value: z.string(), label: z.string() })),
+        testimonial: z.object({
+          quote: z.string(),
+          avatar: z.string(),
+          name: z.string(),
+          company: z.string(),
+        }),
+      })
+      .optional(),
     growth_process: z.object({
       enable: z.boolean(),
       badge: z.string().optional(),
       title: z.string(),
+      subtitle: z.string().optional(),
+      disclosure: z.string().optional(),
       items: z.array(
         z.object({
           logo: z.string(),
@@ -149,71 +247,14 @@ const homepageCollection = defineCollection({
         link: z.string(),
       }),
     }),
-    integrations: z.object({
-      enable: z.boolean(),
-      badge: z.string().optional(),
-      title: z.string(),
-      items: z.array(z.object({ image: z.string(), alt: z.string() })),
-    }),
-  }),
-});
-
-const featuresCollection = defineCollection({
-  loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/features" }),
-  schema: z.object({
-    ...commonFields,
-    banner: z.object({
-      title: z.string(),
-      content: z.string(),
-      button_primary: z.object({
+    integrations: z
+      .object({
         enable: z.boolean(),
-        label: z.string(),
-        link: z.string(),
-      }),
-      button_secondary: z.object({
-        enable: z.boolean(),
-        label: z.string(),
-        link: z.string(),
-      }),
-      image: z.string(),
-    }),
-    partners: z.object({
-      enable: z.boolean(),
-      badge: z.string().optional(),
-      title: z.string(),
-    }),
-    smart_platform: z.object({
-      enable: z.boolean(),
-      badge: z.string().optional(),
-      title: z.string(),
-      content: z.string().optional(),
-      cards: z.array(
-        z.object({
-          title: z.string(),
-          subtitle: z.string().optional(),
-          logo: z.string().optional(),
-          image: z.string().optional(),
-          classNames: z.string().optional(),
-        }),
-      ),
-    }),
-    service_features: z.object({
-      enable: z.boolean(),
-      items: z.array(
-        z.object({
-          title: z.string(),
-          image: z.string(),
-          items: z.array(
-            z.object({
-              icon: z.string(),
-              title: z.string(),
-              content: z.string(),
-            }),
-          ),
-          reverse: z.boolean(),
-        }),
-      ),
-    }),
+        badge: z.string().optional(),
+        title: z.string(),
+        items: z.array(z.object({ image: z.string(), alt: z.string() })),
+      })
+      .optional(),
   }),
 });
 
@@ -355,11 +396,11 @@ const businessNeedsSectionCollection = defineCollection({
 
 export const collections = {
   blog: blogCollection,
+  reviews: reviewsCollection,
   blogIndex: blogIndexCollection,
   pages: pagesCollection,
   contact: contactCollection,
   homepage: homepageCollection,
-  features: featuresCollection,
   ctaSection: ctaSectionCollection,
   faqSection: faqSectionCollection,
   brandsSection: brandsSectionCollection,

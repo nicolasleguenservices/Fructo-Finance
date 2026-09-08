@@ -51,10 +51,12 @@
 .social-icons li {
   @apply inline-block;
 }
-.social-icons li a {
-  @apply flex size-11 items-center justify-center rounded-full bg-light hover:bg-primary text-center leading-9 text-secondary hover:text-white text-lg transition-all duration-200;
+.social-icons li a,
+.social-icons li button {
+  @apply flex size-11 items-center justify-center rounded-full bg-light hover:bg-primary text-center leading-9 text-secondary hover:text-white text-lg transition-all duration-200 cursor-pointer;
 }
-.social-icons li a svg {
+.social-icons li a svg,
+.social-icons li button svg {
   @apply size-5;
 }
 
@@ -175,6 +177,7 @@
 .content {
   @apply prose max-w-none;
   @apply prose-headings:mb-[.3em] prose-headings:mt-[.6em] prose-headings:text-secondary;
+  @apply prose-headings:font-secondary prose-headings:font-bold;
   @apply prose-h1:text-h1-sm md:prose-h1:text-h1;
   @apply prose-h2:text-h2-sm md:prose-h2:text-h2;
   @apply prose-h3:text-h3-sm md:prose-h3:text-h3;
@@ -274,4 +277,58 @@ ul.green-tick-list {
 
 .footer-link {
   @apply text-text hover:text-primary transition-colors duration-200;
+}
+
+/* Glow card: coral cursor-tracked border halo + subtle hover lift */
+@media (prefers-reduced-motion: no-preference) {
+  .glow-card.glow-card {
+    transition:
+      transform 200ms ease,
+      box-shadow 200ms ease;
+  }
+  .glow-card.glow-card:hover,
+  .glow-card.glow-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px -12px color-mix(in srgb, var(--color-secondary) 30%, transparent);
+  }
+  .glow-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: radial-gradient(
+      220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      var(--color-primary-light),
+      var(--color-primary) 45%,
+      transparent 75%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms ease;
+  }
+  .glow-card:hover::before,
+  .glow-card:focus-visible::before {
+    opacity: 0.6;
+  }
+}
+
+/* Filter bar pills */
+.filter-pill {
+  @apply cursor-pointer rounded-full border-[1.5px] border-secondary/25 bg-body px-4 py-1.5 text-sm font-medium text-secondary transition-colors duration-200;
+}
+.filter-pill:hover {
+  @apply border-primary/60;
+}
+.filter-pill[aria-pressed="true"] {
+  @apply border-primary bg-primary text-white;
 }

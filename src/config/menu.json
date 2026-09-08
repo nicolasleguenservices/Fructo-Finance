@@ -36,28 +36,20 @@
     {
       "name": "Épargne",
       "url": "/epargne"
-    },
-    {
-      "name": "À propos",
-      "url": "/about"
-    },
-    {
-      "name": "Contact",
-      "url": "/contact"
     }
   ],
   "footer_resource": [
-    {
-      "name": "Elements",
-      "url": "/elements"
-    },
     {
       "name": "Blog",
       "url": "/blog"
     },
     {
-      "name": "Features",
-      "url": "/features"
+      "name": "À propos",
+      "url": "/a-propos"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact"
     }
   ],
   "footer_legal": [

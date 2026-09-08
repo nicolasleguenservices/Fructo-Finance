@@ -4,18 +4,21 @@ import type { Affiliate } from "@/data/types";
 interface Props {
   affiliate: Affiliate;
   label: string;
+  /** Nom accessible complet, utile quand `label` est raccourci visuellement (ex. "Ouvrir un compte" répété sur plusieurs box). */
+  ariaLabel?: string;
   class?: string;
 }
 
-const { affiliate, label, class: className = "" } = Astro.props;
+const { affiliate, label, ariaLabel, class: className = "" } = Astro.props;
 ---
 
 <a
   class={`btn btn-primary ${className}`}
   href={affiliate.url}
   target="_blank"
-  rel={`${affiliate.rel} noopener noreferrer`}
+  rel={`${affiliate.rel} nofollow noopener noreferrer`}
   data-network={affiliate.network}
+  aria-label={ariaLabel}
 >
   {label}
 </a>

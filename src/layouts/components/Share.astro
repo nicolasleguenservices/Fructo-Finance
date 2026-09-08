@@ -1,11 +1,7 @@
 ---
 import config from "@/config/config.json";
-import {
-  IoLogoFacebook,
-  IoLogoLinkedin,
-  IoLogoPinterest,
-  IoLogoTwitter,
-} from "react-icons/io5";
+import { IoLogoFacebook, IoLogoLinkedin, IoLink } from "react-icons/io5";
+import { FaXTwitter } from "react-icons/fa6";
 
 const { base_url }: { base_url: string } = config.site;
 const {
@@ -15,13 +11,17 @@ const {
   className,
 }: { title?: string; description?: string; slug?: string; className?: string } =
   Astro.props;
+
+const url = `${base_url}/${slug ?? ""}`.replace(/\/+$/, "");
+const shareTitle = title ?? "";
+const shareDescription = description ?? "";
 ---
 
 <ul class={`${className}`}>
   <li class="inline-block">
     <a
-      aria-label="facebook share button"
-      href={`https://facebook.com/sharer/sharer.php?u=${base_url}/${slug}`}
+      aria-label="Partager sur Facebook"
+      href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`}
       target="_blank"
       rel="noreferrer noopener"
     >
@@ -30,18 +30,24 @@ const {
   </li>
   <li class="inline-block">
     <a
-      aria-label="twitter share button"
-      href={`https://twitter.com/intent/tweet/?text=${title}&amp;url=${base_url}/${slug}`}
+      aria-label="Partager sur X"
+      href={`https://x.com/intent/tweet?text=${encodeURIComponent(
+        shareTitle,
+      )}&url=${encodeURIComponent(url)}`}
       target="_blank"
       rel="noreferrer noopener"
     >
-      <IoLogoTwitter />
+      <FaXTwitter />
     </a>
   </li>
   <li class="inline-block">
     <a
-      aria-label="linkedin share button"
-      href={`https://www.linkedin.com/shareArticle?mini=true&url=${base_url}/${slug}&title=${title}&summary=${description}&source=${base_url}`}
+      aria-label="Partager sur LinkedIn"
+      href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+        url,
+      )}&title=${encodeURIComponent(shareTitle)}&summary=${encodeURIComponent(
+        shareDescription,
+      )}&source=${encodeURIComponent(base_url)}`}
       target="_blank"
       rel="noreferrer noopener"
     >
@@ -49,13 +55,65 @@ const {
     </a>
   </li>
   <li class="inline-block">
-    <a
-      aria-label="pinterest share button"
-      href={`https://pinterest.com/pin/create/button/?url=${base_url}/${slug}&media=&description=${description}`}
-      target="_blank"
-      rel="noreferrer noopener"
-    >
-      <IoLogoPinterest />
-    </a>
+    <button type="button" data-copy-link data-url={url} aria-label="Copier le lien de l'article">
+      <IoLink />
+      <span class="copy-link-feedback" role="status" aria-live="polite" hidden
+        >Lien copié !</span
+      >
+    </button>
   </li>
 </ul>
+
+<style>
+  [data-copy-link] {
+    position: relative;
+  }
+  .copy-link-feedback {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    border-radius: 9999px;
+    background: var(--color-secondary);
+    color: #fff;
+    font-size: 0.75rem;
+    line-height: 1;
+    padding: 6px 10px;
+    pointer-events: none;
+  }
+  .copy-link-feedback[hidden] {
+    display: none;
+  }
+</style>
+
+<script>
+  document.querySelectorAll("[data-copy-link]").forEach((btn) => {
+    const feedback = btn.querySelector<HTMLElement>(".copy-link-feedback");
+    const url = btn.getAttribute("data-url") || window.location.href;
+    btn.addEventListener("click", async () => {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(url);
+        } else {
+          const ta = document.createElement("textarea");
+          ta.value = url;
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+        }
+        if (feedback) {
+          feedback.hidden = false;
+          window.setTimeout(() => {
+            feedback.hidden = true;
+          }, 2000);
+        }
+      } catch {
+        /* copie impossible : on ne bloque rien */
+      }
+    });
+  });
+</script>

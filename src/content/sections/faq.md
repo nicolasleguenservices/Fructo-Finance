@@ -1,20 +1,22 @@
 ---
 enable: true
-title: "Quick Answers for the Smart Investors"
-description: "Find answers to common questions about our product and services."
+title: "Questions fréquentes"
+description: "Tout ce qu'il faut savoir sur nos comparatifs et notre indépendance éditoriale."
 button:
   enable: true
-  label: "Contact Us"
+  label: "Nous contacter"
   link: "/contact"
 items:
-  - question: "Is this software hard to set up?"
-    answer: "Not at all. We built this platform specifically for local business owners who aren't tech experts. We provide templates and 1-on-1 support to get you running fast."
-  - question: "What if I already have a website?"
-    answer: "You can keep your existing website! Our tools (like the Web Chat Widget and Missed Call Text-Back) easily integrate with WordPress, Wix, and Squarespace with a simple line of code."
-  - question: "Can this replace my existing CRM or Mailchimp?"
-    answer: "Yes. Our platform includes a full CRM, unlimited email marketing, and SMS capabilities. Most of our clients cancel 3-5 other software subscriptions when they switch to us."
-  - question: "How does the Missed Call Auto-Responder work?"
-    answer: "When a customer calls your business number and you don't answer, the system instantly texts them back (e.g., 'Sorry we missed your call! How can we help you?'). This stops leads from calling your competitors."
-  - question: "Are there any hidden fees?"
-    answer: "No hidden fees. You pay a simple flat monthly rate. You may just pay fractional cents directly to telecom providers for your SMS usage, exactly what it costs."
+  - question: "Qu'est-ce qu'un comparateur de produits financiers au Québec ?"
+    answer: "C'est un outil qui réunit et compare les offres financières accessibles aux Québécois (courtiers en ligne, cartes de crédit et comptes d'épargne) selon des critères clairs comme les frais, les taux et les conditions, pour vous aider à choisir sans visiter chaque site."
+  - question: "Les comparatifs de Fructo Finance sont-ils vraiment gratuits ?"
+    answer: "Oui. La consultation des comparatifs est entièrement gratuite. Nous pouvons recevoir une commission si vous ouvrez un compte via certains liens, sans frais additionnels pour vous et sans influence sur nos évaluations."
+  - question: "Comment Fructo Finance gagne-t-il de l'argent ?"
+    answer: "Par des liens d'affiliation et de parrainage : lorsque vous choisissez un produit via l'un de nos liens, l'institution peut nous verser une commission. Nos classements restent basés sur des critères indépendants."
+  - question: "Quelle est la différence entre le CELI, le REER et le CELIAPP ?"
+    answer: "Le CELI permet de faire fructifier de l'argent à l'abri de l'impôt, le REER sert surtout à épargner pour la retraite avec un avantage fiscal à la cotisation, et le CELIAPP est destiné à l'achat d'une première propriété."
+  - question: "Quels produits financiers sont offerts en français au Québec ?"
+    answer: "La plupart des courtiers, banques et émetteurs de cartes offrent leurs services en français au Québec, mais le niveau de service et la documentation varient selon l'institution, un critère que nous signalons dans nos comparatifs."
+  - question: "Comment choisir un courtier en ligne au Québec ?"
+    answer: "Regardez les frais de transaction et de conversion, les comptes enregistrés offerts (CELI, REER, CELIAPP), la qualité de l'application, le service en français et l'encadrement réglementaire (membre de l'OCRI). Notre comparatif détaille chacun de ces points."
 ---

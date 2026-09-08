@@ -54,12 +54,18 @@ export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
+  redirects: { "/about": "/a-propos" },
   image: { service: sharp(), dangerouslyProcessSVG: true },
   vite: { plugins: [tailwindcss()] },
   fonts: fontsConfig,
   integrations: [
     react(),
-    sitemap(),
+    sitemap({
+      // Exclut les pages de démo du template (supprimées du projet) au cas où
+      // une route résiduelle réapparaîtrait — elles ne doivent pas être indexées.
+      filter: (page) =>
+        !/\/(elements|features)\/?$/.test(new URL(page).pathname),
+    }),
     AutoImport({
       imports: [
         "@/shortcodes/Button",

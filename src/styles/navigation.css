@@ -1,48 +1,303 @@
 .header {
-  @apply bg-transparent py-6  left-0 w-full z-50 transition-transform duration-700;
-  transform: translateY(0px);
+  @apply relative z-50 w-full transition-shadow duration-300;
+  background: color-mix(in srgb, var(--color-body) 90%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
 }
 
-.header.hide {
-  transform: translateY(-200px);
+.header-sticky {
+  @apply sticky top-0;
 }
 
-/* navbar items */
+.header.is-scrolled {
+  box-shadow: 0 8px 24px -14px color-mix(in srgb, var(--color-secondary) 35%, transparent);
+}
+
+/* navbar row */
 .navbar {
-  @apply relative flex flex-wrap items-center justify-between;
+  @apply relative flex items-center justify-between gap-4 py-3 lg:py-4;
 }
 
 .navbar-brand {
-  @apply text-text-dark  text-xl font-semibold;
-  image {
-    @apply max-h-full max-w-full;
+  @apply inline-flex shrink-0 items-center font-secondary text-xl font-bold tracking-tight text-secondary;
+}
+
+.navbar-actions {
+  @apply flex items-center gap-3;
+}
+
+/* Wrapper collapsible du menu.
+   Desktop : `display: contents` → il s'efface, `.nav-menu` redevient un
+   enfant flex direct de `.navbar` (menu horizontal inchangé).
+   Tablette + mobile : conteneur en flux normal qui s'ouvre en hauteur et
+   pousse le contenu de la page vers le bas (voir la media query plus bas). */
+.nav-collapse {
+  display: contents;
+}
+
+/* desktop nav — rounded "pill" container */
+.nav-menu {
+  @apply m-0 hidden list-none items-center gap-x-1 p-0 xl:relative xl:flex;
+}
+
+@media (min-width: 80rem) {
+  .nav-menu {
+    background: var(--color-body);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    padding: 6px;
+    /* Contains mix-blend-mode so the link/cursor blend never bleeds
+       through the (translucent, blurred) header onto the page below. */
+    isolation: isolate;
   }
 }
 
-.navbar-nav {
-  @apply text-center lg:text-left;
-}
-
-.nav-link {
-  @apply text-secondary lg:text-white hover:text-primary block p-3 cursor-pointer font-normal transition lg:px-2 lg:py-3;
+.nav-item {
+  @apply z-10;
 }
 
 .nav-dropdown {
-  @apply mr-0;
+  @apply relative;
 }
 
-.nav-dropdown > svg {
-  @apply pointer-events-none;
+.nav-link {
+  @apply relative z-10 inline-flex items-center gap-1 whitespace-nowrap rounded-full px-4 py-2 font-secondary text-[15px] font-medium tracking-[0.01em] text-secondary cursor-pointer;
+  mix-blend-mode: normal;
+  transition: color 150ms ease;
 }
 
+.nav-link[aria-expanded="true"] {
+  @apply text-primary;
+}
+
+.nav-link:focus-visible {
+  @apply outline-none;
+  box-shadow:
+    0 0 0 2px var(--color-body),
+    0 0 0 4px var(--color-primary);
+}
+
+/* No-JS / reduced-motion fallback: state stays visible via color alone */
+.nav-link.active {
+  @apply text-primary;
+}
+
+/* Link currently "under" the sliding cursor pill (hover, keyboard focus,
+   or — at rest — the active page link). White text + difference blend is
+   what makes it auto-invert against the pill's navy fill; see .nav-cursor
+   below for why navy (not coral) was chosen as the blend target. Declared
+   after .active so the blend always wins when both classes are present. */
+.nav-link.cursor-over {
+  color: #fff;
+  mix-blend-mode: difference;
+}
+
+.nav-caret {
+  @apply h-3.5 w-3.5 fill-current transition-transform duration-200;
+}
+
+.nav-dropdown-toggle[aria-expanded="true"] .nav-caret,
+.nav-dropdown:hover .nav-caret {
+  transform: rotate(180deg);
+}
+
+/* dropdown (desktop) */
 .nav-dropdown-list {
-  @apply bg-body  z-10 min-w-45 rounded p-4 shadow-sm;
+  @apply invisible absolute top-full left-1/2 z-20 mt-2 min-w-48 -translate-x-1/2 translate-y-1 list-none rounded-2xl border border-border bg-body p-2 opacity-0 shadow-lg pointer-events-none transition-all duration-200;
 }
 
-.nav-dropdown-item {
-  @apply not-last:mb-2;
+.nav-dropdown:hover .nav-dropdown-list,
+.nav-dropdown:focus-within .nav-dropdown-list,
+.nav-dropdown-list.open {
+  @apply visible translate-y-0 opacity-100 pointer-events-auto;
 }
 
 .nav-dropdown-link {
-  @apply text-text-dark hover:text-primary   block py-1 font-semibold transition;
+  @apply block rounded-lg px-4 py-2 font-secondary text-sm font-medium text-secondary transition-colors duration-150;
+}
+
+.nav-dropdown-link:hover {
+  @apply bg-light text-primary;
+}
+
+.nav-dropdown-link.active {
+  @apply text-primary;
+}
+
+.nav-dropdown-link:focus-visible {
+  @apply outline-none;
+  box-shadow: inset 0 0 0 2px var(--color-primary);
+}
+
+/* Sliding "cursor" pill behind the links. Navy, not coral: white text with
+   mix-blend-mode:difference reads clearly against navy (contrast ratio
+   ~12:1) but muddies to a low-contrast teal against coral (~2:1) — tested
+   both, navy is the legible one, so it's the blend target. */
+.nav-cursor {
+  @apply pointer-events-none absolute top-0 left-0 z-0 w-0 rounded-full opacity-0;
+  background: var(--color-secondary);
+  transition:
+    transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    width 250ms ease,
+    height 250ms ease,
+    opacity 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-cursor {
+    display: none;
+  }
+}
+
+/* CTA */
+.nav-cta {
+  @apply hidden px-6 py-2.5 text-sm xl:inline-flex;
+}
+
+.nav-cta-mobile {
+  @apply mt-4 xl:hidden;
+}
+
+.nav-cta-mobile .btn {
+  @apply block text-center;
+}
+
+/* mobile hamburger button */
+.nav-toggle-btn {
+  @apply relative flex size-11 shrink-0 flex-col items-center justify-center gap-[5px] rounded-xl bg-light transition-colors duration-200 xl:hidden;
+}
+
+.nav-toggle-btn:hover {
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-light));
+}
+
+.nav-toggle-btn:focus-visible {
+  @apply outline-none;
+  box-shadow:
+    0 0 0 2px var(--color-body),
+    0 0 0 4px var(--color-primary);
+}
+
+.nav-toggle-bar {
+  @apply block h-0.5 w-5 rounded-full bg-secondary transition-all duration-300;
+}
+
+.nav-toggle-btn[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle-btn[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle-btn[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   Menu burger « push-down » (tablette + mobile)
+   Le menu s'ouvre DANS LE FLUX et pousse le hero vers le bas ;
+   à la fermeture, le contenu remonte. Pas de position fixe.
+   ============================================================ */
+@media (max-width: 79.9975rem) {
+  /* La barre passe sur deux lignes : logo + burger, puis le menu déroulé
+     en pleine largeur en dessous. row-gap: 0 pour qu'aucun espace fantôme
+     n'apparaisse quand le menu est replié. */
+  .navbar {
+    flex-wrap: wrap;
+    column-gap: 1rem;
+    row-gap: 0;
+  }
+
+  .navbar-actions {
+    order: 2;
+  }
+
+  /* Conteneur qui s'anime en hauteur : replié à max-height 0, déplié à la
+     hauteur exacte du menu (posée en pixels par le JS pour une poussée
+     parfaitement douce). overflow: hidden pour clipper pendant l'animation. */
+  .nav-collapse {
+    display: block; /* annule le `display: contents` du desktop */
+    order: 3;
+    flex-basis: 100%;
+    width: 100%;
+    /* état replié par défaut ; l'ouverture/fermeture est animée en JS
+       (Web Animations API) puis figée en style inline. */
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .nav-menu {
+    @apply flex w-full flex-col items-stretch gap-1 pt-2 pb-4;
+  }
+
+  /* Au repos l'en-tête est sticky ; pendant que le menu est ouvert on repasse
+     en flux normal pour que le déroulé pousse réellement le contenu vers le
+     bas (un en-tête sticky « collé » recouvrirait le contenu au lieu de le
+     pousser dès que la page est un peu défilée). */
+  .header.header-sticky.menu-open {
+    position: relative;
+  }
+
+  .nav-item {
+    @apply w-full;
+  }
+
+  .nav-link {
+    @apply w-full px-4 py-3.5 text-base;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+
+  .nav-dropdown-toggle {
+    @apply justify-between;
+  }
+
+  .nav-dropdown-list {
+    @apply pointer-events-none static mt-0 hidden w-full translate-y-0 border-none p-0 opacity-100 shadow-none;
+  }
+
+  .nav-dropdown-list.open {
+    @apply pointer-events-auto block;
+  }
+
+  .nav-dropdown-link {
+    @apply py-2.5 pl-8;
+  }
+
+  .nav-cursor {
+    display: none;
+  }
+
+  /* Pastille pleine (bleu nuit + texte blanc) sur l'élément actif / survolé /
+     appuyé — reprend la pastille navy du menu desktop, en version statique. */
+  .nav-link.cursor-over {
+    mix-blend-mode: normal;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible,
+  .nav-link.cursor-over,
+  .nav-link.active {
+    background: var(--color-secondary);
+    color: #fff;
+  }
+
+  .nav-dropdown-link:hover,
+  .nav-dropdown-link.active {
+    background: color-mix(in srgb, var(--color-secondary) 12%, transparent);
+    color: var(--color-primary);
+  }
+
+  /* Bouton « Comparer » détaché sous les liens */
+  .nav-cta-mobile {
+    @apply mt-2 pt-3;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .nav-cta-mobile .btn {
+    @apply w-full py-3.5 text-base;
+  }
 }

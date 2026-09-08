@@ -1,148 +1,46 @@
 ---
 banner:
-  title: "Trouvez les <strong>meilleurs produits financiers</strong> au Québec"
-  content: "Des comparatifs indépendants, à jour et gratuits sur les courtiers en ligne, les cartes de crédit et les comptes d'épargne offerts aux Québécois."
+  title: "Comparez les meilleurs produits financiers au Québec"
+  content: "Fructo Finance est un comparateur de produits financiers au Québec, indépendant et gratuit : courtiers en ligne, cartes de crédit et comptes d'épargne à intérêt élevé. Des comparatifs en français, à jour et pensés pour la réalité québécoise."
   button_primary:
     enable: true
     label: "Comparer les courtiers"
     link: "/investir"
   button_secondary:
     enable: true
-    label: "Voir les comptes épargne"
-    link: "/epargne"
+    label: "Voir les cartes de crédit"
+    link: "/cartes-credit"
 
 main_features:
   enable: true
-  title: "Are you losing real customers to the <strong>Follow-up Gap?</strong>"
-  content: "Stop wasting money on marketing if you can't respond fast enough. Our system ensures every lead gets immediate attention."
   items:
-    - "Wasted Ad Spend"
-    - "Expensive 'Franken-stack' of tools"
-    - "Scattered Customer Data"
-    - "Missed Calls Costing Thousands"
-    - "Lost Leads to Competitors"
-    - "Slow Response Times"
-
-value_props:
-  enable: true
-  title: "Replace Your Clunky Tools With A <strong>Smart, All-In-One System</strong>"
-  content: "Log in to a single powerful dashboard to manage everything seamlessly."
-  items:
-    - logo: "/images/value-proposition/values-icon-1.svg"
-      title: "Automated Customer Follow-Up"
-      list:
-        - "Missed Call Auto-Responder"
-        - "24/7 Appointment Scheduler"
-        - "Instant SMS & Email Follow-Up"
-    - logo: "/images/value-proposition/values-icon-2.svg"
-      title: "Smart Customer Database"
-      list:
-        - "Unified Lead Inbox"
-        - "Smart Pipeline Manager"
-        - "Client Notes & History"
-    - logo: "/images/value-proposition/values-icon-3.svg"
-      title: "Autopilot Review Generator"
-      list:
-        - "Automated Review Requests"
-        - "Google & Facebook Integration"
-        - "Reputation Tracking"
-    - logo: "/images/value-proposition/values-icon-4.svg"
-      title: "High-Converting Websites"
-      list:
-        - "Drag-and-Drop Landing Pages"
-        - "Lead Capture Forms"
-        - "Web Chat Widgets"
-
-our_features:
-  enable: true
-  title: "Everything You Need To Put Growth On <strong>Autopilot</strong>"
-  content: "From capturing the very first click to securing a 5-star review, we've got you covered."
-  items:
-    - logo: "/images/features-menu-icon.svg"
-      title: "Automated Customer Follow-up"
-      is_starred: false
-    - logo: "/images/features-menu-icon.svg"
-      title: "Autopilot Review Generator"
-      is_starred: false
-    - logo: "/images/features-menu-icon.svg"
-      title: "Missed Call Auto-Responder"
-      is_starred: false
-    - logo: "/images/features-menu-icon.svg"
-      title: "24/7 Appointment Scheduler"
-      is_starred: false
-    - logo: "/images/features-menu-icon.svg"
-      title: "Unified Lead Inbox"
-      is_starred: true
-    - logo: "/images/features-menu-icon.svg"
-      title: "Smart Customer Database"
-      is_starred: false
-    - logo: "/images/features-menu-icon.svg"
-      title: "High-Converting Websites"
-      is_starred: false
-    - logo: "/images/features-menu-icon.svg"
-      title: "Drag & Drop Forms"
-      is_starred: false
-    - logo: "/images/features-menu-icon.svg"
-      title: "Automated Text Campaigns"
-      is_starred: false
+    - "100 % indépendant"
+    - "Gratuit pour vous"
+    - "Sources officielles (AMF, OCRI, ARC)"
+    - "Mis à jour en 2026"
 
 testimonial_quote:
   enable: true
-  title: "We know you didn't start your local business to become a full-time <strong>Software Engineer</strong>"
-  quote: "Before this system, I was losing half my leads simply because I couldn't get to my phone fast enough while on jobs. Now, the system handles the follow-up for me, and I've seen a 300% jump in bookings."
-
-single_testimonial:
-  enable: true
-  stats:
-    - value: "10,000+"
-      label: "Lead Captured"
-    - value: "5x Faster"
-      label: "Response Time"
-    - value: "28hr/week"
-      label: "Hours Saved"
-  testimonial:
-    quote: "This all-in-one software is exactly what our local business needed. It completely eliminated our need for 4 other separate platforms and organized our entire customer pipeline."
-    avatar: "/images/avatar.png"
-    name: "Ronald Richards"
-    company: "Local Services Co."
+  title: "Qu'est-ce qu'un <strong>comparateur de produits financiers au Québec</strong> ?"
+  quote: "Un comparateur de produits financiers au Québec est un outil qui rassemble, au même endroit, les principales offres des institutions financières accessibles aux Québécois (courtiers en ligne, cartes de crédit et comptes d'épargne à intérêt élevé) afin de les comparer selon des critères clairs comme les frais, les taux, les conditions et les comptes enregistrés offerts (CELI, REER, CELIAPP). Plutôt que de visiter le site de chaque banque ou courtier, vous consultez des comparatifs présentés en français et pensés pour la réalité québécoise. Fructo Finance est un comparateur indépendant et gratuit : nous présentons les produits offerts au Québec, nous citons nos sources (comme l'AMF, l'OCRI ou l'ARC) et nous indiquons la date de dernière vérification de chaque information. Notre objectif est de vous aider à faire un choix éclairé, sans remplacer un conseil financier personnalisé. Les comparatifs sont gratuits pour vous : nous pouvons recevoir une commission lorsque vous ouvrez un compte via certains liens, sans que cela influence nos évaluations."
 
 growth_process:
   enable: true
-  title: 'Your 3-Step Path to <strong class="italic">Automated Growth</strong>'
+  title: "Comment nous comparons les produits financiers"
+  subtitle: "Une méthode simple et transparente, la même pour chaque produit."
   items:
-    - logo: "/images/value-proposition/values-icon-2.svg"
-      title: "1. Start Your Trial"
-      content: "Sign up for a free trial and experience the power of the platform for yourself. No credit card required."
-    - logo: "/images/value-proposition/values-icon-2.svg"
-      title: "2. Connect Your Business"
-      content: "Forward your calls, plug in your social accounts, and unify your inbox in a matter of clicks."
-    - logo: "/images/value-proposition/values-icon-2.svg"
-      title: "3. Scale on Autopilot"
-      content: "Watch your calendar fill up and reviews come in automatically, so you can focus on serving your customers."
+    - logo: "search"
+      title: "1. On rassemble les données réelles"
+      content: "Frais, taux, conditions et comptes offerts de chaque courtier, carte ou compte d'épargne."
+    - logo: "shield"
+      title: "2. On vérifie aux sources officielles"
+      content: "Institutions financières, AMF, OCRI et ARC. Chaque fiche affiche sa date de dernière vérification."
+    - logo: "scale"
+      title: "3. On classe selon des critères transparents"
+      content: "Nos évaluations reposent sur des critères clairs, jamais sur la rémunération que nous pourrions recevoir."
+  disclosure: "Fructo Finance se finance en partie par des liens d'affiliation et de parrainage. Cette rémunération n'influence jamais nos évaluations."
   button:
-    enable: true
-    label: "Start Your 14-Day Free Trial"
-    link: "/contact"
-
-integrations:
-  enable: true
-  title: "Connect all your <strong>Applications</strong>"
-  items:
-    - image: "/images/integrations/snapchat.png"
-      alt: "snapchat"
-    - image: "/images/integrations/fastapi.png"
-      alt: "fastapi"
-    - image: "/images/integrations/youtube.png"
-      alt: "youtube"
-    - image: "/images/integrations/airtable.png"
-      alt: "airtable"
-    - image: "/images/integrations/zendesk.png"
-      alt: "zendesk"
-    - image: "/images/integrations/slack.png"
-      alt: "slack"
-    - image: "/images/integrations/mailchimp.png"
-      alt: "mailchimp"
-    - image: "/images/integrations/asana.png"
-      alt: "asana"
-
+    enable: false
+    label: ""
+    link: ""
 ---

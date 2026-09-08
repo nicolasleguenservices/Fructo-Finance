@@ -1,0 +1,205 @@
+---
+import type { ClusterId, Product } from "@/data/types";
+import { groupFiltersByGroup } from "@/data/cluster-filters";
+import { ctaVerb } from "@/data/products";
+import AffiliateButton from "./AffiliateButton.astro";
+import ProductLogo from "./ProductLogo.astro";
+
+interface Props {
+  product: Product;
+  cluster: ClusterId;
+  /** Lien vers la page « avis complet » du produit, si elle existe. Sinon, le lien n'est pas affiché. */
+  avisHref?: string | null;
+}
+
+const { product, cluster, avisHref } = Astro.props;
+
+const groupedFilters = groupFiltersByGroup(cluster, product.filters ?? []);
+const filterAttrs: Record<string, string> = {};
+for (const [groupId, values] of Object.entries(groupedFilters)) {
+  filterAttrs[`data-${groupId}`] = values.join(" ");
+}
+
+const cardDetailLabels: [string, string][] = [
+  ["frais_annuels", "Frais annuels"],
+  ["taux_interet_achats", "Taux d'intérêt (achats)"],
+  ["taux_interet_avances", "Taux d'intérêt (avances)"],
+  ["type_recompenses", "Récompenses"],
+  ["bonus_bienvenue", "Prime de bienvenue"],
+  ["frais_conversion_devises", "Frais de conversion devises"],
+  ["revenu_requis", "Admissibilité (revenu requis)"],
+  ["reseau", "Réseau"],
+];
+const accountDetailLabels: [string, string][] = [
+  ["taux_interet", "Taux d'intérêt"],
+  ["frais_mensuels", "Frais"],
+  ["assurance_depots", "Assurance-dépôts"],
+  ["comptes_offerts", "Comptes offerts"],
+  ["prime", "Prime à l'ouverture"],
+  ["note", "À noter"],
+];
+
+/**
+ * Cluster investir : il n'y a pas de card_details/account_details structuré, seulement des
+ * highlights au format « Label : valeur » (ex. "Commission actions/FNB : 0 $"). On les
+ * transforme en paires label/valeur pour les afficher dans le même encadré gris que les
+ * autres clusters, sans réécrire le texte ni le dupliquer dans une liste à puces séparée.
+ */
+function parseHighlightDetails(
+  highlights: string[],
+): Record<string, string> | null {
+  if (highlights.length === 0) return null;
+  const pairs: Record<string, string> = {};
+  for (const point of highlights) {
+    const separatorIndex = point.indexOf(" : ");
+    if (separatorIndex === -1) return null;
+    pairs[point.slice(0, separatorIndex)] = point.slice(separatorIndex + 3);
+  }
+  return pairs;
+}
+
+const parsedHighlights = (product.card_details ?? product.account_details)
+  ? null
+  : parseHighlightDetails(product.highlights);
+
+const detailLabels: [string, string][] = product.card_details
+  ? cardDetailLabels
+  : product.account_details
+    ? accountDetailLabels
+    : Object.keys(parsedHighlights ?? {}).map((key) => [key, key]);
+
+const rawDetails = product.card_details ?? product.account_details ?? parsedHighlights;
+const details: Record<string, string> | undefined = rawDetails
+  ? Object.fromEntries(
+      Object.entries(rawDetails).map(([key, value]) => [
+        key,
+        Array.isArray(value) ? value.join(", ") : value,
+      ]),
+    )
+  : undefined;
+---
+
+<article
+  class="product-box glow-card relative grid gap-6 rounded-[14px] border border-border bg-body p-6 shadow-sm lg:grid-cols-[170px_1fr_190px]"
+  {...filterAttrs}
+>
+  <!-- Colonne gauche : logo, nom, badges, segment -->
+  <div class="flex flex-row gap-4 lg:flex-col lg:gap-3">
+    <ProductLogo product={product} size={56} />
+    <div class="min-w-0">
+      <h3 class="mb-1 text-lg font-bold font-secondary text-secondary">
+        {product.name}
+      </h3>
+      {
+        product.ideal_pour.length > 0 && (
+          <p class="m-0 text-sm text-text-dark">
+            Idéal pour : {product.ideal_pour.join(", ")}
+          </p>
+        )
+      }
+      {
+        product.badges && product.badges.length > 0 && (
+          <div class="mt-2 flex flex-wrap gap-1.5 lg:flex-col lg:items-start">
+            {product.badges.map((badge) => (
+              <span class="inline-block rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                {badge}
+              </span>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  <!-- Colonne centrale : infos clés + avantages/inconvénients -->
+  <div class="flex min-w-0 flex-col gap-4">
+    {
+      !details && product.highlights.length > 0 && (
+        <ul class="m-0 flex flex-col gap-1.5 text-sm text-text">
+          {product.highlights.map((point) => (
+            <li class="flex gap-2">
+              <span aria-hidden="true" class="shrink-0 text-primary">
+                •
+              </span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    {
+      details && (
+        <dl class="m-0 grid gap-x-6 gap-y-2 rounded-lg border border-border bg-light p-4 text-sm sm:grid-cols-2">
+          {detailLabels.map(
+            ([key, label]) =>
+              details[key] && (
+                <div>
+                  <dt class="font-semibold text-secondary">{label}</dt>
+                  <dd class="m-0 text-text">{details[key]}</dd>
+                </div>
+              ),
+          )}
+        </dl>
+      )
+    }
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div>
+        <h4 class="mb-2 text-sm font-semibold text-secondary">Avantages</h4>
+        <ul class="m-0 flex flex-col gap-1.5 text-sm text-text">
+          {
+            product.pros.map((pro) => (
+              <li class="flex gap-2">
+                <span aria-hidden="true" class="shrink-0 text-primary">
+                  +
+                </span>
+                <span>{pro}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h4 class="mb-2 text-sm font-semibold text-secondary">
+          Inconvénients
+        </h4>
+        <ul class="m-0 flex flex-col gap-1.5 text-sm text-text">
+          {
+            product.cons.map((con) => (
+              <li class="flex gap-2">
+                <span aria-hidden="true" class="shrink-0 text-text-dark">
+                  −
+                </span>
+                <span>{con}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Colonne droite : CTA -->
+  <div class="flex flex-col gap-3 lg:justify-center">
+    <AffiliateButton
+      affiliate={product.affiliate}
+      label={ctaVerb(product)}
+      ariaLabel={`${ctaVerb(product)} ${product.name}`}
+      class="w-full text-center"
+    />
+    {
+      avisHref && (
+        <a
+          href={avisHref}
+          class="text-center text-sm font-semibold text-secondary hover:text-primary hover:underline"
+        >
+          Lire notre avis complet
+        </a>
+      )
+    }
+    <p class="m-0 text-center text-xs text-text-dark">
+      Dernière vérification : {product.last_verified}
+    </p>
+  </div>
+</article>

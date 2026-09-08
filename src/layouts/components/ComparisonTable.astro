@@ -1,46 +1,168 @@
 ---
-import type { Product } from "@/data/types";
-import Rating from "./Rating.astro";
+import type { ClusterId, Product } from "@/data/types";
+import {
+  primaryFee,
+  tableFee,
+  tableRewards,
+  tableBonus,
+  tableRate,
+  tableSavingsFee,
+  tableInsurance,
+} from "@/data/products";
 import AffiliateButton from "./AffiliateButton.astro";
 import ProductLogo from "./ProductLogo.astro";
 
 interface Props {
   products: Product[];
+  /** Libellé de la première colonne, ex. "Courtier", "Carte", "Compte". */
+  productLabel?: string;
+  /** Libellé de la colonne de frais, ex. "Commission actions/FNB" (cluster investir uniquement). */
+  feeLabel?: string;
+  cluster?: ClusterId;
 }
 
-const { products } = Astro.props;
+const {
+  products,
+  productLabel = "Produit",
+  feeLabel = "Frais",
+  cluster,
+} = Astro.props;
 
-function detailsOf(product: Product): Record<string, string> {
-  const source =
-    product.fees ?? product.card_details ?? product.account_details ?? {};
-  const entries = Object.entries(source).map(([key, value]) => [
-    key,
-    Array.isArray(value) ? value.join(", ") : value,
-  ]);
-  return Object.fromEntries(entries) as Record<string, string>;
+const isCards = cluster === "cartes-credit";
+const isSavings = cluster === "epargne";
+
+function comptesOf(product: Product): string[] {
+  return product.comptes_supportes ?? [];
 }
 
-const detailKeys = [
-  ...new Set(products.flatMap((product) => Object.keys(detailsOf(product)))),
-];
-
-function labelOf(key: string): string {
-  const spaced = key.replaceAll("_", " ");
-  return spaced.charAt(0).toUpperCase() + spaced.slice(1);
-}
+// Colonnes secondaires masquées en tablette pour éviter le défilement horizontal
+// (elles restent visibles sur desktop et dans les fiches détaillées).
+const cellPad = "p-4 max-lg:p-2.5";
+const tabletHide = "hidden lg:table-cell";
 ---
 
-<div class="overflow-hidden rounded-2xl border border-border">
-  <div class="hidden overflow-x-auto md:block">
-    <table class="w-full border-collapse text-left">
+<div class="rounded-[14px] border border-border bg-body shadow-sm overflow-hidden">
+  <div class="overflow-x-auto">
+    <table
+      class="w-full min-w-215 max-lg:min-w-0 border-collapse text-left max-lg:text-sm"
+    >
       <thead>
-        <tr class="bg-light">
-          <th scope="col" class="w-40 border-b border-border p-4 text-secondary"
-            >Critère</th
+        <tr class="bg-secondary">
+          <th
+            scope="col"
+            class:list={[
+              cellPad,
+              "font-secondary font-bold text-white whitespace-nowrap",
+            ]}>{productLabel}</th
           >
           {
-            products.map((product) => (
-              <th scope="col" class="border-b border-border p-4">
+            isCards ? (
+              <>
+                <th
+                  scope="col"
+                  class:list={[cellPad, "font-secondary font-bold text-white"]}
+                >
+                  Frais annuels
+                </th>
+                <th
+                  scope="col"
+                  class:list={[cellPad, "font-secondary font-bold text-white"]}
+                >
+                  Récompenses clés
+                </th>
+                <th
+                  scope="col"
+                  class:list={[
+                    cellPad,
+                    tabletHide,
+                    "font-secondary font-bold text-white",
+                  ]}
+                >
+                  Prime de bienvenue
+                </th>
+              </>
+            ) : isSavings ? (
+              <>
+                <th
+                  scope="col"
+                  class:list={[cellPad, "font-secondary font-bold text-white"]}
+                >
+                  Taux
+                </th>
+                <th
+                  scope="col"
+                  class:list={[
+                    cellPad,
+                    tabletHide,
+                    "font-secondary font-bold text-white",
+                  ]}
+                >
+                  Frais
+                </th>
+                <th
+                  scope="col"
+                  class:list={[cellPad, "font-secondary font-bold text-white"]}
+                >
+                  Assurance-dépôts
+                </th>
+              </>
+            ) : (
+              <>
+                <th
+                  scope="col"
+                  class:list={[cellPad, "font-secondary font-bold text-white"]}
+                >
+                  {feeLabel}
+                </th>
+                <th
+                  scope="col"
+                  class:list={[cellPad, "font-secondary font-bold text-white"]}
+                >
+                  Comptes clés
+                </th>
+              </>
+            )
+          }
+          {
+            !isCards && (
+              <th
+                scope="col"
+                class:list={[
+                  cellPad,
+                  tabletHide,
+                  "font-secondary font-bold text-white",
+                ]}
+              >
+                Idéal pour
+              </th>
+            )
+          }
+          <th
+            scope="col"
+            class:list={[cellPad, "font-secondary font-bold text-white"]}
+            >Badge</th
+          >
+          <th scope="col" class:list={[cellPad]}
+            ><span class="sr-only">Action</span></th
+          >
+        </tr>
+      </thead>
+      <tbody>
+        {
+          products.map((product, i) => (
+            <tr
+              class:list={[
+                i % 2 === 0 ? "bg-body" : "bg-light",
+                product.badges?.length && "border-l-4 border-l-primary",
+              ]}
+            >
+              <th
+                scope="row"
+                class:list={[
+                  cellPad,
+                  "border-b border-border align-top font-normal",
+                ]}
+              >
                 <div class="flex items-center gap-3">
                   <ProductLogo product={product} size={32} />
                   <span class="font-secondary font-bold text-secondary">
@@ -48,105 +170,73 @@ function labelOf(key: string): string {
                   </span>
                 </div>
               </th>
-            ))
-          }
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row" class="border-b border-border p-4 font-semibold text-text-dark"
-            >Note</th
-          >
-          {
-            products.map((product) => (
-              <td class="border-b border-border p-4">
-                <Rating rating={product.rating} />
+              {isCards ? (
+                <>
+                  <td class:list={[cellPad, "border-b border-border align-top text-text"]}>
+                    {tableFee(product)}
+                  </td>
+                  <td class:list={[cellPad, "border-b border-border align-top text-text max-w-55 max-lg:max-w-40"]}>
+                    {tableRewards(product)}
+                  </td>
+                  <td class:list={[cellPad, tabletHide, "border-b border-border align-top text-text max-w-55 max-lg:max-w-40"]}>
+                    {tableBonus(product)}
+                  </td>
+                </>
+              ) : isSavings ? (
+                <>
+                  <td class:list={[cellPad, "border-b border-border align-top text-text max-w-55 max-lg:max-w-40"]}>
+                    {tableRate(product)}
+                  </td>
+                  <td class:list={[cellPad, tabletHide, "border-b border-border align-top text-text"]}>
+                    {tableSavingsFee(product)}
+                  </td>
+                  <td class:list={[cellPad, "border-b border-border align-top text-secondary"]}>
+                    {tableInsurance(product)}
+                  </td>
+                </>
+              ) : (
+                <>
+                  <td class:list={[cellPad, "border-b border-border align-top text-text"]}>
+                    {primaryFee(product)}
+                  </td>
+                  <td class:list={[cellPad, "border-b border-border align-top text-secondary"]}>
+                    {comptesOf(product).length > 0
+                      ? comptesOf(product).join(" · ")
+                      : "—"}
+                  </td>
+                </>
+              )}
+              {
+                !isCards && (
+                  <td class:list={[cellPad, tabletHide, "border-b border-border align-top text-text"]}>
+                    {product.ideal_pour.join(", ")}
+                  </td>
+                )
+              }
+              <td class:list={[cellPad, "border-b border-border align-top"]}>
+                {product.badges && product.badges.length > 0 ? (
+                  <div class="flex flex-col gap-1">
+                    {product.badges.map((badge) => (
+                      <span class="inline-block w-fit rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                        {badge}
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <span class="text-text-dark">—</span>
+                )}
               </td>
-            ))
-          }
-        </tr>
-        {
-          detailKeys.map((key) => (
-            <tr>
-              <th
-                scope="row"
-                class="border-b border-border p-4 font-semibold text-text-dark"
-              >
-                {labelOf(key)}
-              </th>
-              {products.map((product) => (
-                <td class="border-b border-border p-4 text-text">
-                  {detailsOf(product)[key] ?? "—"}
-                </td>
-              ))}
+              <td class:list={[cellPad, "border-b border-border align-top"]}>
+                <AffiliateButton
+                  affiliate={product.affiliate}
+                  label="Voir l'offre"
+                  class="btn-sm whitespace-nowrap"
+                />
+              </td>
             </tr>
           ))
         }
-        <tr>
-          <th scope="row" class="border-b border-border p-4 font-semibold text-text-dark"
-            >Idéal pour</th
-          >
-          {
-            products.map((product) => (
-              <td class="border-b border-border p-4 text-text">
-                {product.ideal_pour.join(", ")}
-              </td>
-            ))
-          }
-        </tr>
-        <tr>
-          <th scope="row" class="p-4"><span class="sr-only">Action</span></th>
-          {
-            products.map((product) => (
-              <td class="p-4">
-                <AffiliateButton
-                  affiliate={product.affiliate}
-                  label={`Choisir ${product.name}`}
-                />
-              </td>
-            ))
-          }
-        </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="flex flex-col gap-6 p-4 md:hidden">
-    {
-      products.map((product) => (
-        <article class="rounded-2xl border border-border bg-body p-6 shadow-sm">
-          <header class="mb-4 flex items-center justify-between gap-2">
-            <div class="flex items-center gap-3">
-              <ProductLogo product={product} size={32} />
-              <h3 class="m-0 text-base font-bold text-secondary">
-                {product.name}
-              </h3>
-            </div>
-            <Rating rating={product.rating} />
-          </header>
-          <dl class="mb-4">
-            {detailKeys.map((key) => (
-              <div class="flex items-center justify-between gap-4 border-b border-border py-2 last:border-b-0">
-                <dt class="text-text-dark">{labelOf(key)}</dt>
-                <dd class="m-0 text-right font-semibold text-text">
-                  {detailsOf(product)[key] ?? "—"}
-                </dd>
-              </div>
-            ))}
-            <div class="flex items-center justify-between gap-4 py-2">
-              <dt class="text-text-dark">Idéal pour</dt>
-              <dd class="m-0 text-right font-semibold text-text">
-                {product.ideal_pour.join(", ")}
-              </dd>
-            </div>
-          </dl>
-          <AffiliateButton
-            affiliate={product.affiliate}
-            label={`Choisir ${product.name}`}
-            class="w-full text-center"
-          />
-        </article>
-      ))
-    }
   </div>
 </div>

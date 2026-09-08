@@ -10,27 +10,11 @@ interface Props {
 
 const { product, size = 44, class: className = "" } = Astro.props;
 
-function domainFrom(url: string): string | null {
-  try {
-    return new URL(url).hostname.replace(/^www\./, "");
-  } catch {
-    return null;
-  }
-}
-
-const domain = domainFrom(product.url_officiel);
-
-// Service de logo par domaine — fonctionne sans clé (Clearbit). Si LOGO_DEV_TOKEN
-// est défini dans l'environnement, on utilise Logo.dev à la place (meilleure qualité).
-const logoDevToken = import.meta.env.LOGO_DEV_TOKEN;
-const autoLogoUrl = domain
-  ? logoDevToken
-    ? `https://img.logo.dev/${domain}?token=${logoDevToken}&size=128&format=png`
-    : `https://logo.clearbit.com/${domain}`
-  : null;
-
-// Le champ `logo` local (public/logos/…) a toujours priorité sur le logo automatique.
-const src = product.logo ?? autoLogoUrl;
+// TODO: logo réel — déposer le fichier dans public/logos/ et le référencer via
+// le champ `logo` de la fiche produit (data/products.json). Pas de hotlink vers un
+// service tiers : tant qu'aucun logo local n'est fourni, on affiche le placeholder
+// bleu nuit avec l'initiale du produit ci-dessous.
+const src = product.logo;
 
 const initial = product.name.trim().charAt(0).toUpperCase() || "?";
 ---

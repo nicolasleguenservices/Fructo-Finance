@@ -1,0 +1,48 @@
+---
+import type { FilterGroup } from "@/data/cluster-filters";
+
+interface Props {
+  groups: FilterGroup[];
+  totalCount: number;
+}
+
+const { groups, totalCount } = Astro.props;
+---
+
+<div
+  data-filter-bar
+  class="mb-10 flex flex-col gap-5 rounded-2xl border border-border bg-light p-6"
+>
+  <div class="flex flex-wrap gap-x-10 gap-y-4">
+    {
+      groups.map((group) => (
+        <div class="flex flex-col gap-2">
+          <span class="text-xs font-semibold uppercase tracking-wide text-text-dark">
+            {group.label}
+          </span>
+          <div class="flex flex-wrap gap-2">
+            {group.options.map((option) => (
+              <button
+                type="button"
+                class="filter-pill"
+                data-filter-group={group.id}
+                data-filter-value={option.value}
+                aria-pressed="false"
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
+    <span class="text-sm text-text-dark" data-filter-count>
+      {totalCount} produit{totalCount === 1 ? "" : "s"} affiché{totalCount === 1 ? "" : "s"}
+    </span>
+    <button type="button" class="btn btn-outline btn-sm" data-filter-reset>
+      Réinitialiser les filtres
+    </button>
+  </div>
+</div>

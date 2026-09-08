@@ -15,7 +15,7 @@
   );
 
   &:hover {
-    @apply brightness-125;
+    @apply text-white brightness-125;
     transition: all 0.3s ease;
     box-shadow: 0px 0px 20px var(--color-primary-light);
   }

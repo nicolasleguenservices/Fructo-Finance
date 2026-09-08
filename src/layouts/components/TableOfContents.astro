@@ -1,0 +1,35 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+  class?: string;
+}
+
+const { headings, class: className = "" } = Astro.props;
+---
+
+<nav aria-label="Sommaire de l'article" class={className} data-toc>
+  <ol class="m-0 flex list-none flex-col gap-1.5 p-0 text-sm">
+    {
+      headings.map((h) => (
+        <li class:list={[h.depth === 3 && "pl-4"]}>
+          <a
+            href={`#${h.slug}`}
+            class="toc-link block border-l-2 border-transparent pl-3 text-text-dark transition-colors hover:text-primary"
+          >
+            {h.text}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<style>
+  .toc-link.is-active {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-weight: 600;
+  }
+</style>

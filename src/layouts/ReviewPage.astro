@@ -1,0 +1,439 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumb from "@/layouts/components/Breadcrumb.astro";
+import TableOfContents from "@/layouts/components/TableOfContents.astro";
+import Accordion from "@/layouts/components/Accordion.astro";
+import AffiliateButton from "@/layouts/components/AffiliateButton.astro";
+import AffiliateDisclosure from "@/layouts/components/AffiliateDisclosure.astro";
+import ProductLogo from "@/layouts/components/ProductLogo.astro";
+import PillarCta from "@/layouts/components/PillarCta.astro";
+import { allProducts, ctaVerb } from "@/data/products";
+import { getAuthor } from "@/data/authors";
+import frenchDate from "@/lib/utils/frenchDate";
+import config from "@/config/config.json";
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  review: CollectionEntry<"reviews">;
+}
+
+const { review } = Astro.props;
+const d = review.data;
+const slug = d.slug ?? review.id;
+
+const product = allProducts.find((p) => p.id === d.productId);
+if (!product) {
+  throw new Error(
+    `ReviewPage : aucun produit "${d.productId}" dans products.json (review "${review.id}").`,
+  );
+}
+
+const pillarMeta: Record<
+  CollectionEntry<"reviews">["data"]["pillar"],
+  { label: string; url: string; produit: string }
+> = {
+  investir: { label: "Investir", url: "/investir", produit: "courtiers" },
+  "cartes-credit": {
+    label: "Cartes de crédit",
+    url: "/cartes-credit",
+    produit: "cartes de crédit",
+  },
+  epargne: {
+    label: "Épargne",
+    url: "/epargne",
+    produit: "comptes d'épargne",
+  },
+};
+const pillar = pillarMeta[d.pillar];
+
+const baseUrl = config.site.base_url;
+const url = `${baseUrl}/${d.pillar}/${slug}`;
+const published = d.datePublished;
+const modified = d.dateModified ?? d.datePublished;
+const annee = modified.getFullYear();
+const author = getAuthor(d.author);
+const h1 = `${product.name} : notre avis complet (${annee})`;
+
+// Une carte de crédit fait l'objet d'une "demande", pas d'une "ouverture de compte".
+const isCard = product.category === "carte_credit";
+const ctaLabel = `${ctaVerb(product)} ${product.name}`;
+const ctaAriaLabel = `${ctaLabel} (lien affilié)`;
+const ouvrirTocLabel = isCard ? "Comment faire une demande" : "Comment ouvrir un compte";
+const ouvrirTitle = isCard
+  ? `Comment faire une demande pour ${product.name}`
+  : `Comment ouvrir un compte ${product.name}`;
+const disclaimerTail = isCard ? "de faire une demande" : "d'ouvrir un compte";
+
+const { Content, headings } = await render(review);
+const bodyHeadings = headings.filter((h) => h.depth === 2);
+
+// Sommaire = sections du gabarit (ancres fixes) + sections en prose du corps MDX.
+const toc = [
+  { depth: 2, slug: "avis-en-bref", text: "Notre avis en bref" },
+  { depth: 2, slug: "bon-choix", text: d.passageAncre.question },
+  { depth: 2, slug: "caracteristiques", text: "Caractéristiques clés" },
+  ...bodyHeadings,
+  { depth: 2, slug: "comment-ouvrir", text: ouvrirTocLabel },
+  { depth: 2, slug: "faq", text: "Questions fréquentes" },
+  { depth: 2, slug: "verdict", text: "Verdict" },
+];
+
+const jsonLd: Record<string, unknown>[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: `${baseUrl}/` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: pillar.label,
+        item: `${baseUrl}${pillar.url}`,
+      },
+      { "@type": "ListItem", position: 3, name: product.name, item: url },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${product.name} : avis complet ${annee}`,
+    description: d.description,
+    inLanguage: "fr-CA",
+    datePublished: published.toISOString(),
+    dateModified: modified.toISOString(),
+    ...(d.keyword ? { keywords: d.keyword } : {}),
+    about: { "@type": "Thing", name: product.name },
+    author: {
+      "@type": "Person",
+      name: author.name,
+      ...(author.url ? { url: `${baseUrl}${author.url}` } : {}),
+    },
+    publisher: {
+      "@type": "Organization",
+      name: config.site.title,
+      logo: { "@type": "ImageObject", url: `${baseUrl}${config.site.logo}` },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  },
+];
+if (d.faq.length > 0) {
+  jsonLd.push({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: d.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  });
+}
+
+const proseClass =
+  "content [&_h2]:scroll-mt-28 [&_h3]:scroll-mt-28 [&_h2]:text-h4-sm md:[&_h2]:text-h3 [&_h3]:text-h5 [&_a:not(.btn)]:text-primary [&_a:not(.btn)]:underline";
+---
+
+<Base
+  title={d.title}
+  meta_title={d.meta_title ?? d.title}
+  description={d.description}
+  canonical={url}
+  og_type="article"
+>
+  <Fragment slot="head">
+    <meta property="article:published_time" content={published.toISOString()} />
+    <meta property="article:modified_time" content={modified.toISOString()} />
+    <meta property="article:author" content={author.name} />
+    <meta property="article:section" content={pillar.label} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+      is:inline
+    />
+  </Fragment>
+
+  <article class="section-ph pt-16 pb-16 md:pt-20 md:pb-20">
+    <div class="container">
+      <div
+        class="mx-auto lg:grid lg:max-w-6xl lg:grid-cols-[13rem_minmax(0,44rem)_minmax(0,1fr)] lg:items-start lg:gap-x-8"
+      >
+        <aside
+          class="hidden self-start lg:col-start-1 lg:row-start-1 lg:block lg:sticky lg:top-28 lg:max-h-[calc(100vh-9rem)] lg:overflow-y-auto"
+        >
+          <p
+            class="mb-3 font-secondary text-xs font-semibold uppercase tracking-wide text-text-dark"
+          >
+            Sur cette page
+          </p>
+          <TableOfContents headings={toc} />
+        </aside>
+
+        <div
+          class="mx-auto max-w-[44rem] lg:col-start-2 lg:row-start-1 lg:mx-0 lg:max-w-none"
+        >
+          <!-- 1. Fil d'Ariane -->
+          <Breadcrumb
+            items={[
+              { name: "Accueil", url: "/" },
+              { name: pillar.label, url: pillar.url },
+              { name: product.name },
+            ]}
+          />
+
+          <!-- 2. Hero -->
+          <div class="flex items-center gap-4">
+            <ProductLogo product={product} size={56} />
+            {
+              product.badges && product.badges.length > 0 && (
+                <div class="flex flex-wrap gap-1.5">
+                  {product.badges.map((badge) => (
+                    <span class="inline-block rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              )
+            }
+          </div>
+
+          <h1 class="mb-4 mt-4 text-h3-sm md:text-h2 text-secondary">{h1}</h1>
+          <p class="mb-6 text-lg text-text-dark">{d.chapo}</p>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <AffiliateButton
+              affiliate={product.affiliate}
+              label={ctaLabel}
+              ariaLabel={ctaAriaLabel}
+            />
+            <a
+              href={pillar.url}
+              class="text-sm font-semibold text-secondary hover:text-primary hover:underline"
+            >
+              Comparer tous les {pillar.produit}
+            </a>
+          </div>
+
+          <p class="mt-4 text-sm text-text-dark">
+            Dernière vérification : {d.lastVerified}.
+          </p>
+
+          <!-- 3. Notre avis en bref -->
+          <section
+            id="avis-en-bref"
+            class="mt-10 scroll-mt-28 rounded-[16px] border border-border bg-light p-6 md:p-8"
+            aria-labelledby="avis-en-bref-titre"
+          >
+            <h2
+              id="avis-en-bref-titre"
+              class="mb-4 text-h5-sm md:text-h5 font-bold text-secondary"
+            >
+              Notre avis en bref
+            </h2>
+            <p class="mb-4 text-text">
+              <span class="font-semibold text-secondary">Pour qui :</span>{" "}
+              {d.enBref.pourQui}
+            </p>
+            <div class="grid gap-6 sm:grid-cols-2">
+              <div>
+                <h3
+                  class="mb-2 text-sm font-semibold uppercase tracking-wide text-text-dark"
+                >
+                  Points forts
+                </h3>
+                <ul class="m-0 flex flex-col gap-1.5 text-sm text-text">
+                  {
+                    d.enBref.forts.map((point) => (
+                      <li class="flex gap-2">
+                        <span aria-hidden="true" class="shrink-0 text-primary">
+                          +
+                        </span>
+                        <span>{point}</span>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+              <div>
+                <h3
+                  class="mb-2 text-sm font-semibold uppercase tracking-wide text-text-dark"
+                >
+                  Points faibles
+                </h3>
+                <ul class="m-0 flex flex-col gap-1.5 text-sm text-text">
+                  {
+                    d.enBref.faibles.map((point) => (
+                      <li class="flex gap-2">
+                        <span aria-hidden="true" class="shrink-0 text-text-dark">
+                          −
+                        </span>
+                        <span>{point}</span>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. Passage ancré -->
+          <section id="bon-choix" class="mt-12 scroll-mt-28">
+            <h2 class="mb-4 text-h4-sm md:text-h3 text-secondary">
+              {d.passageAncre.question}
+            </h2>
+            <p class="text-text leading-[1.7]">{d.passageAncre.reponse}</p>
+          </section>
+
+          <!-- 5. Caractéristiques clés (case grise) -->
+          <section id="caracteristiques" class="mt-12 scroll-mt-28">
+            <h2 class="mb-4 text-h4-sm md:text-h3 text-secondary">
+              Caractéristiques clés
+            </h2>
+            <dl
+              class="m-0 grid gap-x-6 gap-y-3 rounded-lg border border-border bg-light p-5 text-sm sm:grid-cols-2"
+            >
+              {
+                d.caracteristiques.map((item) => (
+                  <div>
+                    <dt class="font-semibold text-secondary">{item.label}</dt>
+                    <dd class="m-0 text-text">{item.valeur}</dd>
+                  </div>
+                ))
+              }
+            </dl>
+          </section>
+
+          <!-- 6-8. Sections détaillées + vs alternatives (corps MDX) -->
+          <div class:list={[proseClass, "mt-12"]}>
+            <Content />
+          </div>
+
+          <!-- 9. Comment ouvrir un compte -->
+          <section id="comment-ouvrir" class="mt-14 scroll-mt-28">
+            <h2 class="mb-4 text-h4-sm md:text-h3 text-secondary">
+              {ouvrirTitle}
+            </h2>
+            {d.ouvrir.intro && <p class="mb-4 text-text">{d.ouvrir.intro}</p>}
+            <ol
+              class="m-0 flex list-decimal flex-col gap-2 pl-5 text-text marker:font-semibold marker:text-primary"
+            >
+              {d.ouvrir.etapes.map((etape) => <li>{etape}</li>)}
+            </ol>
+            <div class="mt-6">
+              <AffiliateButton
+                affiliate={product.affiliate}
+                label={ctaLabel}
+                ariaLabel={ctaAriaLabel}
+              />
+            </div>
+          </section>
+
+          <!-- 10. FAQ -->
+          {
+            d.faq.length > 0 && (
+              <section
+                id="faq"
+                class="mt-16 scroll-mt-28"
+                aria-labelledby="faq-titre"
+              >
+                <h2
+                  id="faq-titre"
+                  class="mb-6 text-h4-sm md:text-h3 text-secondary"
+                >
+                  Questions fréquentes
+                </h2>
+                <div class="space-y-4">
+                  {d.faq.map((item) => (
+                    <Accordion title={item.question} content={item.answer} />
+                  ))}
+                </div>
+              </section>
+            )
+          }
+
+          <!-- 11. Verdict + CTA -->
+          <section id="verdict" class="mt-16 scroll-mt-28">
+            <h2 class="mb-4 text-h4-sm md:text-h3 text-secondary">Verdict</h2>
+            <p class="mb-6 text-text leading-[1.7]">{d.verdict}</p>
+            <div class="flex flex-wrap items-center gap-4">
+              <AffiliateButton
+                affiliate={product.affiliate}
+                label={ctaLabel}
+                ariaLabel={ctaAriaLabel}
+              />
+              <a
+                href={pillar.url}
+                class="btn btn-outline"
+              >
+                Comparer tous les {pillar.produit}
+              </a>
+            </div>
+          </section>
+
+          <!-- 12. Bloc auteur + divulgation + sources + date -->
+          <div class="mt-16 flex flex-col gap-6 border-t border-border pt-8">
+            <p class="text-sm text-text">
+              Écrit et vérifié par <strong class="text-secondary"
+                >{author.name}</strong
+              >, {author.shortRole ?? author.role}.
+              {
+                author.url && (
+                  <a
+                    href={author.url}
+                    class="ml-1 font-semibold text-primary hover:underline"
+                  >
+                    En savoir plus
+                  </a>
+                )
+              }
+            </p>
+            <AffiliateDisclosure />
+            <p class="text-xs text-text-dark">
+              Sources : {d.sources} Données vérifiées en {d.lastVerified}. Contenu
+              informatif ; ne constitue pas un conseil financier personnalisé. Les
+              conditions des produits changent : reportez-vous au site officiel de
+              l'émetteur avant {disclaimerTail}.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Section CTA pilier (dernière section avant le footer) -->
+  <PillarCta pillar={d.pillar} />
+</Base>
+
+<script>
+  // Surligne la section active du sommaire au défilement (desktop).
+  const tocLinks = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>('[data-toc] a[href^="#"]'),
+  );
+  if (tocLinks.length > 0) {
+    const linkById = new Map<string, HTMLAnchorElement>();
+    const targets: HTMLElement[] = [];
+    tocLinks.forEach((link) => {
+      const id = decodeURIComponent(link.hash.slice(1));
+      const el = document.getElementById(id);
+      if (el) {
+        linkById.set(id, link);
+        targets.push(el);
+      }
+    });
+
+    const setActive = (id: string) => {
+      tocLinks.forEach((l) => l.classList.remove("is-active"));
+      linkById.get(id)?.classList.add("is-active");
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
+    );
+    targets.forEach((el) => observer.observe(el));
+  }
+</script>

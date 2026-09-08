@@ -14,6 +14,77 @@
       });
     });
 
+    // Glow card: halo corail qui suit le curseur sur la bordure
+    // ----------------------------------------
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll(".glow-card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+          card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+        });
+      });
+    }
+
+    // Filter bar (pages catégories : filtre les boxes produit)
+    // ----------------------------------------
+    const filterBar = document.querySelector("[data-filter-bar]");
+    if (filterBar) {
+      const pills = filterBar.querySelectorAll("[data-filter-group]");
+      const resetBtn = filterBar.querySelector("[data-filter-reset]");
+      const countEl = filterBar.querySelector("[data-filter-count]");
+      const boxes = document.querySelectorAll(".product-box");
+
+      const activeByGroup = () => {
+        const map = {};
+        pills.forEach((pill) => {
+          if (pill.getAttribute("aria-pressed") === "true") {
+            const group = pill.dataset.filterGroup;
+            if (!map[group]) map[group] = [];
+            map[group].push(pill.dataset.filterValue);
+          }
+        });
+        return map;
+      };
+
+      const applyFilters = () => {
+        const active = activeByGroup();
+        const groupIds = Object.keys(active);
+        let visible = 0;
+        boxes.forEach((box) => {
+          const matches = groupIds.every((groupId) => {
+            const tokens = (box.getAttribute(`data-${groupId}`) || "").split(
+              /\s+/,
+            );
+            return active[groupId].some((value) => tokens.includes(value));
+          });
+          // Toggle via le style inline plutôt qu'une classe : une classe
+          // "hidden" perd face à l'utilitaire Tailwind `flex`/`grid` déjà
+          // présent sur la box selon l'ordre des couches CSS générées, alors
+          // qu'un style inline gagne toujours sur les règles de feuille de
+          // style.
+          box.style.display = matches ? "" : "none";
+          if (matches) visible += 1;
+        });
+        if (countEl) {
+          countEl.textContent = `${visible} produit${visible === 1 ? "" : "s"} affiché${visible === 1 ? "" : "s"}`;
+        }
+      };
+
+      pills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          const pressed = pill.getAttribute("aria-pressed") === "true";
+          pill.setAttribute("aria-pressed", pressed ? "false" : "true");
+          applyFilters();
+        });
+      });
+
+      resetBtn?.addEventListener("click", () => {
+        pills.forEach((pill) => pill.setAttribute("aria-pressed", "false"));
+        applyFilters();
+      });
+    }
+
     // Tab
     // ----------------------------------------
     function setActiveTab(tabGroup, tabName) {
@@ -176,88 +247,242 @@
       });
     });
 
-    // Hero Video Showcase - sound toggle
-    // Note: GSAP animation is handled in animations.js
-    const heroVideoShowcase = document.querySelector(
-      "[data-gsap-video-showcase]",
-    );
-    if (heroVideoShowcase) {
-      const video = heroVideoShowcase.querySelector("video");
-      const toggleBtn = document.getElementById("soundToggle");
-      const mutedIcon = document.getElementById("mutedIcon");
-
-      if (video && toggleBtn && mutedIcon) {
-        toggleBtn.addEventListener("click", () => {
-          video.muted = !video.muted;
-          if (video.muted) {
-            mutedIcon.classList.remove("hidden");
-            toggleBtn.classList.add("bg-dark/40");
-            toggleBtn.style.opacity = "1";
-            toggleBtn.setAttribute("aria-label", "Unmute video");
-          } else {
-            mutedIcon.classList.add("hidden");
-            toggleBtn.classList.remove("bg-dark/40");
-            toggleBtn.style.opacity = "0";
-            toggleBtn.setAttribute("aria-label", "Mute video");
-          }
-        });
-      }
+    // Header: soft shadow on scroll
+    // ----------------------------------------
+    const header = document.querySelector(".header");
+    if (header) {
+      const updateScrolled = () => {
+        header.classList.toggle("is-scrolled", window.scrollY > 8);
+      };
+      window.addEventListener("scroll", updateScrolled, { passive: true });
+      updateScrolled();
     }
 
-    // Header reveal/hide on scroll direction
-    const header = document.querySelector(".header");
+    // Menu burger « push-down » (tablette + mobile)
+    // Le menu s'ouvre dans le flux et pousse le contenu vers le bas ; à la
+    // fermeture, tout remonte. Ce n'est pas un overlay : pas de verrou de
+    // scroll, pas de piège à focus (les liens révélés suivent naturellement
+    // le bouton dans l'ordre de tabulation).
+    // ----------------------------------------
     const navToggle = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+    const navCollapse = document.getElementById("nav-collapse");
 
-    // Nav menu background expand/collapse
-    const navMenuBgToggle = () => {
-      const navToggleEl = document.getElementById("nav-toggle");
-      const navMenuBg = document.getElementById("nav-menu-bg");
-      const headerEl = document.querySelector(".header");
+    // Point de rupture desktop (Tailwind `xl` = 80rem). En dessous (tablette
+    // + mobile) le menu horizontal est remplacé par le menu burger.
+    const NAV_DESKTOP_MIN = 1280;
 
-      if (
-        !(navToggleEl instanceof HTMLInputElement) ||
-        !(navMenuBg instanceof HTMLElement) ||
-        !(headerEl instanceof HTMLElement)
-      ) {
+    const firstMenuLink = () =>
+      navMenu ? navMenu.querySelector("a.nav-link, a") : null;
+
+    // Hauteur réelle du menu (mesurée sur le <ul>, jamais contraint en hauteur).
+    const menuHeight = () => (navMenu ? navMenu.scrollHeight : 0);
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    let navAnim = null;
+
+    // Fige l'état de repos du conteneur d'après la classe `menu-open` :
+    // ouvert = hauteur libre + overflow visible (halos de focus non rognés),
+    // fermé = hauteur 0 + overflow caché.
+    const finalizeCollapse = () => {
+      if (!navCollapse) return;
+      const open = header.classList.contains("menu-open");
+      navCollapse.style.maxHeight = open ? "none" : "0px";
+      navCollapse.style.overflow = open ? "visible" : "hidden";
+    };
+
+    // Anime la hauteur du conteneur (Web Animations API : fiable là où une
+    // transition CSS sur max-height se comporte mal quand le display change).
+    // La poussée du contenu de la page suit naturellement.
+    const animateCollapse = (open) => {
+      if (!navCollapse) return;
+      if (navAnim) navAnim.cancel();
+
+      const from = navCollapse.getBoundingClientRect().height;
+      const target = open ? menuHeight() : 0;
+
+      navCollapse.style.overflow = "hidden";
+      navCollapse.style.maxHeight = target + "px";
+
+      if (prefersReducedMotion) {
+        finalizeCollapse();
         return;
       }
 
-      const updateBgHeight = () => {
-        const rect = headerEl.getBoundingClientRect();
-        if (navToggleEl.checked) {
-          navMenuBg.style.height = rect.height + "px";
-        } else {
-          navMenuBg.style.height = "0px";
-        }
+      navAnim = navCollapse.animate(
+        [{ maxHeight: from + "px" }, { maxHeight: target + "px" }],
+        { duration: 320, easing: "cubic-bezier(0.4, 0, 0.2, 1)" },
+      );
+      navAnim.onfinish = () => {
+        navAnim = null;
+        finalizeCollapse();
       };
-
-      navToggleEl.addEventListener("change", updateBgHeight);
-      window.addEventListener("resize", updateBgHeight);
-      updateBgHeight();
     };
-    navMenuBgToggle();
 
-    if (header) {
-      let lastScrollY = window.scrollY;
-      const scrollThreshold = 200;
-      window.addEventListener("scroll", () => {
-        if (navToggle && navToggle.checked) {
-          header.classList.remove("hide");
-          lastScrollY = window.scrollY;
-          return;
-        }
+    const closeMobileMenu = ({ restoreFocus = false } = {}) => {
+      if (!header || !navToggle) return;
+      if (!header.classList.contains("menu-open")) return;
+      animateCollapse(false);
+      header.classList.remove("menu-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Ouvrir le menu");
+      if (restoreFocus) navToggle.focus();
+    };
 
-        if (window.scrollY > scrollThreshold) {
-          if (window.scrollY < lastScrollY) {
-            header.classList.remove("hide");
-          } else {
-            header.classList.add("hide");
-          }
+    const openMobileMenu = () => {
+      if (!header || !navToggle) return;
+      header.classList.add("menu-open");
+      navToggle.setAttribute("aria-expanded", "true");
+      navToggle.setAttribute("aria-label", "Fermer le menu");
+      animateCollapse(true);
+      // Focus géré : on amène le focus sur le premier lien une fois le
+      // déroulé lancé (le menu reste dans le flux, on ne piège pas Tab).
+      const first = firstMenuLink();
+      if (first) window.setTimeout(() => first.focus({ preventScroll: true }), 60);
+    };
+
+    if (header && navToggle) {
+      navToggle.addEventListener("click", () => {
+        if (header.classList.contains("menu-open")) {
+          closeMobileMenu({ restoreFocus: true });
         } else {
-          header.classList.remove("hide");
+          openMobileMenu();
         }
-        lastScrollY = window.scrollY;
       });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && header.classList.contains("menu-open")) {
+          closeMobileMenu({ restoreFocus: true });
+        }
+      });
+
+      // Fermeture au clic en dehors de l'en-tête.
+      document.addEventListener("click", (e) => {
+        if (!header.classList.contains("menu-open")) return;
+        if (!header.contains(e.target)) closeMobileMenu();
+      });
+
+      // Fermeture au clic sur un lien / sur le bouton « Comparer ».
+      navMenu
+        ?.querySelectorAll("a.nav-link, .nav-cta-mobile a")
+        .forEach((link) => {
+          link.addEventListener("click", () => closeMobileMenu());
+        });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= NAV_DESKTOP_MIN) {
+          closeMobileMenu();
+        } else if (header.classList.contains("menu-open") && !navAnim) {
+          // Menu ouvert : hauteur libre, il suit le contenu quoi qu'il arrive.
+          finalizeCollapse();
+        }
+      });
+    }
+
+    // Dropdown submenus in the nav (click for touch/keyboard; hover via CSS)
+    // ----------------------------------------
+    document.querySelectorAll(".nav-dropdown").forEach((dropdown) => {
+      const toggle = dropdown.querySelector(".nav-dropdown-toggle");
+      const list = dropdown.querySelector(".nav-dropdown-list");
+      if (!toggle || !list) return;
+
+      toggle.addEventListener("click", () => {
+        const isOpen = list.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      dropdown.addEventListener("focusout", (e) => {
+        if (!dropdown.contains(e.relatedTarget)) {
+          list.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      document.querySelectorAll(".nav-dropdown-list.open").forEach((list) => {
+        const dropdown = list.closest(".nav-dropdown");
+        if (dropdown && !dropdown.contains(e.target)) {
+          list.classList.remove("open");
+          dropdown
+            .querySelector(".nav-dropdown-toggle")
+            ?.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    // Animated nav cursor: a pill slides behind the hovered/focused link,
+    // width/height/position read straight off the link's own box
+    // (offsetLeft/offsetWidth/offsetTop/offsetHeight). The targeted link
+    // gets a "cursor-over" class (white text + mix-blend-mode: difference)
+    // so it auto-inverts as the pill slides underneath. Desktop only, off
+    // when the user prefers reduced motion.
+    // ----------------------------------------
+    if (navMenu) {
+      const cursor = document.getElementById("nav-cursor");
+      const prefersMotion = window.matchMedia(
+        "(prefers-reduced-motion: no-preference)",
+      ).matches;
+
+      if (cursor && prefersMotion) {
+        const links = Array.from(navMenu.querySelectorAll(".nav-link"));
+        const getActiveLink = () =>
+          links.find((link) => link.classList.contains("active")) || null;
+
+        const moveCursorTo = (el) => {
+          links.forEach((link) => link.classList.remove("cursor-over"));
+
+          if (!el) {
+            cursor.style.opacity = "0";
+            return;
+          }
+
+          cursor.style.width = `${el.offsetWidth}px`;
+          cursor.style.height = `${el.offsetHeight}px`;
+          cursor.style.transform = `translate(${el.offsetLeft}px, ${el.offsetTop}px)`;
+          cursor.style.opacity = "1";
+          el.classList.add("cursor-over");
+        };
+
+        // Place without transition on first paint / resize so it doesn't
+        // slide in from the left edge.
+        const placeCursorInstantly = (el) => {
+          cursor.style.transition = "none";
+          moveCursorTo(el);
+          void cursor.offsetWidth;
+          cursor.style.transition = "";
+        };
+
+        if (window.innerWidth >= 1280) {
+          placeCursorInstantly(getActiveLink());
+        }
+
+        links.forEach((link) => {
+          link.addEventListener("mouseenter", () => moveCursorTo(link));
+          link.addEventListener("focus", () => moveCursorTo(link));
+        });
+
+        navMenu.addEventListener("mouseleave", () =>
+          moveCursorTo(getActiveLink()),
+        );
+        navMenu.addEventListener("focusout", (e) => {
+          if (!navMenu.contains(e.relatedTarget)) {
+            moveCursorTo(getActiveLink());
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth >= 1280) {
+            placeCursorInstantly(getActiveLink());
+          } else {
+            cursor.style.opacity = "0";
+            links.forEach((link) => link.classList.remove("cursor-over"));
+          }
+        });
+      }
     }
   }
 

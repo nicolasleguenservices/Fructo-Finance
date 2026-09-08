@@ -1,37 +1,37 @@
 {
   "site": {
-    "title": "Finance Québec",
+    "title": "Fructo Finance",
     "base_url": "https://finance-quebec.pages.dev",
     "base_path": "/",
     "trailing_slash": false,
-    "favicon": "/images/favicon.png",
-    "logo": "/images/logo.svg",
-    "logo_width": "160",
-    "logo_height": "45",
-    "logo_text": "Finance Québec"
+    "favicon": "/favicon.ico",
+    "logo": "/images/logo-fructo-finance.png",
+    "logo_width": "135",
+    "logo_height": "50",
+    "logo_text": "Fructo Finance"
   },
   "settings": {
     "sticky_header": true
   },
   "params": {
     "contact_form_action": "#",
-    "copyright": "Copyright &copy; 2026 Finance Québec. Tous droits réservés.",
+    "copyright": "&copy; 2026 Fructo Finance. Tous droits réservés.",
     "footer_tagline": "Comparatifs indépendants sur les courtiers en ligne, cartes de crédit et comptes d'épargne au Québec.",
     "footer_email": "",
     "footer_phone": ""
   },
   "navigation_button": {
-    "enable": false,
-    "label": "",
-    "link": ""
+    "enable": true,
+    "label": "Comparer",
+    "link": "/investir"
   },
   "google_tag_manager": {
     "enable": false,
     "gtm_id": "GTM-XXXXXX"
   },
   "metadata": {
-    "meta_author": "Finance Québec",
-    "meta_image": "/images/og-image.png",
-    "meta_description": "Comparatifs indépendants sur les courtiers en ligne, cartes de crédit et comptes d'épargne au Québec."
+    "meta_author": "Fructo Finance",
+    "meta_image": "/images/og-fructo-finance.jpg",
+    "meta_description": "Comparez gratuitement les meilleurs courtiers en ligne, cartes de crédit et comptes d'épargne offerts au Québec. Comparatifs indépendants, en français, à jour."
   }
 }

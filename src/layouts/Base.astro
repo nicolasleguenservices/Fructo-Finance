@@ -22,14 +22,22 @@ export interface Props {
   image?: string;
   noindex?: boolean;
   canonical?: string;
+  og_type?: string;
 }
 
-const { title, meta_title, description, image, noindex, canonical } =
-  Astro.props;
+const {
+  title,
+  meta_title,
+  description,
+  image,
+  noindex,
+  canonical,
+  og_type = "website",
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fr-CA">
   <head>
     <!-- google tag manager -->
     {
@@ -37,7 +45,21 @@ const { title, meta_title, description, image, noindex, canonical } =
         <GoogleTagmanager id={config.google_tag_manager.gtm_id} />
       )
     }
-    <link rel="shortcut icon" href={config.site.favicon} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-name" content="automark-astro" />
     <meta name="msapplication-TileColor" content="#000000" />
     <meta
@@ -93,7 +115,8 @@ const { title, meta_title, description, image, noindex, canonical } =
         description ? description : config.metadata.meta_description,
       )}
     />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={og_type} />
+    <meta property="og:site_name" content={config.site.title} />
     <meta
       property="og:url"
       content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
@@ -116,6 +139,8 @@ const { title, meta_title, description, image, noindex, canonical } =
         image ? image : config.metadata.meta_image
       }`}
     />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta
       name="twitter:image"
       content={`${config.site.base_url}${
@@ -146,6 +171,9 @@ const { title, meta_title, description, image, noindex, canonical } =
 
     <!-- Animations (Modules are deferred automatically by browsers) -->
     <script is:inline type="module" src="/scripts/animations.js"></script>
+
+    <!-- Balises additionnelles spécifiques à la page (JSON-LD, etc.) -->
+    <slot name="head" />
   </head>
   <body>
     {/* google tag manager noscript */}
@@ -157,7 +185,7 @@ const { title, meta_title, description, image, noindex, canonical } =
 
     {/* <TwSizeIndicator /> */}
     <Header />
-    <main id="main-content" class="overflow-x-hidden md:overflow-x-auto">
+    <main id="main-content" class="overflow-x-clip">
       <slot />
     </main>
     <Footer />

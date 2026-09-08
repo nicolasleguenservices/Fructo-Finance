@@ -19,6 +19,8 @@ export interface ClusterContent {
   pedagogicalSections: PedagogicalSection[];
   faqs: FaqItem[];
   authorId: string;
+  /** Note courte affichée sous la grille de boxes produit (ex. mention de produits additionnels). */
+  additionalNote?: string;
 }
 
 // NOTE : contenu éditorial porté depuis la v1. À faire réviser par un éditeur avant
@@ -26,12 +28,12 @@ export interface ClusterContent {
 // clusters cartes-credit et epargne dans products.json.
 export const clusterContent: Record<ClusterId, ClusterContent> = {
   investir: {
-    heroTitle: "Meilleurs courtiers en ligne au Québec en 2026",
+    heroTitle: "Meilleur courtier en ligne au Québec",
     heroIntro:
-      "Choisir le mauvais courtier en ligne peut vous coûter des centaines de dollars par année en commissions et en frais de conversion de devises. Nous avons comparé les principales plateformes offertes aux Québécois pour vous aider à ouvrir un CELI, un REER ou un CELIAPP en toute confiance.",
-    metaTitle: "Meilleurs courtiers en ligne au Québec (2026) : comparatif et avis",
+      "Le meilleur courtier en ligne au Québec dépend de votre profil : un débutant en FNB et un investisseur actif n'ont pas les mêmes besoins. Ces plateformes vous permettent d'investir vous-même (CELI, REER, CELIAPP) à des frais souvent bien inférieurs à ceux d'un conseiller. Nous comparons ici les courtiers offerts au Québec selon des critères clairs : commissions, comptes, service en français et encadrement (OCRI, FCPE). Trouvez ci-dessous celui qui vous convient.",
+    metaTitle: "Meilleur courtier en ligne au Québec (2026) | Fructo Finance",
     metaDescription:
-      "Comparatif indépendant des meilleurs courtiers en ligne au Québec en 2026 : frais, comptes CELI/REER/CELIAPP, avis détaillés et FAQ.",
+      "Comparez tous les courtiers en ligne offerts au Québec : frais, comptes (CELI, REER, CELIAPP), service en français. Comparatif indépendant et à jour.",
     pedagogicalSections: [
       {
         id: "marche-2026",
@@ -59,113 +61,120 @@ export const clusterContent: Record<ClusterId, ClusterContent> = {
     ],
     faqs: [
       {
-        question: "Wealthsimple ou Questrade : lequel choisir ?",
+        question: "Quel est le meilleur courtier en ligne au Québec pour un débutant ?",
         answer:
-          "Wealthsimple convient mieux aux débutants grâce à sa simplicité et à l'absence de frais, tandis que Questrade offre un compte en dollars US natif et davantage de types de comptes, ce qui plaira aux investisseurs plus actifs ou aux détenteurs d'actions américaines.",
+          "Pour un débutant qui investit dans des FNB, une plateforme sans commission et en français comme Wealthsimple est souvent citée comme la plus simple pour commencer. Le « meilleur » dépend toutefois de votre profil : comptes recherchés (CELI, REER, CELIAPP), type de placements et niveau d'autonomie.",
       },
       {
-        question: "CELI ou REER : lequel privilégier pour investir ?",
+        question: "Quels courtiers offrent 0 $ de commission au Québec ?",
         answer:
-          "Le REER réduit votre revenu imposable et convient bien si votre taux d'imposition est élevé aujourd'hui. Le CELI offre des retraits non imposables et plus de flexibilité. Les deux comptes sont offerts par tous les courtiers comparés ici.",
+          "Plusieurs plateformes n'exigent aucune commission sur les actions et FNB canadiens, notamment Wealthsimple (depuis 2018), la Banque Nationale Courtage direct et Desjardins (depuis 2021), ainsi que des acteurs comme moomoo et Webull. Les grandes banques (RBC, TD, BMO, Scotia) facturent généralement entre 5 $ et 10 $ par opération.",
       },
       {
-        question: "Puis-je perdre mon argent avec un courtier en ligne ?",
+        question: "Un courtier en ligne au Québec est-il sécuritaire ?",
         answer:
-          "La valeur de vos placements peut fluctuer avec le marché, comme avec n'importe quel courtier. En revanche, la faillite du courtier lui-même est un risque distinct, couvert par le Fonds canadien de protection des épargnants (FCPE) jusqu'à 1 000 000 $.",
+          "Les courtiers légitimes sont encadrés par l'OCRI et membres du Fonds canadien de protection des investisseurs (FCPE), qui protège les avoirs jusqu'à un certain plafond en cas de faillite du courtier (ce qui ne couvre pas les pertes liées au marché). Vérifiez toujours l'inscription du courtier.",
       },
       {
-        question: "Qu'est-ce que le CELIAPP et est-il offert par ces courtiers ?",
+        question: "Quels comptes puis-je ouvrir : CELI, REER ou CELIAPP ?",
         answer:
-          "Le CELIAPP (compte d'épargne libre d'impôt pour l'achat d'une première propriété) combine des avantages du REER et du CELI. Il est offert par Wealthsimple et Questrade pour les Canadiens admissibles.",
+          "La plupart des courtiers offrent le CELI, le REER, le CELIAPP et le compte non enregistré; le REEE et le FERR ne sont pas offerts partout. Le CELIAPP, par exemple, n'est pas disponible chez Interactive Brokers. Vérifiez la liste des comptes avant d'ouvrir.",
       },
       {
-        question: "Les courtiers en ligne sont-ils sécuritaires ?",
+        question: "Puis-je investir en français avec ces plateformes ?",
         answer:
-          "Oui, à condition qu'ils soient membres de l'OCRI. Vérifiez toujours ce statut avant d'ouvrir un compte : c'est ce qui donne accès à la protection du FCPE.",
+          "Plusieurs plateformes offrent un service en français, en particulier les institutions québécoises (Desjardins, Banque Nationale). Pour certains acteurs internationaux, l'interface et le support peuvent être surtout en anglais.",
       },
       {
-        question: "Combien coûte réellement l'investissement autonome ?",
+        question: "Quels sont les frais cachés à surveiller ?",
         answer:
-          "Les commissions sur actions et FNB sont maintenant à 0 $ chez la plupart des courtiers. Les coûts restants à surveiller sont les frais de conversion de devises (souvent 1 à 2 % par transaction en USD) et les frais de gestion des fonds eux-mêmes (ratio de frais de gestion des FNB).",
+          "Au-delà de la commission par transaction, surveillez les frais de change USD/CAD (souvent ~1,5 %), les frais d'administration ou d'inactivité (souvent ~25 $/trimestre sous un solde minimal) et les frais de transfert de compte.",
       },
     ],
     authorId: "nicolas-leguen",
+    additionalNote:
+      "Courtiers additionnels à mentionner : CI Investissement direct, Canaccord Genuity Direct.",
   },
 
   "cartes-credit": {
-    heroTitle: "Meilleures cartes de crédit au Québec en 2026",
+    heroTitle: "Meilleure carte de crédit au Québec",
     heroIntro:
-      "Entre les frais annuels, le taux d'intérêt et la valeur réelle des récompenses, le choix d'une carte de crédit a un impact direct sur votre portefeuille. Un mauvais choix peut vous coûter plus de 100 $ par année en frais évitables.",
-    metaTitle: "Meilleures cartes de crédit au Québec (2026) : comparatif et avis",
+      "La meilleure carte de crédit au Québec dépend de votre profil : ce qui compte vraiment, c'est la valeur nette, soit les récompenses générées moins les frais annuels. Une carte à 5 % sur l'épicerie avec 120 $ de frais peut rapporter moins qu'une carte à 2 % sans frais, selon vos dépenses réelles. Fructo Finance compare ici les cartes offertes au Québec selon des critères clairs : récompenses, frais annuels, taux d'intérêt, primes de bienvenue et frais de conversion. Rappel : payer le solde en entier chaque mois reste la meilleure stratégie.",
+    metaTitle: "Meilleure carte de crédit au Québec (2026) | Fructo Finance",
     metaDescription:
-      "Comparatif indépendant des meilleures cartes de crédit au Québec en 2026 : remises, voyage, frais annuels, avis détaillés et FAQ.",
+      "Comparez les meilleures cartes de crédit au Québec : remises en argent, voyage, sans frais annuels. Récompenses, frais et primes comparés, en français.",
     pedagogicalSections: [
       {
-        id: "marche-2026",
-        heading: "Le marché des cartes de crédit au Québec en 2026",
+        id: "reperes-utiles",
+        heading: "Quelques repères utiles",
         paragraphs: [
-          "Les grandes institutions financières canadiennes se font une forte concurrence sur les programmes de récompenses — remises en argent, points voyage ou points échangeables — ce qui rend la comparaison indispensable avant de faire une demande.",
-          "Chaque demande de carte de crédit entraîne une enquête de crédit qui peut avoir un effet temporaire sur votre pointage : mieux vaut comparer soigneusement avant de postuler plutôt que de faire plusieurs demandes rapprochées.",
-        ],
-      },
-      {
-        id: "comment-choisir",
-        heading: "Comment choisir sa carte de crédit",
-        paragraphs: [
-          "Commencez par identifier votre priorité : remises en argent sur l'épicerie et l'essence, points voyage, ou simplement aucuns frais annuels si vous utilisez peu votre carte.",
-          "Si vous remboursez votre solde au complet chaque mois, le taux d'intérêt importe peu : concentrez-vous plutôt sur les frais annuels et la valeur du programme de récompenses. Si vous risquez de reporter un solde, priorisez un taux d'intérêt bas avant tout le reste.",
-        ],
-      },
-      {
-        id: "criteres-bonus",
-        heading: "Le bonus de bienvenue : ce qu'il faut vérifier",
-        paragraphs: [
-          "Un bonus de bienvenue généreux peut valoir plusieurs centaines de dollars, mais il est souvent conditionnel à un montant minimum de dépenses dans les premiers mois. Assurez-vous de pouvoir atteindre ce seuil sans dépenser au-delà de votre budget habituel.",
+          "La plupart des cartes canadiennes facturent environ 2,5 % de frais sur les transactions en devises étrangères; quelques cartes les éliminent complètement.",
+          "Les points Aéroplan valent généralement entre 1,5 et 2,5 ¢ chacun selon la façon dont ils sont échangés.",
+          "Les points Scène+ valent 1 ¢ chacun (1 000 points = 10 $) et peuvent notamment être utilisés à l'épicerie chez IGA et Sobeys.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Quelle carte de crédit choisir pour les remises en argent ?",
+        question: "Quelle est la meilleure carte de crédit au Québec ?",
         answer:
-          "Priorisez une carte qui offre un pourcentage de remise plus élevé sur vos catégories de dépenses principales (épicerie, essence, restaurants). Comparez aussi le plafond de remise annuel, souvent limité pour les cartes sans frais.",
+          "Il n'y a pas de réponse unique : la meilleure carte dépend de vos habitudes de dépenses. Le bon critère est la valeur nette annuelle (récompenses générées moins frais annuels). Comparez selon votre budget épicerie, essence, voyage et le type de récompenses souhaité.",
       },
       {
-        question: "Comment éviter de payer des intérêts sur ma carte de crédit ?",
+        question: "Remise en argent ou points de voyage : que choisir ?",
         answer:
-          "Remboursez votre solde au complet avant la date d'échéance chaque mois. Les cartes de crédit offrent généralement une période de grâce sans intérêt sur les nouveaux achats tant que le solde précédent est payé en entier.",
+          "La remise en argent est la plus simple (un crédit sur votre relevé). Les points de voyage peuvent offrir plus de valeur si vous voyagez, mais demandent plus de gestion. Choisissez selon votre volonté d'optimiser et vos habitudes de voyage.",
       },
       {
-        question: "Le bonus de bienvenue en vaut-il la peine ?",
+        question:
+          "Quel est le paiement minimum obligatoire sur une carte de crédit au Québec ?",
         answer:
-          "Souvent oui, s'il correspond à vos habitudes de dépenses normales. Méfiez-vous des offres qui vous pousseraient à dépenser plus que d'habitude uniquement pour atteindre le seuil du bonus.",
+          "Depuis le 1er août 2025, le paiement minimum mensuel est d'au moins 5 % du solde pour toutes les cartes au Québec (les cartes émises après août 2019 y étaient déjà soumises). Cette règle découle de la Loi sur la protection du consommateur (projet de loi 134) et vise à réduire l'endettement. Ailleurs au Canada, le minimum peut être aussi bas que 3 % ou 10 $. Payer plus que le minimum, idéalement le solde en entier, réduit fortement les frais d'intérêt.",
       },
       {
-        question: "Carte avec frais annuels ou sans frais annuels : que choisir ?",
+        question: "Y a-t-il des frais sur les achats en devises étrangères ?",
         answer:
-          "Une carte avec frais annuels se justifie si la valeur des récompenses et des protections (assurance voyage, par exemple) dépasse clairement le coût des frais. Sinon, une carte sans frais annuels reste le choix le plus simple.",
+          "La plupart des cartes canadiennes facturent environ 2,5 % sur les transactions en devises étrangères. Certaines cartes éliminent ces frais : utiles si vous voyagez ou magasinez en ligne à l'étranger.",
       },
       {
-        question: "Une carte de crédit affecte-t-elle mon dossier de crédit ?",
+        question: "Une carte sans frais annuels vaut-elle le coup ?",
         answer:
-          "Oui. La demande elle-même entraîne une enquête de crédit, et l'utilisation de la carte par la suite (paiements à temps, taux d'utilisation du crédit disponible) influence votre pointage à long terme, positivement ou négativement.",
+          "Souvent oui, surtout si vos dépenses sont modérées : une carte à 2 % sans frais peut rapporter plus qu'une carte à récompenses élevées avec 120 $ de frais. Faites le calcul selon vos dépenses réelles.",
       },
       {
-        question: "Quelle est la différence entre une carte de crédit et une carte de débit ?",
+        question: "Comment bâtir ou améliorer son crédit avec une carte au Québec ?",
         answer:
-          "La carte de débit puise directement dans votre compte bancaire, sans emprunt. La carte de crédit vous prête de l'argent à rembourser, ce qui permet de bâtir un historique de crédit mais implique un risque d'intérêt si le solde n'est pas remboursé.",
+          "Utilisez la carte régulièrement pour de petits achats, payez le solde en entier et à temps, et gardez votre taux d'utilisation bas. Les cartes sans frais annuels sont souvent un bon point de départ pour un premier historique.",
+      },
+      {
+        question:
+          "Comment se présente le marché des cartes de crédit au Québec ?",
+        answer:
+          "Les grandes institutions financières canadiennes se font une forte concurrence sur les programmes de récompenses — remises en argent, points voyage ou points échangeables — ce qui rend la comparaison indispensable avant de faire une demande. À noter aussi : chaque demande de carte de crédit entraîne une enquête de crédit qui peut avoir un effet temporaire sur votre pointage, donc mieux vaut comparer soigneusement avant de postuler plutôt que de faire plusieurs demandes rapprochées.",
+      },
+      {
+        question: "Comment choisir sa carte de crédit ?",
+        answer:
+          "Commencez par identifier votre priorité : remises en argent sur l'épicerie et l'essence, points voyage, ou simplement aucuns frais annuels si vous utilisez peu votre carte. Si vous remboursez votre solde au complet chaque mois, le taux d'intérêt importe peu : concentrez-vous plutôt sur les frais annuels et la valeur du programme de récompenses. Si vous risquez de reporter un solde, priorisez un taux d'intérêt bas avant tout le reste.",
+      },
+      {
+        question: "À quoi faire attention avec un bonus de bienvenue ?",
+        answer:
+          "Un bonus de bienvenue généreux peut valoir plusieurs centaines de dollars, mais il est souvent conditionnel à un montant minimum de dépenses dans les premiers mois. Assurez-vous de pouvoir atteindre ce seuil sans dépenser au-delà de votre budget habituel. Les primes de bienvenue changent très souvent : confirmez toujours l'offre en vigueur sur le site de l'émetteur avant de faire une demande.",
       },
     ],
     authorId: "nicolas-leguen",
+    additionalNote:
+      "Cartes additionnelles à évaluer pour un ajout futur : CIBC Dividende, Amex Aéroplan Reserve, Rogers Red World Elite Mastercard, Neo Financial.",
   },
 
   epargne: {
-    heroTitle: "Meilleurs comptes d'épargne à intérêt élevé au Québec en 2026",
+    heroTitle: "Meilleur compte d'épargne au Québec",
     heroIntro:
-      "Le taux offert par votre compte d'épargne peut faire une différence de plusieurs centaines de dollars par année sur un fonds d'urgence. Voici comment comparer les comptes d'épargne et les banques en ligne offertes aux Québécois.",
-    metaTitle: "Meilleurs comptes d'épargne à intérêt élevé au Québec (2026)",
+      "Le meilleur compte d'épargne au Québec est celui qui offre un taux élevé et durable, sans frais ni solde minimum. Attention au piège du taux promotionnel : certaines banques affichent près de 5 % pendant quelques mois, puis retombent sous 1 %. Fructo Finance compare ici les comptes offerts au Québec selon le taux de base, les frais, l'assurance-dépôts (SADC ou AMF) et le type de compte. Rappel utile : logés dans un CELI, vos intérêts sont à l'abri de l'impôt.",
+    metaTitle: "Meilleur compte d'épargne au Québec (2026) | Fructo Finance",
     metaDescription:
-      "Comparatif indépendant des meilleurs comptes d'épargne à intérêt élevé au Québec en 2026 : taux, frais, assurance-dépôts, avis détaillés et FAQ.",
+      "Comparez les meilleurs comptes d'épargne à intérêt élevé offerts au Québec : taux, frais, CELI et assurance-dépôts (SADC, AMF). Comparatif indépendant, en français.",
     pedagogicalSections: [
       {
         id: "marche-2026",
@@ -192,34 +201,34 @@ export const clusterContent: Record<ClusterId, ClusterContent> = {
     ],
     faqs: [
       {
-        question: "CELI ou compte d'épargne à intérêt élevé : lequel choisir ?",
+        question: "Quel est le meilleur compte d'épargne au Québec ?",
         answer:
-          "Ce n'est pas l'un ou l'autre : plusieurs institutions offrent un compte d'épargne à intérêt élevé qui peut être détenu à l'intérieur d'un CELI. Si vous avez des droits de cotisation CELI inutilisés, privilégiez cette option pour éviter l'impôt sur les intérêts gagnés.",
+          "Le meilleur compte offre un taux de base élevé et durable, sans frais ni solde minimum. Pour une épargne conservée longtemps, un taux de base stable (Banque EQ, Oaken) vaut souvent mieux qu'un taux promotionnel temporaire. Le bon choix dépend de votre horizon et de votre besoin d'accès.",
       },
       {
-        question: "Mon argent est-il protégé dans une banque en ligne ?",
+        question: "Quelle différence entre un taux promotionnel et un taux de base ?",
         answer:
-          "Oui, si l'institution est membre de la Société d'assurance-dépôts du Canada (SADC). Vérifiez ce statut avant d'ouvrir un compte : c'est ce qui protège vos dépôts admissibles jusqu'à 100 000 $ par catégorie en cas de faillite.",
+          "Un taux promotionnel (par exemple près de 5 %) s'applique aux nouveaux dépôts pour une durée limitée, souvent 3 à 5 mois, puis le solde retombe au taux de base, parfois sous 1 %. Un taux de base élevé s'applique en continu. Pour une épargne à long terme, le taux de base compte davantage.",
       },
       {
-        question: "Comment fonctionne l'assurance-dépôts au Canada (SADC) ?",
+        question: "Mon argent est-il protégé dans un compte d'épargne au Québec ?",
         answer:
-          "La SADC protège automatiquement, sans frais, les dépôts admissibles (comptes d'épargne, CELI, comptes chèques, CPG) jusqu'à 100 000 $ par catégorie de compte, par institution membre.",
+          "Oui, jusqu'à certaines limites. La plupart des banques en ligne (Banque EQ, Tangerine, Wealthsimple, Neo, Oaken) sont membres de la SADC, qui protège les dépôts admissibles jusqu'à 100 000 $ par catégorie et par institution. Au Québec, les dépôts chez Desjardins sont plutôt protégés par l'Autorité des marchés financiers (AMF). Oaken peut atteindre 200 000 $ en répartissant les dépôts entre deux entités.",
       },
       {
-        question: "Les taux d'intérêt élevés sont-ils garantis ?",
+        question: "Quelles banques en ligne sont offertes au Québec ?",
         answer:
-          "Non. Plusieurs institutions offrent un taux promotionnel plus élevé pour une durée limitée (souvent 90 jours) avant de revenir au taux standard. Lisez toujours les conditions avant d'ouvrir un compte pour ce taux uniquement.",
+          "Banque EQ, Tangerine, Wealthsimple, Neo Financial, Oaken et KOHO sont accessibles au Québec. À noter : Simplii Financial n'est pas offert au Québec, contrairement à ce qu'indiquent plusieurs comparateurs canadiens.",
       },
       {
-        question: "Compte d'épargne ou CPG : quelle différence ?",
+        question: "Vaut-il mieux un compte d'épargne ordinaire ou un CELI ?",
         answer:
-          "Le compte d'épargne offre un accès immédiat à votre argent, avec un taux qui peut varier. Le certificat de placement garanti (CPG) verrouille votre argent pour une durée fixe en échange d'un taux généralement garanti, souvent plus élevé.",
+          "Si votre argent risque d'être imposé, un CELI est souvent préférable : les intérêts y sont à l'abri de l'impôt. Plusieurs institutions offrent un compte d'épargne CELI. Pour un fonds d'urgence, un CELI d'épargne combine accès rapide et intérêts non imposables.",
       },
       {
-        question: "Combien devrais-je garder dans mon fonds d'urgence ?",
+        question: "Les intérêts d'un compte d'épargne sont-ils imposables ?",
         answer:
-          "La recommandation courante est l'équivalent de 3 à 6 mois de dépenses essentielles, à conserver dans un compte liquide et sans risque comme un compte d'épargne à intérêt élevé plutôt que dans des placements volatils.",
+          "Oui. Hors d'un compte enregistré (CELI, REER, CELIAPP), les intérêts gagnés sont pleinement imposables et doivent être déclarés. Dans un CELI, ils ne le sont pas. (Voir les règles de l'ARC.)",
       },
     ],
     authorId: "nicolas-leguen",

@@ -1,22 +1,41 @@
 ---
-import ImageMod from "@/layouts/components/ImageMod.astro";
 interface Props {
-  logo: string;
+  icon: string;
   title: string;
   content: string;
 }
-const { logo, title, content } = Astro.props;
+const { icon, title, content } = Astro.props;
+
+const icons: Record<string, string> = {
+  search:
+    '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>',
+  shield:
+    '<path d="M12 2.5l7.5 3v6c0 5-3.2 8.5-7.5 10-4.3-1.5-7.5-5-7.5-10v-6l7.5-3z"/><path d="M8.75 12l2.25 2.25 4.25-4.25"/>',
+  scale:
+    '<path d="M12 3v18"/><path d="M7 7h10"/><path d="M5 7l-3 6.5a3 3 0 0 0 6 0L5 7z"/><path d="M19 7l-3 6.5a3 3 0 0 0 6 0L19 7z"/>',
+};
+const iconPath = icons[icon] ?? icons.search;
 ---
 
 <div
-  class="p-8 xl:px-10 xl:py-11 rounded-2xl border border-border bg-body flex flex-col items-center text-center"
+  class="glow-card relative p-8 xl:px-10 xl:py-11 rounded-[14px] border border-border bg-body shadow-sm flex flex-col items-center text-center"
 >
-  <div class="mb-6 size-14 rounded-xl bg-secondary grid place-items-center">
-    <ImageMod src={logo} alt={`${title} icon`} class="size-7" />
+  <div class="mb-6 size-14 rounded-xl bg-secondary grid place-items-center shrink-0">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="white"
+      stroke-width="1.75"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      set:html={iconPath}
+    />
   </div>
-  <h3 class="text-h5-sm font-bold font-secondary">{title}</h3>
-  <div class="w-px h-11 my-4 bg-text-dark/30"></div>
-  <p>
+  <h3 class="text-h5-sm font-bold font-secondary text-secondary">{title}</h3>
+  <div class="w-10 h-0.5 my-4 rounded-full bg-primary"></div>
+  <p class="text-text">
     {content}
   </p>
 </div>

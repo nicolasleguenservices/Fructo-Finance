@@ -17,13 +17,16 @@ if (!ctaData.enable) return;
         <Badge title={ctaData.badge ? ctaData.badge : ""} />
         <h2 class="title hasHighlight lg:col-7" set:html={ctaData.title} />
         <p class="subtitle text-h6-sm lg:col-6">{ctaData.description}</p>
-        {
-          ctaData.button && ctaData.button.enable && ctaData.button.link && (
-            <a href={ctaData.button.link} class="btn btn-primary mt-9">
-              {ctaData.button.label}
-            </a>
-          )
-        }
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+          {
+            ctaData.button && ctaData.button.enable && ctaData.button.link && (
+              <a href={ctaData.button.link} class="btn btn-primary">
+                {ctaData.button.label}
+              </a>
+            )
+          }
+          <slot />
+        </div>
       </div>
     </div>
     <div

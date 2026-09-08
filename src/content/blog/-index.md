@@ -1,16 +1,15 @@
 ---
 title: "Blog"
-meta_title: "Blog - Finance Québec"
-description: "Comparatifs et guides pour investir, choisir une carte de crédit et épargner intelligemment au Québec."
+meta_title: "Guides et comparatifs pour vos finances au Québec | Fructo"
+description: "Guides pratiques et comparatifs indépendants pour investir, choisir une carte de crédit et épargner intelligemment au Québec."
 image: ""
 draft: false
 
 page_header:
-  title: "Nos derniers <strong>comparatifs et guides</strong>"
-  featured_post: "wealthsimple-ou-questrade-2026"
+  title: "Guides et comparatifs Fructo Finance"
 
 featured_post:
-  enable: true
+  enable: false
 
 latest_posts:
   enable: true

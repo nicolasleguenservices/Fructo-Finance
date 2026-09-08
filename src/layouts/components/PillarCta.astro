@@ -1,0 +1,58 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type Pillar = CollectionEntry<"blog">["data"]["pillar"];
+
+interface Props {
+  pillar: Pillar;
+}
+
+const { pillar } = Astro.props;
+
+const pillarCta: Record<Pillar, { title: string; label: string; link: string }> =
+  {
+    investir: {
+      title:
+        "Comparez tous les courtiers en ligne offerts au Québec : frais, comptes et service en français, côte à côte.",
+      label: "Comparer les courtiers en ligne au Québec",
+      link: "/investir",
+    },
+    "cartes-credit": {
+      title:
+        "Comparez toutes les cartes de crédit offertes au Québec : récompenses, frais et taux, côte à côte.",
+      label: "Comparer les cartes de crédit au Québec",
+      link: "/cartes-credit",
+    },
+    epargne: {
+      title:
+        "Comparez tous les comptes d'épargne offerts au Québec : taux, frais et assurance-dépôts, côte à côte.",
+      label: "Comparer les comptes d'épargne au Québec",
+      link: "/epargne",
+    },
+  };
+
+const cta = pillarCta[pillar];
+---
+
+<section class="section">
+  <div
+    class="container bg-light py-20 rounded-4xl relative overflow-hidden isolate"
+  >
+    <div class="section-container">
+      <div class="section-intro centralize">
+        <h2 class="title lg:col-7">{cta.title}</h2>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <a href={cta.link} class="btn btn-primary">{cta.label}</a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="absolute bottom-0 right-0 size-120 xl:size-280 blur-2xl translate-x-2/5 translate-y-1/2 -z-10"
+      style="background: radial-gradient(circle, color-mix(in srgb, var(--color-primary) 60%, white) 0%, var(--color-primary) 10%, transparent 60%);"
+    >
+    </div>
+    <div class="absolute top-1/2 -translate-y-1/2 h-1/2 w-full overflow-hidden">
+      <canvas class="heroSporeCanvas w-full"></canvas>
+    </div>
+  </div>
+</section>

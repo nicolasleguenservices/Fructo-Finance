@@ -1,9 +1,9 @@
 ---
 enable: true
-title: "Ready to put Your Local Business Growth on <strong>Autopilot?</strong>"
-description: "Stop wasting thousands on scattered tools that don't convert and start enjoying streamlined, predictable growth."
+title: "Prêt à faire fructifier vos finances ?"
+description: "Comparez dès maintenant les courtiers, cartes de crédit et comptes d'épargne offerts au Québec, gratuitement."
 button:
   enable: true
-  label: "Contact Us"
-  link: "/contact"
+  label: "Comparer maintenant"
+  link: "/epargne"
 ---

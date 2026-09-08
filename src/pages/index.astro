@@ -1,29 +1,73 @@
 ---
-import ImageMod from "@/layouts/components/ImageMod.astro";
 import Base from "@/layouts/Base.astro";
-import ValueCard from "@/layouts/components/ValueCard.astro";
-import BusinessNeeds from "@/layouts/components/BusinessNeeds.astro";
-import ComparisonRow from "@/layouts/components/ComparisonRow.astro";
+import ClusterCards from "@/layouts/components/ClusterCards.astro";
 import ProcessCard from "@/layouts/components/ProcessCard.astro";
-import GradientBlob from "@/layouts/components/GradientBlob.astro";
-import BrandsCarousel from "@/layouts/components/BrandsCarousel.astro";
-import OurStory from "@/layouts/components/OurStory.astro";
+import BlogCard from "@/layouts/components/BlogCard.astro";
 import Faq from "@/layouts/components/Faq.astro";
 import CallToAction from "@/layouts/components/CallToAction.astro";
 import VideoShowcase from "@/layouts/components/VideoShowcase.astro";
-import ClusterCards from "@/layouts/components/ClusterCards.astro";
-import { getListPage } from "@/lib/contentParser.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import frenchDate from "@/lib/utils/frenchDate";
+import readingTime from "@/lib/utils/readingTime";
+import { getAuthor } from "@/data/authors";
 import { markdownify } from "@/lib/utils/textConverter";
-import Testimonial from "@/partials/Testimonial.astro";
-import Features from "@/partials/Features.astro";
-import type { Homepage } from "@/types";
+import config from "@/config/config.json";
+import type { Homepage, FaqSection } from "@/types";
+
+const pillarMeta = {
+  investir: { label: "Investir", url: "/investir" },
+  "cartes-credit": { label: "Cartes de crédit", url: "/cartes-credit" },
+  epargne: { label: "Épargne", url: "/epargne" },
+} as const;
+
 const homepage = await getListPage("homepage", "-index");
 const homepageData: Homepage = homepage.data;
+
+const faqEntry = await getListPage("faqSection", "faq");
+const faqData: FaqSection = faqEntry.data;
+
+const latestPosts = (await getSinglePage("blog"))
+  .sort((a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf())
+  .slice(0, 3);
+
+const pageTitle = "Comparateur de produits financiers au Québec | Fructo Finance";
+const pageDescription =
+  "Comparez gratuitement les meilleurs courtiers en ligne, cartes de crédit et comptes d'épargne offerts au Québec. Comparatifs indépendants, en français, à jour.";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: config.site.title,
+    url: config.site.base_url,
+    logo: `${config.site.base_url}${config.site.logo}`,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: config.site.title,
+    url: config.site.base_url,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqData.items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  },
+];
 ---
 
-<Base>
+<Base title={pageTitle} description={pageDescription}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
   <!-- Banner -->
-  <section class="section-ph relative overflow-hidden">
+  <section class="section-ph pt-24 md:pt-32 relative overflow-hidden">
     <div class="container relative">
       <div class="absolute top-0 left-0 w-full">
         <div class="h-100 w-full overflow-hidden -translate-y-10">
@@ -33,7 +77,7 @@ const homepageData: Homepage = homepage.data;
       <div class="row justify-center">
         <div class="mb-20 text-center relative">
           <h1
-            class="mb-8 lg:col-9 mx-auto text-h3 lg:text-h1 hasHighlight"
+            class="mb-8 lg:col-9 mx-auto text-h3 lg:text-h1"
             set:html={markdownify(homepageData.banner.title)}
           />
           <p class="mb-10 lg:col-6 mx-auto">{homepageData.banner.content}</p>
@@ -215,146 +259,72 @@ const homepageData: Homepage = homepage.data;
     class="h-px bg-linear-to-r from-transparent from-10% via-border to-90% to-transparent border-0"
   />
 
-  <!-- Les 3 univers Finance Québec -->
-  <ClusterCards />
-
-  <!-- Main Features -->
+  <!-- Barre de confiance -->
   {
     homepageData.main_features.enable && (
-      <section class="section pt-30 xl:pt-37">
+      <section class="section-ph py-10">
         <div class="container">
-          <div class="section-container">
-            <div class="section-intro centralize">
-              <h2
-                class="title hasHighlight  "
-                set:html={markdownify(homepageData.main_features.title)}
-              />
-              <p class="subtitle">{homepageData.main_features.content}</p>
-            </div>
-            <div class="section-content">
-              <div class="feature-items-group mb-9">
-                {homepageData.main_features.items
-                  .slice(0, 3)
-                  .map((text: string) => (
-                    <div class="bg-body border border-border px-4 w-full py-2.5 rounded-full flex items-center justify-center relative z-10 gap-x-2">
-                      <svg
-                        class="shrink-0"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M9.99999 1.04163C14.9476 1.04163 18.9583 5.05241 18.9583 9.99996C18.9583 14.9475 14.9476 18.9583 9.99999 18.9583C5.05244 18.9583 1.04166 14.9475 1.04166 9.99996C1.04166 5.05241 5.05244 1.04163 9.99999 1.04163ZM8.02571 6.8538C7.69841 6.58685 7.2159 6.6057 6.9108 6.91077C6.60581 7.21587 6.5869 7.6984 6.85383 8.02568L6.9108 8.08915L8.82157 9.99996L6.91161 11.9108C6.5863 12.2362 6.58619 12.7638 6.91161 13.0891C7.23705 13.4143 7.76464 13.4145 8.09 13.0891L9.99999 11.1784L11.91 13.0891L11.9735 13.1461C12.3007 13.413 12.7832 13.394 13.0884 13.0891C13.3934 12.7842 13.4128 12.3015 13.1462 11.9742L13.0884 11.9108L11.1776 9.99996L13.0892 8.08915L13.1462 8.02568C13.4131 7.69839 13.3942 7.21587 13.0892 6.91077C12.7841 6.6057 12.3016 6.58685 11.9742 6.8538L11.9108 6.91077L9.99999 8.82154L8.08918 6.91077L8.02571 6.8538Z"
-                          fill="var(--color-secondary)"
-                        />
-                      </svg>
-                      <span class="font-semibold text-secondary text-lg">
-                        {text}
-                      </span>
-                    </div>
-                  ))}
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            {homepageData.main_features.items.map((text: string) => (
+              <div class="bg-body border border-border px-4 py-2.5 rounded-full flex items-center justify-center gap-x-2">
+                <svg
+                  class="shrink-0"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--color-secondary)"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="12" cy="12" r="9.5" stroke-width="1.5" />
+                  <path d="M8 12.5l2.5 2.5L16 9.5" />
+                </svg>
+                <span class="font-semibold text-secondary text-base">
+                  {text}
+                </span>
               </div>
-              <div class="feature-items-group">
-                {homepageData.main_features.items
-                  .slice(3)
-                  .map((text: string) => (
-                    <div class="bg-body border border-border px-4 w-full py-2.5 rounded-full flex items-center justify-center relative z-10 gap-x-2">
-                      <svg
-                        class="shrink-0"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M9.99999 1.04163C14.9476 1.04163 18.9583 5.05241 18.9583 9.99996C18.9583 14.9475 14.9476 18.9583 9.99999 18.9583C5.05244 18.9583 1.04166 14.9475 1.04166 9.99996C1.04166 5.05241 5.05244 1.04163 9.99999 1.04163ZM8.02571 6.8538C7.69841 6.58685 7.2159 6.6057 6.9108 6.91077C6.60581 7.21587 6.5869 7.6984 6.85383 8.02568L6.9108 8.08915L8.82157 9.99996L6.91161 11.9108C6.5863 12.2362 6.58619 12.7638 6.91161 13.0891C7.23705 13.4143 7.76464 13.4145 8.09 13.0891L9.99999 11.1784L11.91 13.0891L11.9735 13.1461C12.3007 13.413 12.7832 13.394 13.0884 13.0891C13.3934 12.7842 13.4128 12.3015 13.1462 11.9742L13.0884 11.9108L11.1776 9.99996L13.0892 8.08915L13.1462 8.02568C13.4131 7.69839 13.3942 7.21587 13.0892 6.91077C12.7841 6.6057 12.3016 6.58685 11.9742 6.8538L11.9108 6.91077L9.99999 8.82154L8.08918 6.91077L8.02571 6.8538Z"
-                          fill="var(--color-secondary)"
-                        />
-                      </svg>
-                      <span class="font-semibold text-secondary text-lg">
-                        {text}
-                      </span>
-                    </div>
-                  ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
     )
   }
 
-  <!-- Value Proposition -->
-  {
-    homepageData.value_props.enable && (
-      <section class="section relative overflow-hidden">
-        <div class="container">
-          <div class="section-container">
-            <div class="section-intro centralize">
-              <h2
-                class="title hasHighlight  "
-                set:html={markdownify(homepageData.value_props.title)}
-              />
-              <p class="subtitle">{homepageData.value_props.content}</p>
-            </div>
-            <div class="section-content">
-              <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mb-9">
-                {homepageData.value_props.items.map((item: any) => (
-                  <ValueCard
-                    logo={item.logo}
-                    title={item.title}
-                    list={item.list}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-        <GradientBlob />
-      </section>
-    )
-  }
+  <!-- Les 3 univers -->
+  <ClusterCards />
 
-  <!-- Features -->
-  {
-    homepageData.our_features.enable && (
-      <Features our_features={homepageData.our_features} />
-    )
-  }
-
-  <!-- Business Needs -->
-  <BusinessNeeds />
-
-  <!-- Comparison -->
-  <ComparisonRow />
-
-  <!-- Testimonial Quote -->
+  <!-- Passage ancré (SEO) -->
   {
     homepageData.testimonial_quote.enable && (
-      <section class="section overflow-hidden">
+      <section class="section">
         <div class="container">
-          <div class="section-container">
-            <div class="section-intro centralize">
-              <h2
-                class="title hasHighlight  "
-                set:html={markdownify(homepageData.testimonial_quote.title)}
+          <div class="section-intro centralize mb-12">
+            <h2
+              class="title hasHighlight"
+              set:html={markdownify(homepageData.testimonial_quote.title)}
+            />
+          </div>
+          <div class="max-w-[1000px] mx-auto flex flex-col md:flex-row md:items-stretch gap-8 xl:gap-12">
+            <div
+              class="relative w-full md:w-[42%] md:shrink-0 h-60 sm:h-72 md:h-auto bg-secondary rounded-2xl overflow-hidden"
+            >
+              <img
+                src="/images/comparateur-produits-financiers-quebec.webp"
+                alt="Équipe comparant des produits financiers au Québec"
+                width="1200"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 size-full object-cover"
               />
             </div>
-            <div class="section-content">
-              <hr class="h-px bg-linear-to-r from-transparent from-5% via-border to-95% to-transparent border-0" />
-              <div class="relative max-w-220 mx-auto">
-                <blockquote class="text-center text-h6 text-secondary p-6 xl:p-10 xl:px-15 border-x border-text/20">
-                  "{homepageData.testimonial_quote.quote}"
-                </blockquote>
-                <div class="size-2 bg-secondary absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2" />
-                <div class="size-2 bg-secondary absolute right-0 top-0 translate-x-1/2 -translate-y-1/2" />
-                <div class="size-2 bg-secondary absolute left-0 bottom-0 -translate-x-1/2 translate-y-1/2" />
-                <div class="size-2 bg-secondary absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2" />
-              </div>
-              <hr class="h-px bg-linear-to-r from-transparent from-5% via-border to-95% to-transparent border-0" />
+            <div class="md:flex-1">
+              <p class="text-text leading-[1.7]">
+                {homepageData.testimonial_quote.quote}
+              </p>
             </div>
           </div>
         </div>
@@ -362,95 +332,10 @@ const homepageData: Homepage = homepage.data;
     )
   }
 
-  <!-- Our Partners -->
-  <BrandsCarousel />
-
-  <!-- Single Testimonial -->
-  {
-    homepageData.single_testimonial.enable && (
-      <section class="section relative max-lg:overflow-hidden">
-        <div class="container">
-          <div class="section-container">
-            <div class="section-content">
-              <div class="row g-4 items-center">
-                <div class="lg:col-5">
-                  <div class="flex flex-col">
-                    {homepageData.single_testimonial.stats.map(
-                      (stat: any, i: number) => (
-                        <div
-                          class={`blob-message relative z-${i + 1} ${i === 1 ? "lg:w-10/12" : ""}`}
-                        >
-                          <span class="font-semibold text-secondary">
-                            {stat.value}
-                          </span>{" "}
-                          {stat.label}
-                        </div>
-                      ),
-                    )}
-                  </div>
-                </div>
-                <div class="lg:col-7 max-lg:mt-10">
-                  <div class="rounded-4xl corner-squircle bg-light px-7 py-10">
-                    <div class="text-primary">
-                      <svg
-                        width="45"
-                        height="28"
-                        viewBox="0 0 45 28"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M15.3955 0V10.9561H24.8691L16.5791 28H0L13.0264 0H15.3955ZM36.7109 0V10.9561H45L36.7109 28H21.3154L34.3418 0H36.7109Z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </div>
-                    <blockquote class="mt-10 text-h6 text-secondary">
-                      {homepageData.single_testimonial.testimonial.quote}
-                    </blockquote>
-                    <div class="mt-12.5 flex items-center">
-                      <div class="text-text-dark">
-                        <ImageMod
-                          height={50}
-                          width={50}
-                          class="rounded-full size-12"
-                          src={
-                            homepageData.single_testimonial.testimonial.avatar
-                          }
-                          alt={homepageData.single_testimonial.testimonial.name}
-                        />
-                      </div>
-                      <div class="ml-2.5">
-                        <h3 class="text-base font-primary font-semibold">
-                          {homepageData.single_testimonial.testimonial.name}
-                        </h3>
-                        <p class="text-text-dark">
-                          {homepageData.single_testimonial.testimonial.company}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="absolute top-0 lg:bottom-0 grid place-items-center size-full lg:translate-y-20 -z-10">
-          <div class="size-180 xl:size-300 bg-radial from-primary-light/60 to-transparent from-0% to-70% rounded-full" />
-          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-180">
-            <div class="h-100 w-full overflow-hidden">
-              <canvas class="heroSporeCanvas w-full" />
-            </div>
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  <!-- Growth Process -->
+  <!-- Comment nous comparons -->
   {
     homepageData.growth_process.enable && (
-      <section class="section-box max-lg:overflow-hidden pb-16 xl:pb-19 bg-transparent relative isolate overflow-hidden">
+      <section class="section bg-light">
         <div class="container">
           <div class="section-container">
             <div class="section-intro centralize">
@@ -458,17 +343,27 @@ const homepageData: Homepage = homepage.data;
                 class="title hasHighlight  "
                 set:html={markdownify(homepageData.growth_process.title)}
               />
+              {homepageData.growth_process.subtitle && (
+                <p class="subtitle text-text-dark">
+                  {homepageData.growth_process.subtitle}
+                </p>
+              )}
             </div>
             <div class="section-content">
               <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-16">
                 {homepageData.growth_process.items.map((item: any) => (
                   <ProcessCard
-                    logo={item.logo}
+                    icon={item.logo}
                     title={item.title}
                     content={item.content}
                   />
                 ))}
               </div>
+              {homepageData.growth_process.disclosure && (
+                <p class="mt-10 xl:mt-14 text-center text-sm text-text-dark max-w-160 mx-auto">
+                  {homepageData.growth_process.disclosure}
+                </p>
+              )}
               {homepageData.growth_process.button.enable && (
                 <div class="flex justify-center mt-10 xl:mt-18">
                   <a
@@ -482,83 +377,111 @@ const homepageData: Homepage = homepage.data;
             </div>
           </div>
         </div>
-        <div class="absolute inset-x-0 top-0 -z-10">
-          <svg
-            class="w-full"
-            viewBox="0 0 1920 1099"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M960 1.5C1224.88 1.5 1464.62 62.943 1638.08 162.205C1811.58 261.491 1918.5 398.425 1918.5 549.356C1918.5 700.287 1811.58 837.222 1638.08 936.508C1464.62 1035.77 1224.88 1097.21 960 1097.21C695.116 1097.21 455.383 1035.77 281.923 936.508C108.42 837.222 1.50012 700.287 1.5 549.356C1.5 398.425 108.42 261.491 281.923 162.205C455.383 62.943 695.116 1.5 960 1.5Z"
-              fill="black"
-              stroke="url(#paint0_linear_proc)"
-              stroke-width="3"
-            />
-            <defs>
-              <linearGradient
-                id="paint0_linear_proc"
-                x1="960"
-                y1="0"
-                x2="960"
-                y2="84.3521"
-                gradientUnits="userSpaceOnUse"
-              >
-                <>
-                  <stop stop-color="var(--color-primary-light)" />
-                  <stop offset="1" stop-color="var(--color-body)" />
-                </>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-        <div class="absolute inset-0 grid place-items-center size-full -z-10">
-          <div class="size-225 bg-radial from-primary-light/30 to-transparent from-0% to-70% rounded-full" />
-        </div>
       </section>
     )
   }
 
-  <!-- Our Thought / CEO Letter -->
-  <OurStory />
-
-  <!-- Integrations -->
+  <!-- Nos derniers guides -->
   {
-    homepageData.integrations.enable && (
-      <section class="section relative isolate max-md:overflow-hidden">
-        <div class="container-sm">
-          <div class="section-container">
-            <div class="section-intro centralize">
-              <h2
-                class="title hasHighlight  "
-                set:html={markdownify(homepageData.integrations.title)}
-              />
-            </div>
-            <div class="section-content">
-              <div class="flex items-center justify-center flex-wrap [&>div]:-ml-5">
-                {homepageData.integrations.items.map((item: any) => (
-                  <div class="size-35 bg-text-light/10 backdrop-blur-xl rounded-full grid place-items-center">
-                    <ImageMod
-                      src={item.image}
-                      alt={item.alt}
-                      class="max-h-14 object-contain"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+    latestPosts.length > 0 && (
+      <section class="section overflow-hidden">
+        <div class="container relative isolate">
+          <div class="section-intro centralize mb-12">
+            <h2 class="title hasHighlight">Nos derniers guides</h2>
+            <p class="subtitle">
+              Des guides pratiques pour comprendre et choisir vos produits
+              financiers au Québec.
+            </p>
           </div>
-        </div>
-        <div class="absolute inset-0 grid place-items-center size-full -z-10">
-          <div class="size-180 xl:size-225 bg-radial from-primary-light/40 to-transparent from-0% to-70% rounded-full" />
+
+          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {latestPosts.map((post) => {
+              const author = getAuthor(post.data.author);
+              const pillar = pillarMeta[post.data.pillar];
+              return (
+                <BlogCard
+                  image={post.data.coverImage}
+                  imageAlt={post.data.coverAlt}
+                  imageFit={post.data.coverFit}
+                  title={post.data.title}
+                  description={post.data.description}
+                  author={author.name}
+                  authorImage={author.image}
+                  date={frenchDate(post.data.datePublished)}
+                  readTime={readingTime(post.body ?? "")}
+                  pillarLabel={pillar.label}
+                  pillarUrl={pillar.url}
+                  href={`/blog/${post.data.slug ?? post.id}`}
+                />
+              );
+            })}
+          </div>
+
+          <div class="flex justify-center mt-12">
+            <a href="/blog" class="btn btn-outline">
+              Voir tous les articles
+            </a>
+          </div>
+
+          <div class="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-310.5 -translate-x-1/2 -translate-y-1/3 rounded-full bg-radial from-primary/16 from-0% to-transparent to-70% blur-2xl" />
         </div>
       </section>
     )
   }
-
-  <Testimonial />
 
   <Faq />
 
-  <CallToAction />
+  <!-- CTA final -->
+  <CallToAction>
+    <a href="/cartes-credit" class="btn btn-outline">
+      Cartes de crédit
+    </a>
+    <a href="/epargne" class="btn btn-outline">
+      Épargne
+    </a>
+  </CallToAction>
+
+  <!-- Capture courriel -->
+  <section class="section">
+    <div
+      class="container bg-secondary text-text-light py-16 rounded-4xl relative overflow-hidden isolate"
+    >
+      <div class="section-container">
+        <div class="section-intro centralize">
+          <h2 class="title text-text-light lg:col-8">
+            Recevez les meilleures offres par courriel
+          </h2>
+          <p class="subtitle text-text-light/75 lg:col-6">
+            Comparatifs, bonus de bienvenue et mises à jour importantes, une
+            fois par mois, pas plus.
+          </p>
+          <form
+            id="newsletter-form"
+            class="mt-9 flex flex-wrap items-center justify-center gap-3 w-full max-w-120 mx-auto"
+          >
+            <input
+              type="email"
+              required
+              placeholder="Votre adresse courriel"
+              class="flex-1 min-w-60 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-text-light placeholder:text-text-light/60 focus:outline-none focus:border-white/40"
+            />
+            <button type="submit" class="btn btn-primary">
+              M'inscrire
+            </button>
+          </form>
+          <p class="mt-4 text-sm text-text-light/60">
+            Gratuit, désinscription à tout moment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    // TODO: brancher le service d'emailing plus tard
+    document
+      .getElementById("newsletter-form")
+      ?.addEventListener("submit", (e) => {
+        e.preventDefault();
+      });
+  </script>
 </Base>

@@ -1,66 +1,87 @@
 ---
 import ImageMod from "@/layouts/components/ImageMod.astro";
+
 interface Props {
   image: string;
   imageAlt: string;
+  /** "contain" pour une image qui ne doit pas être rognée (ex. composition avec logos). */
+  imageFit?: "cover" | "contain";
   title: string;
   description: string;
+  author: string;
   authorImage: string;
-  authorName: string;
   date: string;
+  readTime: string;
+  pillarLabel: string;
+  pillarUrl: string;
   href: string;
-  cardClass?: string;
 }
+
 const {
   image,
   imageAlt,
+  imageFit = "cover",
   title,
   description,
+  author,
   authorImage,
-  authorName,
   date,
+  readTime,
+  pillarLabel,
+  pillarUrl,
   href,
-  cardClass = "",
 } = Astro.props;
 ---
 
-<article class="flex flex-col justify-between">
-  <ImageMod
-    src={image}
-    alt={imageAlt}
-    width={600}
-    height={310}
-    class="w-full min-h-77.5 object-cover rounded-2xl mb-2.5"
-  />
-  <div
-    class={`rounded-2xl overflow-hidden bg-light p-6 h-full flex flex-col justify-between ${cardClass}`}
-  >
-    <div>
-      <a href={href} class="hover:text-primary! hover:underline">
-        <h3 class="mb-3 text-h5-sm text-secondary">{title}</h3>
-      </a>
-      <p class="mb-5 text-sm leading-6 text-text">{description}</p>
-    </div>
-    <div>
-      <hr
-        class="mb-4 h-px border-0 bg-linear-to-r from-transparent via-border to-transparent"
-      />
-      <div class="flex items-center justify-between gap-2 text-sm text-text">
-        <span class="inline-flex items-center gap-2">
-          <ImageMod
-            src={authorImage}
-            width={20}
-            height={20}
-            class="size-5 rounded-full"
-            alt={authorName}
-          />
-          {authorName}
-        </span>
-        <span class="inline-flex items-center gap-2">
-          <i class="fa-regular fa-calendar-days text-xs" aria-hidden="true"></i>
-          {date}
-        </span>
-      </div>
+<article
+  class="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-body"
+>
+  <a href={href} class="block shrink-0 overflow-hidden bg-secondary">
+    <ImageMod
+      src={image}
+      alt={imageAlt}
+      width={600}
+      height={340}
+      fit={imageFit}
+      position="left"
+      loading="lazy"
+      class:list={[
+        "aspect-[600/340] h-auto w-full object-left transition-transform duration-300 hover:scale-[1.03]",
+        imageFit === "contain" ? "object-contain" : "object-cover",
+      ]}
+    />
+  </a>
+
+  <div class="flex h-full flex-col gap-3 p-6">
+    <a
+      href={pillarUrl}
+      class="w-fit rounded-full bg-secondary/8 px-2.5 py-0.5 text-xs font-semibold text-secondary hover:bg-secondary hover:text-white"
+    >
+      {pillarLabel}
+    </a>
+
+    <h2 class="text-h5-sm md:text-h5 text-secondary">
+      <a href={href} class="hover:text-primary hover:underline">{title}</a>
+    </h2>
+
+    <p class="text-sm leading-6 text-text">{description}</p>
+
+    <div
+      class="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-border pt-4 text-xs text-text-dark"
+    >
+      <span class="inline-flex items-center gap-1.5">
+        <ImageMod
+          src={authorImage}
+          alt={author}
+          width={20}
+          height={20}
+          fit="cover"
+          class="size-5 rounded-full"
+        />
+        {author}
+      </span>
+      <span>{date}</span>
+      <span>{readTime}</span>
     </div>
   </div>
 </article>
