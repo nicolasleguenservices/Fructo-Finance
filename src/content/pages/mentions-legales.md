@@ -22,6 +22,4 @@ Le contenu de ce site est fourni à titre informatif seulement et ne constitue p
 
 ## Des questions ?
 
-<!-- TODO: ajouter une adresse courriel de contact publique -->
-
-Pour toute question sur ces mentions légales, [contactez-nous](/contact).
+Pour toute question sur ces mentions légales, écrivez à [contact@fructofinance.ca](mailto:contact@fructofinance.ca) ou passez par notre [page de contact](/contact).

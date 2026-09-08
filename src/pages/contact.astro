@@ -5,6 +5,7 @@ import Faq from "@/layouts/components/Faq.astro";
 import PageHeader from "@/layouts/components/PageHeader.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import DynamicIcon from "@/helpers/DynamicIcon";
+import config from "@/config/config.json";
 import type { Contact } from "@/types";
 
 const contact = await getListPage("contact", "-index");
@@ -12,9 +13,12 @@ const contactData: Contact = contact.data;
 const hasContactInfo =
   contactData.contact_info?.enable &&
   (contactData.contact_info.items.length ?? 0) > 0;
-const contactEmail =
-  contactData.contact_info?.items.find((i) => i.type === "email")?.detail ??
-  "";
+
+// Cible de soumission du formulaire. Réglée dans config.json → params.contact_form_action.
+// Tant qu'aucun service (fonction / endpoint tiers) n'est branché, la valeur est "#"
+// (formulaire non fonctionnel) — l'adresse courriel reste joignable via la carte de
+// contact ci-contre et le lien du pied de page.
+const contactFormAction = config.params.contact_form_action || "#";
 
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
@@ -72,9 +76,8 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         <div class:list={["col-12", hasContactInfo ? "lg:col-7" : "lg:col-8 lg:mx-auto"]}>
           <div class="p-8 md:p-10 bg-light border border-border rounded-2xl">
             <form
-              action={`mailto:${contactEmail}`}
+              action={contactFormAction}
               method="post"
-              enctype="text/plain"
               class="flex flex-col gap-10"
             >
               <div class="flex flex-col gap-5">

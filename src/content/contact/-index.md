@@ -10,6 +10,10 @@ page_header:
   subtitle: "Une erreur à signaler dans un comparatif, une suggestion de produit, ou simplement une question ? Notre équipe éditoriale vous répond."
 
 contact_info:
-  enable: false
-  items: []
+  enable: true
+  items:
+    - type: "email"
+      title: "Par courriel"
+      detail: "contact@fructofinance.ca"
+      icon: "FaEnvelope"
 ---
