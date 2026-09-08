@@ -58,9 +58,13 @@ code {
 blockquote > p {
   @apply my-0!;
 }
+/* Autofill : neutralise le style navigateur (Chrome/WebKit) qui force un fond
+   clair ET une couleur de texte cassant la lisibilité. On impose un fond clair
+   contrôlé + un texte sombre lisible (var(--color-text) = #1F2933). */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
@@ -69,8 +73,33 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px var(--color-light) inset;
   box-shadow: 0 0 0px 1000px var(--color-light) inset;
+  -webkit-text-fill-color: var(--color-text);
+  caret-color: var(--color-text);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Champ e-mail de l'infolettre : posé sur une section bleu nuit (.bg-secondary).
+   Autofill → fond navy plein + texte pâle, pour rester lisible ET cohérent avec
+   la section sombre. */
+.newsletter-email:-webkit-autofill,
+.newsletter-email:-webkit-autofill:hover,
+.newsletter-email:-webkit-autofill:focus,
+.newsletter-email:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px var(--color-secondary) inset;
+  box-shadow: 0 0 0px 1000px var(--color-secondary) inset;
   -webkit-text-fill-color: var(--color-text-light);
-  transition: background-color 5000s ease-in-out 0s;
+  caret-color: var(--color-text-light);
+}
+
+/* Navigateurs non-WebKit (Firefox) : pseudo-classe standard :autofill. Le fond
+   d'autofill n'est pas surchargeable → on garantit au moins un texte sombre
+   lisible sur ce fond clair. */
+input:autofill,
+textarea:autofill,
+select:autofill {
+  color: var(--color-text);
+  -webkit-text-fill-color: var(--color-text);
+  caret-color: var(--color-text);
 }
 
 /* Lenis Scroll behavior */
