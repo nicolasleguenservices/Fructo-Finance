@@ -45,6 +45,31 @@ const {
         <GoogleTagmanager id={config.google_tag_manager.gtm_id} />
       )
     }
+    <!-- Impact Universal Tracking Tag -->
+    <script is:inline type="text/javascript">
+      (function (i, m, p, a, c, t) {
+        c.ire_o = p;
+        c[p] =
+          c[p] ||
+          function () {
+            (c[p].a = c[p].a || []).push(arguments);
+          };
+        t = a.createElement(m);
+        var z = a.getElementsByTagName(m)[0];
+        t.async = 1;
+        t.src = i;
+        z.parentNode.insertBefore(t, z);
+      })(
+        "https://utt.impactcdn.com/P-A7752494-d41d-4b37-97f1-b5aea8823ee71.js",
+        "script",
+        "impactStat",
+        document,
+        window,
+      );
+      impactStat("transformLinks");
+      impactStat("trackImpression");
+    </script>
+
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link
       rel="icon"
