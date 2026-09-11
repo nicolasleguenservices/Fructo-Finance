@@ -4,6 +4,17 @@ interface Props {
 }
 
 const { compact = false } = Astro.props;
+
+// État actuel (voir products.json) : aucun produit n'a affiliate.rel === "sponsored",
+// donc aucun CTA n'est un vrai lien d'affiliation rémunéré — le texte ci-dessous doit
+// rester honnête sur ce point tant que c'est le cas.
+//
+// Pour réactiver la divulgation "nous pouvons recevoir une commission" le jour où de
+// vrais liens d'affiliation seront en place : repasser `affiliate.rel` à "sponsored"
+// pour les produits concernés dans products.json, puis restaurer/adapter ici le texte
+// antérieur (voir l'historique git de ce fichier) — et faire de même dans
+// src/pages/divulgation-affiliation.astro, src/pages/a-propos.astro,
+// src/content/sections/faq.md et src/content/homepage/-index.md.
 ---
 
 <aside
@@ -13,10 +24,9 @@ const { compact = false } = Astro.props;
   ]}
 >
   <p class="m-0">
-    <strong class="text-secondary">Divulgation :</strong> certains liens sur cette
-    page sont des liens d'affiliation. Si vous ouvrez un compte ou faites une demande
-    via ces liens, nous pouvons recevoir une commission, sans frais additionnels pour
-    vous. Cela n'influence pas notre évaluation : nos avis reflètent notre analyse
-    indépendante des produits. <a href="/divulgation-affiliation" class="link font-semibold underline">En savoir plus</a>.
+    <strong class="text-secondary">Divulgation :</strong> les liens vers les produits
+    présentés ici mènent directement aux sites officiels des institutions. Fructo
+    Finance est indépendant et ne reçoit actuellement aucune commission sur ces liens.
+    Notre objectif est de vous aider à comparer, sans influence commerciale. <a href="/divulgation-affiliation" class="link font-semibold underline">En savoir plus</a>.
   </p>
 </aside>

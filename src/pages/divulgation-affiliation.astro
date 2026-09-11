@@ -1,12 +1,23 @@
 ---
 import Base from "@/layouts/Base.astro";
 import PageHeader from "@/layouts/components/PageHeader.astro";
+
+// État actuel (voir products.json) : aucun produit n'a affiliate.rel === "sponsored",
+// donc aucun lien de ce site n'est un vrai lien d'affiliation rémunéré. Le contenu
+// ci-dessous doit rester honnête sur ce point.
+//
+// Pour réactiver la version "programme d'affiliation actif" le jour venu : repasser
+// `affiliate.rel` à "sponsored" pour les produits concernés dans products.json, puis
+// restaurer/adapter le texte antérieur de cette page (voir son historique git) — et
+// faire de même dans src/layouts/components/AffiliateDisclosure.astro,
+// src/pages/a-propos.astro, src/content/sections/faq.md et
+// src/content/homepage/-index.md.
 ---
 
 <Base
   title="Divulgation d'affiliation"
   meta_title="Divulgation d'affiliation"
-  description="Comment Fructo Finance est financé et comment nos liens d'affiliation fonctionnent."
+  description="Comment Fructo Finance fonctionne et comment nous sommes financés, en toute transparence."
 >
   <PageHeader
     title="Divulgation d'affiliation"
@@ -17,40 +28,41 @@ import PageHeader from "@/layouts/components/PageHeader.astro";
     <div class="container">
       <div class="content mx-auto max-w-220">
         <p>
-          Fructo Finance est un site indépendant financé en partie par des
-          commissions d'affiliation. Voici comment cela fonctionne, en toute
-          transparence.
+          Fructo Finance est un site indépendant. Voici comment il fonctionne
+          aujourd'hui, en toute transparence.
         </p>
 
-        <h2>Comment nous sommes rémunérés</h2>
+        <h2>Comment nous sommes financés actuellement</h2>
         <p>
-          Lorsque vous cliquez sur certains liens de ce site et que vous ouvrez
-          un compte, effectuez une demande de carte de crédit ou utilisez un
-          service chez l'un de nos partenaires, nous pouvons recevoir une
-          commission de parrainage ou de référencement. Cette commission ne
-          change jamais le prix ou les conditions que vous obtenez — elle est
-          versée par le partenaire, pas par vous.
+          En ce moment, les liens vers les courtiers, cartes de crédit et
+          comptes d'épargne présentés sur ce site mènent directement aux sites
+          officiels des institutions. Ce ne sont pas des liens d'affiliation :
+          nous ne recevons actuellement aucune commission lorsque vous ouvrez
+          un compte ou faites une demande via ces liens.
         </p>
 
         <h2>Notre engagement d'indépendance</h2>
         <p>
-          Le fait qu'un partenaire nous verse une commission n'influence pas
-          nos notes, nos classements ou le contenu de nos avis. Nous ne
-          recommandons pas un produit uniquement parce qu'il est rémunéré ;
-          nous cherchons à présenter une comparaison honnête basée sur les
-          caractéristiques réelles du produit.
+          Nos notes, nos classements et le contenu de nos avis reposent
+          uniquement sur les caractéristiques réelles des produits (frais,
+          taux, conditions, comptes offerts), vérifiées à la source. Cela ne
+          changera pas si des partenariats commerciaux voient le jour : nous
+          ne recommanderons jamais un produit uniquement parce qu'il nous
+          rémunère.
         </p>
 
-        <h2>Liens d'affiliation</h2>
+        <h2>Et si cela change ?</h2>
         <p>
-          Les liens vers nos partenaires sur ce site portent l'attribut
+          Si Fructo Finance met un jour en place de vrais liens d'affiliation
+          rémunérés, cette page sera mise à jour pour l'indiquer clairement,
+          et les liens concernés porteront l'attribut
           <code>rel="sponsored"</code>, conformément aux recommandations de
           Google pour la divulgation des liens commerciaux.
         </p>
 
         <h2>Des questions ?</h2>
         <p>
-          Pour toute question sur nos partenariats, <a href="/contact">contactez-nous</a
+          Pour toute question sur notre fonctionnement, <a href="/contact">contactez-nous</a
           >.
         </p>
       </div>

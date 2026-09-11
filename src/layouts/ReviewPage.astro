@@ -58,7 +58,11 @@ const h1 = `${product.name} : notre avis complet (${annee})`;
 // Une carte de crédit fait l'objet d'une "demande", pas d'une "ouverture de compte".
 const isCard = product.category === "carte_credit";
 const ctaLabel = `${ctaVerb(product)} ${product.name}`;
-const ctaAriaLabel = `${ctaLabel} (lien affilié)`;
+// La mention "(lien affilié)" ne s'ajoute que si affiliate.rel === "sponsored"
+// (vrai lien d'affiliation rémunéré). Tant que products.json met `rel: ""`, le CTA
+// pointe vers le site officiel et l'aria-label reste neutre.
+const ctaAriaLabel =
+  product.affiliate.rel === "sponsored" ? `${ctaLabel} (lien affilié)` : ctaLabel;
 const ouvrirTocLabel = isCard ? "Comment faire une demande" : "Comment ouvrir un compte";
 const ouvrirTitle = isCard
   ? `Comment faire une demande pour ${product.name}`

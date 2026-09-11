@@ -22,7 +22,7 @@ main_features:
 testimonial_quote:
   enable: true
   title: "Qu'est-ce qu'un <strong>comparateur de produits financiers au Québec</strong> ?"
-  quote: "Un comparateur de produits financiers au Québec est un outil qui rassemble, au même endroit, les principales offres des institutions financières accessibles aux Québécois (courtiers en ligne, cartes de crédit et comptes d'épargne à intérêt élevé) afin de les comparer selon des critères clairs comme les frais, les taux, les conditions et les comptes enregistrés offerts (CELI, REER, CELIAPP). Plutôt que de visiter le site de chaque banque ou courtier, vous consultez des comparatifs présentés en français et pensés pour la réalité québécoise. Fructo Finance est un comparateur indépendant et gratuit : nous présentons les produits offerts au Québec, nous citons nos sources (comme l'AMF, l'OCRI ou l'ARC) et nous indiquons la date de dernière vérification de chaque information. Notre objectif est de vous aider à faire un choix éclairé, sans remplacer un conseil financier personnalisé. Les comparatifs sont gratuits pour vous : nous pouvons recevoir une commission lorsque vous ouvrez un compte via certains liens, sans que cela influence nos évaluations."
+  quote: "Un comparateur de produits financiers au Québec est un outil qui rassemble, au même endroit, les principales offres des institutions financières accessibles aux Québécois (courtiers en ligne, cartes de crédit et comptes d'épargne à intérêt élevé) afin de les comparer selon des critères clairs comme les frais, les taux, les conditions et les comptes enregistrés offerts (CELI, REER, CELIAPP). Plutôt que de visiter le site de chaque banque ou courtier, vous consultez des comparatifs présentés en français et pensés pour la réalité québécoise. Fructo Finance est un comparateur indépendant et gratuit : nous présentons les produits offerts au Québec, nous citons nos sources (comme l'AMF, l'OCRI ou l'ARC) et nous indiquons la date de dernière vérification de chaque information. Notre objectif est de vous aider à faire un choix éclairé, sans remplacer un conseil financier personnalisé. Les liens vers les produits mènent aux sites officiels des institutions et la consultation des comparatifs est entièrement gratuite pour vous."
 
 growth_process:
   enable: true
@@ -37,8 +37,12 @@ growth_process:
       content: "Institutions financières, AMF, OCRI et ARC. Chaque fiche affiche sa date de dernière vérification."
     - logo: "scale"
       title: "3. On classe selon des critères transparents"
-      content: "Nos évaluations reposent sur des critères clairs, jamais sur la rémunération que nous pourrions recevoir."
-  disclosure: "Fructo Finance se finance en partie par des liens d'affiliation et de parrainage. Cette rémunération n'influence jamais nos évaluations."
+      content: "Nos évaluations reposent sur des critères clairs, jamais sur une commission que nous pourrions recevoir."
+  # État actuel (voir products.json) : aucun lien du site n'est un vrai lien
+  # d'affiliation rémunéré. Pour réactiver la mention "nous pouvons recevoir une
+  # commission" : voir la marche à suivre documentée dans
+  # src/layouts/components/AffiliateDisclosure.astro.
+  disclosure: "Les liens vers les produits présentés sur Fructo Finance mènent aux sites officiels des institutions. Le site est actuellement gratuit et indépendant, sans commission d'affiliation."
   button:
     enable: false
     label: ""
