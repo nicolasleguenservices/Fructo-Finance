@@ -6,7 +6,11 @@ export interface Affiliate {
   url: string;
   commission_note: string;
   cookie_days?: number;
-  rel: "sponsored";
+  /**
+   * Vide tant que `url` pointe vers le site officiel (lien "follow").
+   * Mettre "sponsored" le jour où `url` devient un vrai lien d'affiliation.
+   */
+  rel: "" | "sponsored";
 }
 
 export interface ScoreBreakdown {

@@ -19,9 +19,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.wealthsimple.com/fr-ca/trade",
         "commission_note": "Bonus de parrainage + bonus de transfert 1 à 3 % pour le référé",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "Le courtier le plus simple pour débuter, avec 0 $ de commission sur actions et FNB.",
       "highlights": [
@@ -85,9 +85,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.questrade.com/fr/invest",
         "commission_note": "À confirmer selon le programme partenaire",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "Achat de FNB gratuit et vente d'actions/FNB dès ~4,95 $, pour investisseurs intermédiaires.",
       "highlights": [
@@ -148,9 +148,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.nbc.ca/fr/courtage-direct.html",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "0 $ de commission depuis 2021, institution québécoise avec service en français.",
       "highlights": [
@@ -209,9 +209,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.disnat.com/",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "Courtage en ligne de Desjardins, intégré à AccèsD, pour les membres qui veulent centraliser leurs comptes.",
       "highlights": [
@@ -266,9 +266,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.qtrade.ca/fr/investor.html",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "FNB sélectionnés à 0 $, outils d'analyse de portefeuille orientés investisseurs autonomes.",
       "highlights": [
@@ -323,9 +323,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.moomoo.com/ca/fr/invest/stocks",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "0 $ de commission et outils d'analyse avancés, pour traders actifs.",
       "highlights": [
@@ -369,9 +369,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.webull.ca/fr/",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "0 $ de commission, plateforme axée trading actif.",
       "highlights": [
@@ -413,9 +413,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.interactivebrokers.ca/fr/home.php",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "Frais parmi les plus bas et accès à de nombreux marchés mondiaux, pour investisseurs avancés.",
       "highlights": [
@@ -472,9 +472,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.investorsedge.cibc.com/fr/home.html",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "La commission la moins chère des grandes banques canadiennes, à ~6,99 $/opération.",
       "highlights": [
@@ -529,9 +529,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.rbcplacementsendirect.com/",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "9,95 $/opération (réduit à 6,95 $ dès 150 opérations/trimestre), écosystème RBC.",
       "highlights": [
@@ -587,9 +587,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.td.com/ca/fr/investir/placement-en-direct",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "~9,99 $/opération, plateforme WebBroker et intégration TD.",
       "highlights": [
@@ -645,9 +645,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.bmo.com/fr-ca/principal/particuliers/investissements/placements-en-direct/ligne-d-action/placements-autogeres/",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "9,95 $/opération; certains FNB à 0 $, écosystème BMO.",
       "highlights": [
@@ -702,9 +702,9 @@
       "affiliate": {
         "type": "affiliation",
         "network": "direct",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.scotiaitrade.com/fr/accueil.html",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "resume": "9,99 $/opération (réduit à 4,99 $ dès 150 opérations/trimestre), centre éducatif et écosystème Scotia.",
       "highlights": [
@@ -770,9 +770,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.bnc.ca/particuliers/cartes-credit-mastercard/world-elite.html",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Populaire auprès des Québécois qui voyagent",
       "verdict": "Carte de référence pour les voyageurs qui veulent une institution québécoise et un bon programme de points.",
@@ -827,9 +827,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.scotiabank.com/ca/en/personal/credit-cards/visa/momentum-infinite-card.html",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Un des meilleurs taux de remise sur l'épicerie",
       "verdict": "Bon choix pour les familles qui dépensent beaucoup en épicerie et en factures récurrentes.",
@@ -883,9 +883,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.americanexpress.com/en-ca/credit-cards/cobalt-card/",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Un des meilleurs taux épicerie et restos au pays",
       "verdict": "Excellent choix pour qui dépense beaucoup en épicerie et restaurants et veut des points flexibles.",
@@ -940,9 +940,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.scotiabank.com/ca/fr/particuliers/cartes-de-credit/visa/carte-infinite-passeport.html",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Pensée pour les voyageurs qui dépensent à l'étranger",
       "verdict": "Bon choix pour éviter les frais de change, en plus d'accumuler des points voyage.",
@@ -995,9 +995,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.tangerine.ca/en/personal/spend/credit-cards/money-back-credit-card",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "0 $ de frais, catégories au choix",
       "verdict": "Choix simple et sans frais pour qui veut une remise en argent sur ses catégories de dépenses préférées.",
@@ -1050,9 +1050,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.pcfinancial.ca/fr/credit-cards/world-elite/",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "0 $ de frais, avantageuse chez Loblaws/Maxi/Provigo/Pharmaprix",
       "verdict": "Excellent choix sans frais pour qui magasine régulièrement dans les enseignes du groupe Loblaws.",
@@ -1104,9 +1104,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.rbcroyalbank.com/fr/cartes/voyages/avion-visa-infinite-rbc.html",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Points voyage flexibles",
       "verdict": "Bon choix pour les voyageurs qui veulent échanger leurs points sur plusieurs compagnies plutôt qu'un seul programme.",
@@ -1157,9 +1157,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.td.com/ca/fr/services-bancaires-personnels/produits/cartes-de-credit/aeroplan/carte-visa-infinite-aeroplan/quebec",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Pensée pour les adeptes d'Air Canada et d'Aéroplan",
       "verdict": "Intéressante surtout si vous volez régulièrement avec Air Canada et ses partenaires.",
@@ -1213,9 +1213,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.bmo.com/principal/particuliers/cartes-de-credit/carte-mastercard-bmo-remises/",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "0 $ de frais, bon point de départ",
       "verdict": "Bon choix pour les étudiants et jeunes adultes qui veulent bâtir leur crédit sans frais annuels.",
@@ -1266,9 +1266,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.scotiabank.com/ca/fr/particuliers/cartes-de-credit/visa/carte-minima.html",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Le taux d'intérêt le plus bas pour qui reporte parfois un solde",
       "verdict": "À considérer si vous reportez parfois un solde plutôt que de le rembourser en entier chaque mois — le taux d'intérêt réduit limite les frais d'intérêt.",
@@ -1324,9 +1324,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.eqbank.ca/fr/services-bancaires-personnels/compte-epargne-preavis",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Taux élevé et sans frais, 100 % en ligne",
       "verdict": "Bon choix pour un fonds d'urgence ou une épargne à court-moyen terme : taux compétitif, aucun frais, aucun solde minimum.",
@@ -1381,9 +1381,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.wealthsimple.com/fr-ca/accounts",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Tout-en-un : épargne, placements et CELI au même endroit",
       "verdict": "Idéal pour centraliser épargne et placements dans un seul écosystème, avec une assurance-dépôts élevée.",
@@ -1436,9 +1436,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.tangerine.ca/fr/particuliers/epargne/compte-depargne",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Forfait bancaire sans frais avec un fort taux promotionnel de départ",
       "verdict": "Le taux promotionnel de départ est attrayant, mais le taux de base retombe bas après quelques mois — à surveiller.",
@@ -1489,9 +1489,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.desjardins.com/qc/fr/epargne-placements.html",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "L'institution québécoise pour combiner épargne et opérations quotidiennes",
       "verdict": "Le taux n'est pas le plus élevé, mais l'intégration à AccèsD et le réseau de succursales en font un choix pratique au Québec.",
@@ -1541,9 +1541,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.neofinancial.com/fr-CA/accounts/high-interest-savings",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Épargne et remises en argent combinées",
       "verdict": "Bon choix pour qui veut combiner un taux compétitif avec les remises en argent de la carte Neo Money.",
@@ -1592,9 +1592,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.oaken.com/fr-ca/compte-d-epargne/",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Spécialiste des CPG pour les gros dépôts",
       "verdict": "Intéressant pour les gros dépôts grâce à l'assurance-dépôts répartie entre deux institutions, mais pas de compte chèque.",
@@ -1642,9 +1642,9 @@
       "affiliate": {
         "type": "cpa",
         "network": "",
-        "url": "[LIEN_AFFILIATION]",
+        "url": "https://www.koho.ca/fr/save/",
         "commission_note": "",
-        "rel": "sponsored"
+        "rel": ""
       },
       "tagline": "Gérer les dépenses du quotidien tout en épargnant",
       "verdict": "Convient à ceux qui veulent un compte de dépenses au quotidien avec un peu d'intérêt sur le solde, plutôt qu'un compte d'épargne pur.",

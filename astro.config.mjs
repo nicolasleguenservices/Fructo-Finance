@@ -10,6 +10,17 @@ import remarkToc from "remark-toc";
 import sharp from "sharp";
 import config from "./src/config/config.json";
 import theme from "./src/config/theme.json";
+import rehypeLinkTarget from "./src/lib/rehype-link-target.mjs";
+
+// Domaines traités comme "internes" (maillage fructofinance.ca) par la règle
+// d'ouverture des liens : voir src/lib/rehype-link-target.mjs et src/lib/utils/linkAttrs.ts.
+let configuredHost;
+try {
+  configuredHost = new URL(config.site.base_url).hostname;
+} catch {
+  configuredHost = undefined;
+}
+const internalHosts = [configuredHost, "fructofinance.ca"].filter(Boolean);
 
 // Helper to parse font string format: "FontName:wght@400;500;600;700"
 function parseFontString(fontStr) {
@@ -78,7 +89,9 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    processor: unified(),
+    processor: unified({
+      rehypePlugins: [[rehypeLinkTarget, { internalHosts }]],
+    }),
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
     shikiConfig: { theme: "one-dark-pro", wrap: true },
   },

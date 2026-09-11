@@ -1,5 +1,6 @@
 ---
 import type { Affiliate } from "@/data/types";
+import { externalLinkAttrs } from "@/lib/utils/linkAttrs";
 
 interface Props {
   affiliate: Affiliate;
@@ -10,13 +11,17 @@ interface Props {
 }
 
 const { affiliate, label, ariaLabel, class: className = "" } = Astro.props;
+// CTA produit = toujours un lien externe (site officiel de l'émetteur/courtier) :
+// nouvel onglet + noopener/noreferrer. `affiliate.rel` reste vide ("follow") tant que
+// ce n'est pas un vrai lien d'affiliation ; passer à "sponsored" le jour venu.
+const { target, rel } = externalLinkAttrs(affiliate.rel);
 ---
 
 <a
   class={`btn btn-primary ${className}`}
   href={affiliate.url}
-  target="_blank"
-  rel={`${affiliate.rel} nofollow noopener noreferrer`}
+  target={target}
+  rel={rel}
   data-network={affiliate.network}
   aria-label={ariaLabel}
 >
