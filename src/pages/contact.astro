@@ -14,6 +14,11 @@ const hasContactInfo =
   (contactData.contact_info.items.length ?? 0) > 0;
 
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
+// Clé d'accès Web3Forms (publique par conception — voir .env.example). L'API
+// Web3Forms refuse les appels serveur→serveur sur le plan gratuit (403 "Use
+// our API in client side"), l'appel doit donc se faire depuis le navigateur.
+const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 ---
 
 <Base {...contactData}>
@@ -209,62 +214,76 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     )
   }
 
-  <script>
-    const form = document.getElementById("contact-form");
-    const statusEl = document.getElementById("contact-status");
+  <script
+    is:inline
+    set:html={`
+      const web3FormsKey = ${JSON.stringify(web3FormsKey || "")};
+      const form = document.getElementById("contact-form");
+      const statusEl = document.getElementById("contact-status");
 
-    if (form && statusEl) {
-      const setStatus = (message, ok) => {
-        statusEl.textContent = message;
-        statusEl.classList.toggle("text-green-600", ok === true);
-        statusEl.classList.toggle("text-red-600", ok === false);
-        statusEl.classList.toggle("text-text-dark", ok === undefined);
-        statusEl.hidden = false;
-      };
+      if (form && statusEl) {
+        const setStatus = (message, ok) => {
+          statusEl.textContent = message;
+          statusEl.classList.toggle("text-green-600", ok === true);
+          statusEl.classList.toggle("text-red-600", ok === false);
+          statusEl.classList.toggle("text-text-dark", ok === undefined);
+          statusEl.hidden = false;
+        };
 
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
 
-        const data = Object.fromEntries(new FormData(form).entries());
-        const submitBtn = form.querySelector('button[type="submit"]');
-
-        setStatus("Envoi en cours…", undefined);
-        submitBtn?.setAttribute("disabled", "true");
-
-        try {
-          const res = await fetch("/api/contact", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-              name: String(data.name || ""),
-              email: String(data.email || ""),
-              phone: String(data.phone || ""),
-              message: String(data.message || ""),
-              botcheck: String(data.botcheck || ""),
-            }),
-          });
-          const body = await res.json().catch(() => ({}));
-
-          if (res.ok && body.ok) {
-            setStatus(body.message || "Merci, votre message a été envoyé !", true);
-            form.reset();
-          } else {
+          if (!web3FormsKey) {
             setStatus(
-              body.error || "L'envoi a échoué. Réessayez plus tard.",
+              "Le service de contact n'est pas configuré. Écrivez-nous directement à contact@fructofinance.ca.",
               false,
             );
+            return;
           }
-        } catch {
-          setStatus(
-            "Erreur réseau. Vérifiez votre connexion et réessayez.",
-            false,
-          );
-        } finally {
-          submitBtn?.removeAttribute("disabled");
-        }
-      });
-    }
-  </script>
+
+          const data = Object.fromEntries(new FormData(form).entries());
+          const submitBtn = form.querySelector('button[type="submit"]');
+
+          setStatus("Envoi en cours…", undefined);
+          submitBtn?.setAttribute("disabled", "true");
+
+          try {
+            // Appel direct navigateur → Web3Forms : leur plan gratuit refuse
+            // les appels serveur→serveur (voir .env.example / PUBLIC_WEB3FORMS_KEY).
+            const res = await fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              headers: { "content-type": "application/json", accept: "application/json" },
+              body: JSON.stringify({
+                access_key: web3FormsKey,
+                subject: "Nouveau message depuis fructofinance.ca",
+                from_name: String(data.name || ""),
+                name: String(data.name || ""),
+                email: String(data.email || ""),
+                phone: String(data.phone || ""),
+                message: String(data.message || ""),
+                botcheck: String(data.botcheck || ""),
+              }),
+            });
+            const body = await res.json().catch(() => ({}));
+
+            if (res.ok && body.success) {
+              setStatus("Merci, votre message a été envoyé !", true);
+              form.reset();
+            } else {
+              setStatus("L'envoi a échoué. Réessayez plus tard.", false);
+            }
+          } catch {
+            setStatus(
+              "Erreur réseau. Vérifiez votre connexion et réessayez.",
+              false,
+            );
+          } finally {
+            submitBtn?.removeAttribute("disabled");
+          }
+        });
+      }
+    `}
+  />
 
   <!-- FAQ -->
   <Faq />
