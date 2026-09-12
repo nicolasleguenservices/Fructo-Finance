@@ -39,18 +39,29 @@ const {
 <!doctype html>
 <html lang="fr-CA">
   <head>
+    <!-- Petit Biscuit - Cookie Consent (doit rester le tout premier script du
+         <head> : il bloque les scripts de suivi marqués ci-dessous tant que
+         le visiteur n'a pas consenti). -->
+    <script
+      is:inline
+      src="https://cdn.petitbiscuit.ca/cookie-consent.js?id=D4IdqyeS9sMV"
+    ></script>
+
     <!-- google tag manager -->
     {
       config.google_tag_manager.enable && (
         <GoogleTagmanager id={config.google_tag_manager.gtm_id} />
       )
     }
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) — bloqué (type="text/plain") jusqu'au consentement
+         "analytics" via Petit Biscuit. -->
     <script
       is:inline
+      type="text/plain"
+      data-cookie-category="analytics"
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-1CMZXTLCXS"></script>
-    <script is:inline>
+    <script is:inline type="text/plain" data-cookie-category="analytics">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -59,8 +70,9 @@ const {
       gtag("config", "G-1CMZXTLCXS");
     </script>
 
-    <!-- Impact Universal Tracking Tag -->
-    <script is:inline type="text/javascript">
+    <!-- Impact Universal Tracking Tag — bloqué (type="text/plain") jusqu'au
+         consentement "marketing" via Petit Biscuit. -->
+    <script is:inline type="text/plain" data-cookie-category="marketing">
       (function (i, m, p, a, c, t) {
         c.ire_o = p;
         c[p] =
