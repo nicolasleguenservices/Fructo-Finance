@@ -45,6 +45,20 @@ const {
         <GoogleTagmanager id={config.google_tag_manager.gtm_id} />
       )
     }
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-1CMZXTLCXS"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-1CMZXTLCXS");
+    </script>
+
     <!-- Impact Universal Tracking Tag -->
     <script is:inline type="text/javascript">
       (function (i, m, p, a, c, t) {
