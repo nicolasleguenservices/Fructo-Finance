@@ -5,7 +5,6 @@ import Faq from "@/layouts/components/Faq.astro";
 import PageHeader from "@/layouts/components/PageHeader.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import DynamicIcon from "@/helpers/DynamicIcon";
-import config from "@/config/config.json";
 import type { Contact } from "@/types";
 
 const contact = await getListPage("contact", "-index");
@@ -13,12 +12,6 @@ const contactData: Contact = contact.data;
 const hasContactInfo =
   contactData.contact_info?.enable &&
   (contactData.contact_info.items.length ?? 0) > 0;
-
-// Cible de soumission du formulaire. Réglée dans config.json → params.contact_form_action.
-// Tant qu'aucun service (fonction / endpoint tiers) n'est branché, la valeur est "#"
-// (formulaire non fonctionnel) — l'adresse courriel reste joignable via la carte de
-// contact ci-contre et le lien du pied de page.
-const contactFormAction = config.params.contact_form_action || "#";
 
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
@@ -76,8 +69,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         <div class:list={["col-12", hasContactInfo ? "lg:col-7" : "lg:col-8 lg:mx-auto"]}>
           <div class="p-8 md:p-10 bg-light border border-border rounded-2xl">
             <form
-              action={contactFormAction}
-              method="post"
+              id="contact-form"
               class="flex flex-col gap-10"
             >
               <div class="flex flex-col gap-5">
@@ -116,6 +108,15 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
                     class="w-full rounded-[20px] bg-light px-8 py-5 border border-border text-text placeholder:text-text-dark focus:border-primary focus:outline-none transition-colors resize-none"
                   ></textarea>
                 </div>
+                {/* Champ piège anti-bot : masqué aux humains, ignoré s'il est rempli. */}
+                <input
+                  type="text"
+                  name="botcheck"
+                  tabindex="-1"
+                  autocomplete="off"
+                  aria-hidden="true"
+                  class="hidden"
+                />
               </div>
               {
                 turnstileSiteKey && (
@@ -140,6 +141,14 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
                 >
                   Envoyer le message
                 </button>
+                <p
+                  id="contact-status"
+                  role="status"
+                  aria-live="polite"
+                  class="text-sm"
+                  hidden
+                >
+                </p>
               </div>
             </form>
           </div>
@@ -199,6 +208,63 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       />
     )
   }
+
+  <script>
+    const form = document.getElementById("contact-form");
+    const statusEl = document.getElementById("contact-status");
+
+    if (form && statusEl) {
+      const setStatus = (message, ok) => {
+        statusEl.textContent = message;
+        statusEl.classList.toggle("text-green-600", ok === true);
+        statusEl.classList.toggle("text-red-600", ok === false);
+        statusEl.classList.toggle("text-text-dark", ok === undefined);
+        statusEl.hidden = false;
+      };
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const data = Object.fromEntries(new FormData(form).entries());
+        const submitBtn = form.querySelector('button[type="submit"]');
+
+        setStatus("Envoi en cours…", undefined);
+        submitBtn?.setAttribute("disabled", "true");
+
+        try {
+          const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              name: String(data.name || ""),
+              email: String(data.email || ""),
+              phone: String(data.phone || ""),
+              message: String(data.message || ""),
+              botcheck: String(data.botcheck || ""),
+            }),
+          });
+          const body = await res.json().catch(() => ({}));
+
+          if (res.ok && body.ok) {
+            setStatus(body.message || "Merci, votre message a été envoyé !", true);
+            form.reset();
+          } else {
+            setStatus(
+              body.error || "L'envoi a échoué. Réessayez plus tard.",
+              false,
+            );
+          }
+        } catch {
+          setStatus(
+            "Erreur réseau. Vérifiez votre connexion et réessayez.",
+            false,
+          );
+        } finally {
+          submitBtn?.removeAttribute("disabled");
+        }
+      });
+    }
+  </script>
 
   <!-- FAQ -->
   <Faq />
