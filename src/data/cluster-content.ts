@@ -172,9 +172,9 @@ export const clusterContent: Record<ClusterId, ClusterContent> = {
     heroTitle: "Meilleur compte d'épargne au Québec",
     heroIntro:
       "Le meilleur compte d'épargne au Québec est celui qui offre un taux élevé et durable, sans frais ni solde minimum. Attention au piège du taux promotionnel : certaines banques affichent près de 5 % pendant quelques mois, puis retombent sous 1 %. Fructo Finance compare ici les comptes offerts au Québec selon le taux de base, les frais, l'assurance-dépôts (SADC ou AMF) et le type de compte. Rappel utile : logés dans un CELI, vos intérêts sont à l'abri de l'impôt.",
-    metaTitle: "Meilleur compte d'épargne au Québec (2026) | Fructo Finance",
+    metaTitle: "Meilleur compte d'épargne au Québec (2026) | Fructo",
     metaDescription:
-      "Comparez les meilleurs comptes d'épargne à intérêt élevé offerts au Québec : taux, frais, CELI et assurance-dépôts (SADC, AMF). Comparatif indépendant, en français.",
+      "Comparez les meilleurs comptes d'épargne à intérêt élevé au Québec : taux, frais, CELI et assurance-dépôts (SADC, AMF). Comparatif indépendant.",
     pedagogicalSections: [
       {
         id: "marche-2026",

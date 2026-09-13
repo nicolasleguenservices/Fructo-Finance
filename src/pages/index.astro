@@ -30,7 +30,7 @@ const latestPosts = (await getSinglePage("blog"))
   .sort((a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf())
   .slice(0, 3);
 
-const pageTitle = "Comparateur de produits financiers au Québec | Fructo Finance";
+const pageTitle = "Comparateur financier au Québec | Fructo Finance";
 const pageDescription =
   "Comparez gratuitement les meilleurs courtiers en ligne, cartes de crédit et comptes d'épargne offerts au Québec. Comparatifs indépendants, en français, à jour.";
 
@@ -63,7 +63,11 @@ const jsonLd = [
 ];
 ---
 
-<Base title={pageTitle} description={pageDescription}>
+<Base
+  title={pageTitle}
+  description={pageDescription}
+  canonical={`${config.site.base_url}/`}
+>
   <meta
     slot="head"
     name="fo-verify"

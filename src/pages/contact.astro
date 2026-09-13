@@ -6,6 +6,7 @@ import PageHeader from "@/layouts/components/PageHeader.astro";
 import { getListPage } from "@/lib/contentParser.astro";
 import DynamicIcon from "@/helpers/DynamicIcon";
 import type { Contact } from "@/types";
+import config from "@/config/config.json";
 
 const contact = await getListPage("contact", "-index");
 const contactData: Contact = contact.data;
@@ -21,7 +22,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 ---
 
-<Base {...contactData}>
+<Base {...contactData} canonical={`${config.site.base_url}/contact`}>
   <PageHeader
     title={contactData.page_header!.title}
     subtitle={contactData.page_header!.subtitle}

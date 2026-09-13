@@ -34,6 +34,12 @@ const {
   canonical,
   og_type = "website",
 } = Astro.props;
+
+// Repli automatique : toute page qui ne fournit pas de `canonical` explicite
+// (override toujours prioritaire, ex. pagination) reçoit quand même une
+// canonical auto-référencée, pour qu'aucune page ne puisse s'en retrouver
+// sans — même construction que og:url ci-dessous.
+const resolvedCanonical = canonical || `${config.site.base_url}${Astro.url.pathname}`;
 ---
 
 <!doctype html>
@@ -44,6 +50,7 @@ const {
          le visiteur n'a pas consenti). -->
     <script
       is:inline
+      defer
       src="https://cdn.petitbiscuit.ca/cookie-consent.js?id=D4IdqyeS9sMV"
     ></script>
 
@@ -142,7 +149,7 @@ const {
       {plainify(meta_title ? meta_title : title ? title : config.site.title)}
     </title>
 
-    {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
+    <link rel="canonical" href={resolvedCanonical} item-prop="url" />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <meta
       name="description"

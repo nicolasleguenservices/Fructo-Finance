@@ -1,6 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import PageHeader from "@/layouts/components/PageHeader.astro";
+import config from "@/config/config.json";
 
 // État actuel (voir products.json) : aucun produit n'a affiliate.rel === "sponsored",
 // donc aucun lien de ce site n'est un vrai lien d'affiliation rémunéré. Le contenu
@@ -18,6 +19,7 @@ import PageHeader from "@/layouts/components/PageHeader.astro";
   title="Divulgation d'affiliation"
   meta_title="Divulgation d'affiliation"
   description="Comment Fructo Finance fonctionne et comment nous sommes financés, en toute transparence."
+  canonical={`${config.site.base_url}/divulgation-affiliation`}
 >
   <PageHeader
     title="Divulgation d'affiliation"
