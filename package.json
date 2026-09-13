@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"node scripts/themeGenerator.js --watch\" \"astro dev\"",
-    "build": "node scripts/themeGenerator.js && astro build",
+    "build": "node scripts/themeGenerator.js && astro build && node scripts/generateSlashRedirects.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "format": "prettier -w ./src"
