@@ -63,11 +63,6 @@ export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
-  // Fichiers plats (page.html) plutôt que page/index.html : Cloudflare Pages
-  // sert alors /page en 200 directement (au lieu d'un 308 vers /page/ pour
-  // résoudre l'index d'un dossier) — cohérent avec trailing_slash: false
-  // (sitemap, canonicals, liens internes, tous sans slash final).
-  build: { format: "file" },
   image: { service: sharp(), dangerouslyProcessSVG: true },
   vite: { plugins: [tailwindcss()] },
   fonts: fontsConfig,
