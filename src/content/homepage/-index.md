@@ -1,7 +1,7 @@
 ---
 banner:
   title: "Comparez les meilleurs produits financiers au Québec"
-  content: "Fructo Finance est un comparateur de produits financiers au Québec, indépendant et gratuit : courtiers en ligne, cartes de crédit et comptes d'épargne à intérêt élevé. Des comparatifs en français, à jour et pensés pour la réalité québécoise."
+  content: "Fructo Finance est un comparateur de produits financiers en ligne. Il est indépendant et gratuit, avec des comparatifs en français pour les courtiers en ligne, les cartes de crédit et les comptes d'épargne à intérêt élevé. Les données sont citées d'après des sources officielles et mises à jour en 2026."
   button_primary:
     enable: true
     label: "Comparer les courtiers"
