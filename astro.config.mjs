@@ -63,6 +63,10 @@ export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
+  // Sans barre oblique finale : générer /page.html (et non /page/index.html),
+  // sinon Cloudflare Pages redirige /page vers /page/ (308) alors que les
+  // canonicals et le sitemap pointent vers /page.
+  build: { format: config.site.trailing_slash ? "directory" : "file" },
   image: { service: sharp(), dangerouslyProcessSVG: true },
   vite: { plugins: [tailwindcss()] },
   fonts: fontsConfig,

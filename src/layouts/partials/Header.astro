@@ -2,6 +2,7 @@
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import Logo from "@/layouts/components/Logo.astro";
+import pagePath from "@/lib/utils/pagePath";
 
 export interface ChildNavigationLink {
   name: string;
@@ -17,7 +18,7 @@ export interface NavigationLink {
 
 const { main }: { main: NavigationLink[] } = menu;
 const { navigation_button, settings } = config;
-const { pathname } = Astro.url;
+const pathname = pagePath(Astro.url.pathname);
 
 const isActive = (url: string) => pathname === url || pathname === `${url}/`;
 const isChildActive = (children?: ChildNavigationLink[]) =>

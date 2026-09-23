@@ -6,7 +6,7 @@ Données : DataForSEO Canada/fr et Search Console, relevés du 2026-09-23.
 
 | # | Sujet | Mot-clé principal | Volume/mois | Pilier | Statut |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Carte World Elite au Québec : laquelle choisir et comment être approuvé | carte world elite | 4 400 (world elite mastercard) + 260 + 110, 50+ requêtes GSC | cartes-credit | en cours |
+| 1 | Carte World Elite au Québec : laquelle choisir et comment être approuvé | carte world elite | 4 400 (world elite mastercard) + 260 + 110, 50+ requêtes GSC | cartes-credit | publié (2026-09-23) |
 | 2 | XEQT ou VEQT : lequel choisir dans un CELI | xeqt vs veqt | 4 400 | investir | à faire |
 | 3 | REEE au Québec : SCEE, IQEE et où l'ouvrir | reee québec | 8 100 (reee) + 1 600 (subvention reee) + 390 (iqee) | investir | à faire |
 | 4 | Meilleurs taux de CPG au Québec | meilleur taux cpg | 1 600 + 880 (taux cpg) | epargne | à faire |
