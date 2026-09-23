@@ -33,3 +33,6 @@ package-lock.json
 .wrangler/
 # ide
 .idea/
+
+# brouillons des agents de rédaction (jamais commités)
+.redaction/
