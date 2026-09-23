@@ -2,7 +2,7 @@
   "_meta": {
     "description": "Source unique de données produits. Alimente les tableaux comparatifs et les pages programmatiques (X vs Y). NE PAS coder les chiffres en dur ailleurs.",
     "avertissement": "Tous les chiffres (frais, taux, bonus) doivent être vérifiés sur le site officiel avant publication. Ils changent souvent. Mettre à jour 'last_verified' à chaque révision.",
-    "derniere_maj": "2026-07-30"
+    "derniere_maj": "2026-09-23"
   },
   "brokers": [
     {
@@ -788,11 +788,11 @@
         "Revenu minimum élevé exigé pour être admissible (80 000 $ / 150 000 $ familial)"
       ],
       "card_details": {
-        "frais_annuels": "150 $ (carte suppl. 50 $ ; 0 $ la 1re année, offre en cours)",
+        "frais_annuels": "150 $ (carte suppl. 50 $)",
         "taux_interet_achats": "20,99 %",
         "taux_interet_avances": "22,49 %",
         "type_recompenses": "5 pts/$ épicerie et resto, 2 pts/$ essence, recharge VE, factures récurrentes et voyage (plafond 2 500 $/mois), 1 pt/$ ailleurs",
-        "bonus_bienvenue": "1re année sans frais + jusqu'à 20 000 pts",
+        "bonus_bienvenue": "Aucune prime affichée (promotion en points terminée)",
         "frais_conversion_devises": "2,5 %",
         "revenu_requis": "80 000 $ perso / 150 000 $ ménage",
         "reseau": "Mastercard"
@@ -803,11 +803,11 @@
       ],
       "emetteur": "Banque Nationale",
       "url_officiel": "https://www.bnc.ca",
-      "last_verified": "2026-08-21",
+      "last_verified": "2026-09-23",
       "comparatif": {
-        "frais_annuels": "150 $ (0 $ la 1re année)",
+        "frais_annuels": "150 $",
         "recompenses": "5 pts/$ épicerie et resto",
-        "prime_bienvenue": "1re année sans frais + jusqu'à 20 000 pts"
+        "prime_bienvenue": "Aucune prime affichée (promotion en points terminée)"
       }
     },
     {
@@ -1070,9 +1070,9 @@
       "card_details": {
         "frais_annuels": "0 $",
         "taux_interet_achats": "21,99 %",
-        "taux_interet_avances": "22,97 %",
-        "type_recompenses": "points PC Optimum, ≈3 % (30 pts/$) épicerie du groupe Loblaws (Maxi, Provigo), ≈1 % ailleurs; assurances voyage et location auto incluses",
-        "bonus_bienvenue": "20 000 pts Optimum",
+        "taux_interet_avances": "22,97 % (21,97 % au Québec)",
+        "type_recompenses": "points PC Optimum : 3 % épiceries du groupe Loblaw (Maxi, Provigo), 4,5 % Pharmaprix, 3 % Joe Fresh, au moins 3 ¢/L chez Esso et Mobil, 1 % ailleurs ; assurances voyage et location auto incluses",
+        "bonus_bienvenue": "50 000 pts PC Optimum (100 $ d'achats en magasins participants en 60 jours)",
         "revenu_requis": "80 000 $ perso / 150 000 $ ménage",
         "reseau": "Mastercard"
       },
@@ -1082,11 +1082,11 @@
       ],
       "emetteur": "PC Financial",
       "url_officiel": "https://www.pcfinancial.ca",
-      "last_verified": "2026-08-21",
+      "last_verified": "2026-09-23",
       "comparatif": {
         "frais_annuels": "0 $",
         "recompenses": "≈3 % épicerie (Loblaws, Maxi)",
-        "prime_bienvenue": "20 000 pts Optimum"
+        "prime_bienvenue": "50 000 pts PC Optimum (100 $ d'achats en magasins participants en 60 jours)"
       }
     },
     {
