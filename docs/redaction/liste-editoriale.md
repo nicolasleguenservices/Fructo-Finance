@@ -12,6 +12,6 @@ Données : DataForSEO Canada/fr et Search Console, relevés du 2026-09-23.
 | 4 | Meilleurs taux de CPG au Québec | meilleur taux cpg | 1 600 + 880 (taux cpg) | epargne | publié (2026-09-24) |
 | 5 | Cote de crédit au Québec : comment l'améliorer | cote de crédit | 2 400 + 1 300 (dossier de crédit) | cartes-credit | publié (2026-09-24) |
 | 6 | Première carte de crédit : bâtir son crédit au Québec | carte de crédit étudiant | 320 | cartes-credit | publié (2026-09-24) |
-| 7 | Disnat ou BNCD : quel courtier québécois choisir | disnat ou bncd | 4 400 (courtage banque nationale) | investir | prêt, image à rechoisir (logo Scotia) |
+| 7 | Disnat ou BNCD : quel courtier québécois choisir | disnat ou bncd | 4 400 (courtage banque nationale) | investir | publié (2026-09-24) |
 
 Sujets écartés (risque zéro clic ou déjà couverts) : droits de cotisation CELI, budget 50/30/20, définitions simples, sujets des 16 articles en ligne.
