@@ -27,7 +27,7 @@
       "highlights": [
         "Commission actions/FNB canadiens : 0 $",
         "Frais de change USD : ~1,5 % par conversion (0 $ sur actions US avec l'offre Premium à ~10 $/mois)",
-        "Comptes offerts : CELI, REER, CELIAPP, compte non enregistré. REEE en placements autonomes : — historiquement non pris en charge; le robot Invest ne serait pas fournisseur autorisé au Québec pour l'IQEE",
+        "Comptes offerts : CELI, REER, CELIAPP, REEE (autogéré ou géré, avec IQEE : Wealthsimple Investments inc. figure sur la liste des fournisseurs de Revenu Québec), compte non enregistré",
         "Frais d'administration : 0 $ de frais de tenue de compte, aucun dépôt minimum",
         "Réglementation : membre OCRI et FCPE"
       ],
@@ -39,8 +39,7 @@
       ],
       "cons": [
         "Frais de change USD élevés",
-        "Produits/outils avancés limités",
-        "Pas de REEE en autonome"
+        "Produits/outils avancés limités"
       ],
       "fees": {
         "commission_actions_fnb": "0 $",
@@ -841,15 +840,14 @@
       ],
       "cons": [
         "Frais annuels de 120 $ après la 1re année",
-        "Frais de conversion en devises de 2,5 %"
+        "Taux bonifiés plafonnés à 25 000 $ de dépenses par année"
       ],
       "card_details": {
         "frais_annuels": "120 $ (carte suppl. 50 $)",
         "taux_interet_achats": "20,99 %",
         "taux_interet_avances": "22,99 %",
-        "type_recompenses": "4 % épicerie et factures récurrentes, 2 % essence, transport et livraison, 1 % ailleurs",
-        "bonus_bienvenue": "Jusqu'à 300 $ + 1re année sans frais",
-        "frais_conversion_devises": "2,5 %",
+        "type_recompenses": "4 % épicerie, paiements périodiques et abonnements ; 2 % essence, recharge VE, transport et livraison (plafond 25 000 $/an par taux) ; 1 % ailleurs",
+        "bonus_bienvenue": "15 % sur 2 000 $ (jusqu'à 300 $) + 1re année sans frais, comptes ouverts d'ici le 1er novembre 2026",
         "revenu_requis": "60 000 $ perso / 100 000 $ ménage",
         "reseau": "Visa"
       },
@@ -859,11 +857,11 @@
       ],
       "emetteur": "Banque Scotia",
       "url_officiel": "https://www.scotiabank.com",
-      "last_verified": "2026-08-21",
+      "last_verified": "2026-09-23",
       "comparatif": {
         "frais_annuels": "120 $",
         "recompenses": "4 % épicerie et factures",
-        "prime_bienvenue": "Jusqu'à 300 $ + 1re année sans frais"
+        "prime_bienvenue": "15 % sur 2 000 $ (jusqu'à 300 $) + 1re année sans frais, comptes ouverts d'ici le 1er novembre 2026"
       }
     },
     {
@@ -887,26 +885,25 @@
         "commission_note": "",
         "rel": ""
       },
-      "tagline": "Un des meilleurs taux épicerie et restos au pays",
-      "verdict": "Excellent choix pour qui dépense beaucoup en épicerie et restaurants et veut des points flexibles.",
-      "resume": "Carte à points American Express avec un taux élevé sur l'épicerie et les restaurants, frais facturés mensuellement.",
+      "tagline": "Un des meilleurs taux resto et livraison au pays",
+      "verdict": "Excellent choix pour qui dépense beaucoup au restaurant et en livraison et veut des points flexibles.",
+      "resume": "Carte à points American Express avec un taux élevé sur les restaurants et la livraison de nourriture ; frais facturés une fois par année au Québec.",
       "highlights": [],
       "pros": [
-        "Taux de points très élevé sur épicerie et restos",
-        "Points transférables vers plusieurs programmes de voyage"
+        "Taux de points très élevé au restaurant et en livraison",
+        "Points utilisables sur les achats admissibles (1 000 points = 10 $)"
       ],
       "cons": [
         "American Express moins accepté que Visa/Mastercard chez certains commerçants",
-        "Frais de conversion en devises de 2,5 %"
+        "Épicerie non bonifiée (restaurants et livraison seulement à 5 points)"
       ],
       "card_details": {
         "frais_annuels": "191,88 $/an (facturés annuellement au Québec)",
         "taux_interet_achats": "21,99 %",
         "taux_interet_avances": "21,99 %",
-        "type_recompenses": "5 pts/$ épicerie, resto et livraison (plafond 2 500 $/mois), 3 pts/$ diffusion en continu, 2 pts/$ essence et transport, 1 pt/$ ailleurs",
+        "type_recompenses": "5 pts/$ restaurants, bars et livraison de nourriture, 3 pts/$ diffusion en continu, 2 pts/$ essence, transport en commun et covoiturage, 1 pt/$ ailleurs",
         "bonus_bienvenue": "Jusqu'à 15 000 pts",
-        "frais_conversion_devises": "2,5 %",
-        "reseau": "American Express"
+                "reseau": "American Express"
       },
       "ideal_pour": [
         "épicerie et restaurants",
@@ -914,10 +911,10 @@
       ],
       "emetteur": "American Express",
       "url_officiel": "https://www.americanexpress.com/ca",
-      "last_verified": "2026-08-21",
+      "last_verified": "2026-09-23",
       "comparatif": {
         "frais_annuels": "191,88 $/an",
-        "recompenses": "5 pts/$ épicerie et resto",
+        "recompenses": "5 pts/$ resto et livraison",
         "prime_bienvenue": "Jusqu'à 15 000 pts"
       }
     },
@@ -959,8 +956,8 @@
         "frais_annuels": "150 $ (1re carte suppl. 0 $)",
         "taux_interet_achats": "20,99 %",
         "taux_interet_avances": "22,99 %",
-        "type_recompenses": "jusqu'à 3X Scène+ épicerie et divertissement, 2X resto, 1X ailleurs; 6 accès salons aéroport par an",
-        "bonus_bienvenue": "25 000 pts Scène+",
+        "type_recompenses": "3 pts Scène+/$ IGA, Sobeys et épiceries du groupe ; 2 pts/$ restaurants, autres épiceries, divertissement et transport en commun ; 1 pt/$ ailleurs ; 6 visites gratuites en salon d'aéroport",
+        "bonus_bienvenue": "Jusqu'à 35 000 pts Scène+ (25 000 après 2 000 $ en 3 mois + 10 000 avec 40 000 $ d'achats annuels), comptes ouverts d'ici le 1er novembre 2026",
         "frais_conversion_devises": "aucuns frais de change (0 %)",
         "revenu_requis": "60 000 $ perso / 100 000 $ ménage",
         "reseau": "Visa"
@@ -970,11 +967,11 @@
       ],
       "emetteur": "Banque Scotia",
       "url_officiel": "https://www.scotiabank.com",
-      "last_verified": "2026-08-21",
+      "last_verified": "2026-09-23",
       "comparatif": {
         "frais_annuels": "150 $",
         "recompenses": "3X Scène+ épicerie · 0 change",
-        "prime_bienvenue": "25 000 pts Scène+"
+        "prime_bienvenue": "Jusqu'à 35 000 pts Scène+"
       }
     },
     {
@@ -1016,7 +1013,7 @@
         "taux_interet_achats": "20,95 %",
         "taux_interet_avances": "22,95 %",
         "type_recompenses": "2 % sur 2 catégories au choix (3e si dépôt épargne Tangerine), 0,5 % ailleurs",
-        "bonus_bienvenue": "100 $",
+        "bonus_bienvenue": "10 % de remise en plus pendant 2 mois (jusqu'à 100 $), demandes jusqu'au 30 novembre 2026",
         "frais_conversion_devises": "2,5 %",
         "reseau": "Mastercard"
       },
@@ -1025,7 +1022,7 @@
       ],
       "emetteur": "Tangerine",
       "url_officiel": "https://www.tangerine.ca",
-      "last_verified": "2026-08-21",
+      "last_verified": "2026-09-23",
       "comparatif": {
         "frais_annuels": "0 $",
         "recompenses": "2 % sur 3 catégories au choix",
@@ -1122,9 +1119,9 @@
       ],
       "card_details": {
         "frais_annuels": "120 $ (carte suppl. 50 $)",
-        "taux_interet_achats": "19,99 %",
-        "taux_interet_avances": "22,99 %",
-        "type_recompenses": "points Avion flexibles (500+ compagnies)",
+        "taux_interet_achats": "20,99 %",
+        "taux_interet_avances": "22,99 % (21,99 % au Québec)",
+        "type_recompenses": "1,25 pt Avion/$ voyages, 1 pt/$ ailleurs ; points échangeables sur 500+ compagnies",
         "bonus_bienvenue": "Jusqu'à 70 000 pts Avion",
         "frais_conversion_devises": "2,5 %",
         "revenu_requis": "60 000 $ perso / 100 000 $ ménage",
@@ -1135,7 +1132,7 @@
       ],
       "emetteur": "RBC",
       "url_officiel": "https://www.rbc.com",
-      "last_verified": "2026-08-21",
+      "last_verified": "2026-09-23",
       "comparatif": {
         "frais_annuels": "120 $",
         "recompenses": "Points Avion flexibles",
@@ -1174,12 +1171,11 @@
         "Frais annuels de 139 $"
       ],
       "card_details": {
-        "frais_annuels": "139 $",
-        "taux_interet_achats": "20,99 %",
-        "taux_interet_avances": "22,99 %",
-        "type_recompenses": "points Aéroplan; 1er bagage enregistré gratuit sur Air Canada",
-        "bonus_bienvenue": "Jusqu'à 40 000 pts + 1re année sans frais",
-        "frais_conversion_devises": "2,5 %",
+        "frais_annuels": "139 $ (carte suppl. 75 $ ; remboursés la 1re année, offre en cours)",
+        "taux_interet_achats": "21,99 % (Québec)",
+        "taux_interet_avances": "21,99 % (Québec)",
+        "type_recompenses": "1,5 pt Aéroplan/$ essence, recharge VE, épicerie et Air Canada, 1 pt/$ ailleurs ; 1er bagage enregistré gratuit sur Air Canada",
+        "bonus_bienvenue": "Jusqu'à 50 000 pts + 1re année sans frais",
         "revenu_requis": "60 000 $ perso / 100 000 $ ménage",
         "reseau": "Visa"
       },
@@ -1188,11 +1184,11 @@
       ],
       "emetteur": "TD",
       "url_officiel": "https://www.td.com",
-      "last_verified": "2026-08-21",
+      "last_verified": "2026-09-23",
       "comparatif": {
-        "frais_annuels": "139 $",
+        "frais_annuels": "139 $ (carte suppl. 75 $ ; remboursés la 1re année, offre en cours)",
         "recompenses": "Points Aéroplan",
-        "prime_bienvenue": "Jusqu'à 40 000 pts + 1re année sans frais"
+        "prime_bienvenue": "Jusqu'à 50 000 pts + 1re année sans frais"
       }
     },
     {
@@ -1226,14 +1222,14 @@
         "Accessible pour étudiants et jeunes adultes"
       ],
       "cons": [
-        "Plafonds et taux de remise modestes (500 $ de dépenses/mois par catégorie)"
+        "Plafonds et taux de remise modestes (500 $ d'achats par période de relevé par catégorie)"
       ],
       "card_details": {
         "frais_annuels": "0 $",
-        "taux_interet_achats": "20,99 %",
-        "taux_interet_avances": "22,99 %",
-        "type_recompenses": "3 % épicerie (jusqu'à 500 $/mois), 1 % factures récurrentes, 0,5 % ailleurs",
-        "bonus_bienvenue": "5 % de remise pendant 3 mois",
+        "taux_interet_achats": "21,99 %",
+        "taux_interet_avances": "23,99 % (21,99 % au Québec)",
+        "type_recompenses": "3 % épicerie et 1 % factures périodiques (jusqu'à 500 $ par période de relevé chacun), 0,5 % ailleurs",
+        "bonus_bienvenue": "Jusqu'à 5 % de remise pendant 3 mois",
         "frais_conversion_devises": "2,5 %",
         "reseau": "Mastercard"
       },
@@ -1243,11 +1239,11 @@
       ],
       "emetteur": "BMO",
       "url_officiel": "https://www.bmo.com",
-      "last_verified": "2026-08-21",
+      "last_verified": "2026-09-23",
       "comparatif": {
         "frais_annuels": "0 $",
         "recompenses": "3 % épicerie, 1 % factures",
-        "prime_bienvenue": "5 % pendant 3 mois"
+        "prime_bienvenue": "Jusqu'à 5 % pendant 3 mois"
       }
     },
     {
@@ -1271,23 +1267,23 @@
         "rel": ""
       },
       "tagline": "Le taux d'intérêt le plus bas pour qui reporte parfois un solde",
-      "verdict": "À considérer si vous reportez parfois un solde plutôt que de le rembourser en entier chaque mois — le taux d'intérêt réduit limite les frais d'intérêt.",
+      "verdict": "À considérer si vous reportez parfois un solde plutôt que de le rembourser en entier chaque mois : le taux d'intérêt réduit limite les frais d'intérêt.",
       "resume": "Carte à faible taux d'intérêt de la Banque Scotia (13,99 %), pour qui garde parfois un solde d'un mois à l'autre plutôt que de miser sur les récompenses.",
       "highlights": [],
       "pros": [
         "Intérêts réduits en cas de solde reporté",
-        "Taux de 0 % pendant 10 mois sur les avances de fonds"
+        "Taux de 0 % pendant 9 mois sur les transferts de solde (frais de 1 %)"
       ],
       "cons": [
         "Peu ou pas de récompenses",
         "Frais annuels de 29 $ après la 1re année"
       ],
       "card_details": {
-        "frais_annuels": "29 $ (carte suppl. 0 $ ; 0 $ la 1re année, offre en cours)",
-        "taux_interet_achats": "12,99 %",
-        "taux_interet_avances": "12,99 % (0 % pendant 10 mois sur les avances)",
+        "frais_annuels": "29 $ (carte suppl. 0 $ ; 0 $ la 1re année pour les comptes ouverts d'ici le 3 janvier 2027)",
+        "taux_interet_achats": "13,99 %",
+        "taux_interet_avances": "13,99 %",
         "type_recompenses": "Aucune (carte axée sur le faible taux)",
-        "bonus_bienvenue": "1re année sans frais",
+        "bonus_bienvenue": "1re année sans frais + 0 % sur transferts de solde pendant 9 mois",
         "reseau": "Visa"
       },
       "ideal_pour": [
@@ -1295,11 +1291,11 @@
       ],
       "emetteur": "Banque Scotia",
       "url_officiel": "https://www.scotiabank.com",
-      "last_verified": "2026-08-21",
+      "last_verified": "2026-09-23",
       "comparatif": {
         "frais_annuels": "29 $ (0 $ la 1re année)",
-        "recompenses": "Taux réduit 12,99 %",
-        "prime_bienvenue": "0 % avances 10 mois + 1re année sans frais"
+        "recompenses": "Taux réduit 13,99 %",
+        "prime_bienvenue": "0 % sur transferts de solde 9 mois + 1re année sans frais"
       }
     }
   ],
@@ -1441,7 +1437,7 @@
         "rel": ""
       },
       "tagline": "Forfait bancaire sans frais avec un fort taux promotionnel de départ",
-      "verdict": "Le taux promotionnel de départ est attrayant, mais le taux de base retombe bas après quelques mois — à surveiller.",
+      "verdict": "Le taux promotionnel de départ est attrayant, mais le taux de base retombe à 0,30 % après 5 mois : à surveiller.",
       "resume": "Compte d'épargne sans frais de Tangerine, filiale de la Banque Scotia, avec taux promotionnel sur les nouveaux dépôts.",
       "highlights": [],
       "pros": [
@@ -1452,14 +1448,14 @@
         "Taux de base modeste une fois la promotion terminée"
       ],
       "account_details": {
-        "taux_interet": "Taux de base ~0,70 %; taux promotionnel jusqu'à ~4,50 % sur les nouveaux dépôts pendant environ 5 mois, puis retour au taux de base",
+        "taux_interet": "Taux de base 0,30 % (depuis le 23 février 2026) ; nouveaux clients : 4,50 % pendant 5 mois (5,00 % en compte enregistré) pour un numéro de client créé du 28 juillet au 30 novembre 2026, puis retour au taux de base",
         "frais_mensuels": "0 $, aucun solde minimum",
         "assurance_depots": "SADC",
-        "prime": "250 $ pour le transfert du dépôt direct de la paie (offre en cours)",
+        "prime": "250 $ pour le transfert du dépôt direct de la paie (numéro de client créé d'ici le 31 octobre 2026)",
         "note": "Accès aux guichets de la Banque Scotia; filiale de la Banque Scotia."
       },
       "comparatif": {
-        "taux": "Base ~0,70 %, promo jusqu'à ~4,50 %",
+        "taux": "Base 0,30 %, promo 4,50 % (5 mois)",
         "frais": "0 $",
         "assurance": "SADC"
       },
@@ -1468,7 +1464,7 @@
       ],
       "emetteur": "Tangerine (Banque Scotia)",
       "url_officiel": "https://www.tangerine.ca",
-      "last_verified": "2026-08-21"
+      "last_verified": "2026-09-23"
     },
     {
       "id": "desjardins-epargne",
