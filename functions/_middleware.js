@@ -1,16 +1,16 @@
 /**
  * Cloudflare Pages Function — middleware globale
  *
- * Redirige (301) le domaine par défaut `finance-quebec.pages.dev` vers le
+ * Redirige (301) le domaine par défaut `fructo-finance.pages.dev` vers le
  * domaine de production `fructofinance.ca`, en conservant le chemin et la
  * chaîne de requête. Évite le contenu dupliqué dans l'index Google.
  *
  * Ne touche PAS aux URL de prévisualisation (ex.
- * abc123.finance-quebec-v2.pages.dev) : seul le hostname exact ci-dessous
+ * abc123.fructo-finance.pages.dev) : seul le hostname exact ci-dessous
  * est concerné, pour ne pas casser les previews de branches/déploiements.
  */
 
-const PAGES_DEV_HOST = "finance-quebec.pages.dev";
+const PAGES_DEV_HOST = "fructo-finance.pages.dev";
 const CANONICAL_ORIGIN = "https://fructofinance.ca";
 
 export async function onRequest(context) {
