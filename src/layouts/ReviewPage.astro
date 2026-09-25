@@ -9,6 +9,8 @@ import ProductLogo from "@/layouts/components/ProductLogo.astro";
 import PillarCta from "@/layouts/components/PillarCta.astro";
 import { allProducts, ctaVerb } from "@/data/products";
 import { getAuthor } from "@/data/authors";
+import ImageMod from "@/layouts/components/ImageMod.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
 import frenchDate from "@/lib/utils/frenchDate";
 import config from "@/config/config.json";
 import { render } from "astro:content";
@@ -71,6 +73,18 @@ const disclaimerTail = isCard ? "de faire une demande" : "d'ouvrir un compte";
 
 const { Content, headings } = await render(review);
 const bodyHeadings = headings.filter((h) => h.depth === 2);
+
+// Maillage interne « À lire aussi » : d'abord les articles qui citent déjà ce
+// produit (lien vers cette page d'avis), puis les plus récents du même pilier.
+const reviewPath = `/${d.pillar}/${slug}`;
+const posts = (await getSinglePage("blog")).sort(
+  (a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf(),
+);
+const citing = posts.filter((p) => (p.body ?? "").includes(`](${reviewPath})`));
+const samePillar = posts.filter(
+  (p) => p.data.pillar === d.pillar && !citing.includes(p),
+);
+const relatedPosts = [...citing, ...samePillar].slice(0, 3);
 
 // Sommaire = sections du gabarit (ancres fixes) + sections en prose du corps MDX.
 const toc = [
@@ -402,6 +416,53 @@ const proseClass =
       </div>
     </div>
   </article>
+
+  <!-- Maillage interne : articles liés (même rendu que sur les articles de blog) -->
+  {
+    relatedPosts.length > 0 && (
+      <section class="section pt-0">
+        <div class="container">
+          <div class="section-intro centralize mb-10">
+            <h2 class="title hasHighlight">À lire aussi</h2>
+          </div>
+          <div class="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {relatedPosts.map((p) => (
+              <a
+                href={`/blog/${p.data.slug ?? p.id}`}
+                class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-body transition-colors hover:border-primary"
+              >
+                <div class="shrink-0 overflow-hidden bg-secondary">
+                  <ImageMod
+                    src={p.data.coverImage}
+                    alt={p.data.coverAlt}
+                    width={600}
+                    height={340}
+                    fit={p.data.coverFit}
+                    position="left"
+                    loading="lazy"
+                    class:list={[
+                      "aspect-[600/340] h-auto w-full object-left transition-transform duration-300 group-hover:scale-[1.03]",
+                      p.data.coverFit === "contain"
+                        ? "object-contain"
+                        : "object-cover",
+                    ]}
+                  />
+                </div>
+                <div class="flex flex-1 flex-col gap-2 p-5">
+                  <span class="text-xs font-semibold uppercase tracking-wide text-text-dark">
+                    {frenchDate(p.data.datePublished)}
+                  </span>
+                  <span class="text-h6-sm font-bold text-secondary group-hover:text-primary">
+                    {p.data.title}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <!-- Section CTA pilier (dernière section avant le footer) -->
   <PillarCta pillar={d.pillar} />

@@ -1,7 +1,7 @@
 ---
 title: "Contactez-nous"
-meta_title: "Contact - Fructo Finance"
-description: "Une question, une correction à signaler ou une suggestion de produit à comparer ? Écrivez-nous."
+meta_title: "Nous joindre : contact et questions | Fructo Finance"
+description: "Une question, une correction à signaler ou un produit financier à comparer ? Écrivez à l'équipe de Fructo Finance, comparateur indépendant au Québec."
 image: ""
 draft: false
 

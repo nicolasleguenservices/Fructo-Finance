@@ -1,7 +1,7 @@
 ---
 title: "Mentions légales"
 meta_title: "Mentions légales | Fructo Finance"
-description: "Informations légales concernant le site Fructo Finance : éditeur, hébergement et conditions d'utilisation."
+description: "Informations légales du site Fructo Finance, comparateur indépendant de produits financiers au Québec : éditeur, hébergement et conditions d'utilisation."
 image: ""
 draft: false
 ---
