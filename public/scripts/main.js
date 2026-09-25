@@ -334,6 +334,17 @@
 
     const openMobileMenu = () => {
       if (!header || !navToggle) return;
+      // Le passage sticky -> relative (voir CSS `.menu-open`) recale le
+      // header sur sa position naturelle dans le flux, tout en haut du
+      // document. Si la page est défilée, ce recalage se fait hors du
+      // viewport (le header, et donc le menu, deviennent invisibles) :
+      // on remonte en haut d'abord pour que les deux positions coïncident.
+      if (window.scrollY > 0) {
+        window.scrollTo({
+          top: 0,
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+      }
       header.classList.add("menu-open");
       navToggle.setAttribute("aria-expanded", "true");
       navToggle.setAttribute("aria-label", "Fermer le menu");
