@@ -53,7 +53,7 @@ Au premier chargement, un bandeau de consentement (Petit Biscuit) vous permet d'
 | Essentiels | Petit Biscuit | mémorisation de vos choix de consentement | selon le réglage du bandeau |
 | Analytique (avec consentement) | Google Analytics 4 | `_ga`, `_ga_*` | jusqu'à 2 ans |
 
-Vous pouvez modifier vos choix à tout moment depuis le bandeau de consentement ou en supprimant les témoins dans les réglages de votre navigateur.
+Vous pouvez modifier vos choix à tout moment avec le lien « Gérer les témoins » du pied de page, qui fait réapparaître le bandeau, ou en supprimant les témoins dans les réglages de votre navigateur.
 
 ## Communication des renseignements
 
