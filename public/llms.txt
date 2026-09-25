@@ -1,0 +1,104 @@
+# Fructo Finance
+
+> Fructo Finance est un comparateur indépendant et gratuit de produits financiers offerts aux résidents du Québec, en français : courtiers en ligne, cartes de crédit et comptes d'épargne. Les données (frais, taux, conditions) sont vérifiées sur les sites officiels des institutions et datées.
+
+Fondateur et auteur : Nicolas Le Guen. Aucune commission n'est reçue à ce jour : les liens mènent aux sites officiels des institutions.
+
+## Ce que nous faisons
+
+- **Comparateur des courtiers en ligne** (https://fructofinance.ca/investir) : frais, comptes enregistrés (CELI, REER, CELIAPP, REEE), service en français, protection OCRI et FCPI.
+- **Comparateur des cartes de crédit** (https://fructofinance.ca/cartes-credit) : frais annuels, taux d'intérêt, récompenses, revenu exigé, taux propres au Québec.
+- **Comparateur des comptes d'épargne** (https://fructofinance.ca/epargne) : taux de base et promotionnels, frais, assurance-dépôts (SADC ou AMF).
+- **Guides** : explications des comptes enregistrés, des subventions (SCEE, IQEE) et des règles propres au Québec.
+
+## Pour qui
+
+Résidents du Québec, francophones, débutants ou intermédiaires en finances personnelles : jeunes professionnels, parents qui épargnent pour leurs enfants, investisseurs qui commencent.
+
+## Quand nous ne sommes pas le bon choix
+
+- Pour un conseil financier ou fiscal personnalisé : consultez un professionnel inscrit à l'AMF.
+- Pour des produits offerts uniquement hors Québec ou hors Canada.
+- Pour la spéculation (day trading, cryptomonnaies à effet de levier).
+
+## Particularités québécoises couvertes
+
+- Protection des dépôts : SADC pour les banques, Autorité des marchés financiers pour les caisses Desjardins.
+- Paiement minimum de 5 % du solde sur les cartes de crédit (Loi sur la protection du consommateur).
+- Incitatif québécois à l'épargne-études (IQEE) en plus de la SCEE fédérale.
+- Produits non offerts au Québec par certaines institutions pancanadiennes.
+
+## Guides
+
+- [Simplii, Tangerine, EQ : lesquelles sont vraiment offertes au Québec ?](https://fructofinance.ca/blog/banques-en-ligne-offertes-au-quebec) : Simplii n'est pas offerte au Québec, et la Banque EQ y limite ses produits. On fait le point sur les banques en ligne réellement accessibles aux Québécois.
+- [Carte World Elite au Québec : laquelle choisir en 2026 ?](https://fructofinance.ca/blog/carte-world-elite-quebec) : Carte World Elite au Québec : revenu exigé, frais annuels et récompenses des cartes BN, Desjardins, BMO et PC comparés pour choisir la carte qui vous convient.
+- [CELI ou REER : lequel prioriser au Québec ?](https://fructofinance.ca/blog/celi-ou-reer-quebec) : CELI ou REER au Québec : la réponse dépend de votre taux marginal d'imposition. On vous explique comment choisir selon votre revenu, avec les plafonds 2026.
+- [CELIAPP : comment l'utiliser pour acheter sa première maison au Québec](https://fructofinance.ca/blog/celiapp-premiere-maison-quebec) : Le CELIAPP combine déduction d'impôt et retraits libres d'impôt pour une première maison. Plafonds 2026, règles, admissibilité : le guide pour les Québécois.
+- [Comparer les produits financiers au Québec : le guide](https://fructofinance.ca/blog/comparer-produits-financiers-quebec) : Courtiers, cartes de crédit, comptes d'épargne : comment comparer les produits financiers au Québec et éviter les pièges des comparateurs pancanadiens.
+- [Cote de crédit au Québec : comment l'améliorer](https://fructofinance.ca/blog/cote-de-credit-quebec) : Cote de crédit au Québec : comment la consulter gratuitement, ce qui la fait baisser et les habitudes recommandées par l'AMF pour l'améliorer durablement.
+- [Disnat ou BNCD : quel courtier québécois choisir ?](https://fructofinance.ca/blog/disnat-ou-bncd) : Disnat ou BNCD : commissions, frais d'administration, conversion de devises et offres pour les 30 ans et moins comparés pour choisir votre courtier québécois.
+- [Meilleur CELIAPP au Québec : où l'ouvrir en 2026](https://fructofinance.ca/blog/meilleur-celiapp-quebec) : Quel est le meilleur CELIAPP au Québec pour acheter une première maison ? On compare où l'ouvrir (Wealthsimple, Questrade, Disnat) selon les frais et l'usage.
+- [Meilleur compte d'épargne à intérêt élevé au Québec](https://fructofinance.ca/blog/meilleur-compte-epargne-interet-eleve-quebec) : Quel compte d'épargne à intérêt élevé choisir au Québec ? Comparez les taux, les frais et la protection des dépôts, sans le piège du taux promotionnel.
+- [Meilleur taux CPG au Québec : comparatif 2026](https://fructofinance.ca/blog/meilleur-taux-cpg-quebec) : Meilleur taux CPG au Québec : Tangerine, Banque EQ, Desjardins et Épargne Placements Québec comparés sur 1, 3 et 5 ans, avec la protection de chaque dépôt.
+- [Meilleure carte remise en argent sans frais au Québec](https://fructofinance.ca/blog/meilleure-carte-credit-remise-sans-frais-quebec) : Quelle carte de crédit à remise en argent sans frais annuels choisir au Québec ? On compare les taux, les catégories et la valeur nette pour votre profil.
+- [Les meilleurs FNB pour débuter au Canada](https://fructofinance.ca/blog/meilleurs-fnb-pour-debuter) : Vous débutez en Bourse ? Les FNB tout-en-un permettent d'investir dans un portefeuille diversifié en un seul achat. Voici comment choisir pour commencer.
+- [Où placer son fonds d'urgence au Québec](https://fructofinance.ca/blog/ou-placer-son-fonds-urgence) : Un fonds d'urgence doit être accessible, sûr et rapporter un peu. Où le placer au Québec : compte à intérêt élevé, CELI d'épargne, et ce qu'il faut éviter.
+- [Comment ouvrir un CELI de placement (et pas juste un compte d'épargne CELI)](https://fructofinance.ca/blog/ouvrir-un-celi-de-placement) : Un CELI d'épargne et un CELI de placement, ce n'est pas pareil. Voici la différence et comment ouvrir un CELI de placement chez un courtier au Québec.
+- [Le paiement minimum de 5 % sur les cartes de crédit au Québec](https://fructofinance.ca/blog/paiement-minimum-5-pourcent-quebec) : Depuis 2025, le paiement minimum des cartes de crédit atteint 5 % au Québec. On explique cette règle unique, d'où elle vient et ce qu'elle change pour vous.
+- [Première carte de crédit au Québec : laquelle choisir ?](https://fructofinance.ca/blog/premiere-carte-de-credit-quebec) : Première carte de crédit au Québec : cartes sans frais, pour étudiants ou sans revenu minimum comparées, et les règles québécoises à connaître avant de signer.
+- [Quel courtier en ligne choisir pour débuter au Québec](https://fructofinance.ca/blog/quel-courtier-en-ligne-choisir-debuter-quebec) : Vous débutez en Bourse ? On compare les meilleurs courtiers en ligne pour débuter au Québec selon les frais, la simplicité et les comptes offerts.
+- [REEE au Québec : SCEE, IQEE et où l'ouvrir](https://fructofinance.ca/blog/reee-quebec) : REEE au Québec : jusqu'à 30 % de subventions avec la SCEE et l'IQEE. Montants 2026, plafonds, admissibilité et fournisseurs reconnus par Revenu Québec.
+- [Remise en argent ou points de voyage : que choisir ?](https://fructofinance.ca/blog/remise-argent-ou-points-voyage) : Carte à remise en argent ou à points de voyage ? La réponse dépend de vos habitudes. On compare les deux pour vous aider à choisir selon votre profil.
+- [SADC ou AMF : votre argent est-il protégé au Québec ?](https://fructofinance.ca/blog/sadc-ou-amf-protection-depots-quebec) : Au Québec, vos dépôts sont protégés par la SADC ou par l'AMF selon l'institution. On vous explique la différence, les limites et ce qui est couvert.
+- [Taux promotionnel vs taux de base : le piège du 5 % sur l'épargne](https://fructofinance.ca/blog/taux-promotionnel-vs-taux-de-base-epargne) : Un taux d'épargne de 5 % qui retombe sous 1 % après quelques mois : voici comment distinguer taux promotionnel et taux de base pour ne pas vous faire piéger.
+- [Wealthsimple ou Questrade : lequel choisir au Québec ?](https://fructofinance.ca/blog/wealthsimple-ou-questrade) : Wealthsimple ou Questrade au Québec en 2026 : frais, comptes (CELI, CELIAPP, REER), outils et sécurité comparés pour choisir le bon courtier en ligne.
+- [XEQT ou VEQT : lequel choisir pour votre CELI ?](https://fructofinance.ca/blog/xeqt-ou-veqt) : XEQT ou VEQT : frais, répartition géographique, distributions et rendement comparés pour choisir le bon FNB tout-en-un pour votre CELI au Québec en 2026.
+
+## Avis sur les courtiers en ligne
+
+- [BMO Ligne d'action : avis, frais et comptes 2026](https://fructofinance.ca/investir/bmo)
+- [BNCD, Banque Nationale Courtage direct : avis 2026](https://fructofinance.ca/investir/bncd)
+- [Pro-Investisseurs CIBC : avis 2026](https://fructofinance.ca/investir/cibc)
+- [Disnat : avis, frais et ouverture de compte 2026](https://fructofinance.ca/investir/disnat)
+- [Interactive Brokers Canada : avis 2026](https://fructofinance.ca/investir/interactive-brokers)
+- [moomoo Canada : avis 2026](https://fructofinance.ca/investir/moomoo)
+- [Qtrade Investissement Direct : avis 2026](https://fructofinance.ca/investir/qtrade)
+- [Questrade : avis complet 2026](https://fructofinance.ca/investir/questrade)
+- [RBC Placements en Direct : avis 2026](https://fructofinance.ca/investir/rbc)
+- [Scotia iTRADE : avis 2026](https://fructofinance.ca/investir/scotia-itrade)
+- [Placements directs TD : avis 2026](https://fructofinance.ca/investir/td)
+- [Wealthsimple : avis complet 2026](https://fructofinance.ca/investir/wealthsimple)
+- [Webull Canada : avis 2026](https://fructofinance.ca/investir/webull)
+
+## Avis sur les cartes de crédit
+
+- [Carte Cobalt American Express : avis 2026](https://fructofinance.ca/cartes-credit/amex-cobalt)
+- [Carte Mastercard BMO Remises : avis 2026](https://fructofinance.ca/cartes-credit/bmo-remise)
+- [World Elite Mastercard Banque Nationale : avis 2026](https://fructofinance.ca/cartes-credit/bn-world-elite)
+- [PC World Elite Mastercard : avis et avantages 2026](https://fructofinance.ca/cartes-credit/pc-world-elite)
+- [RBC Avion Visa Infinite : avis 2026](https://fructofinance.ca/cartes-credit/rbc-avion)
+- [Scotia Momentum Visa Infinite : avis 2026](https://fructofinance.ca/cartes-credit/scotia-momentum)
+- [Scotia Passeport Visa Infinite : avis 2026](https://fructofinance.ca/cartes-credit/scotia-passeport)
+- [Carte Visa minima Scotia : avis 2026](https://fructofinance.ca/cartes-credit/scotia-visa-minima)
+- [Tangerine Money-Back Mastercard : avis 2026](https://fructofinance.ca/cartes-credit/tangerine)
+- [TD Aéroplan Visa Infinite : avis 2026](https://fructofinance.ca/cartes-credit/td-aeroplan)
+
+## Avis sur les comptes d'épargne
+
+- [Compte épargne Desjardins : avis 2026](https://fructofinance.ca/epargne/desjardins)
+- [Banque EQ : avis 2026 sur le compte d'épargne](https://fructofinance.ca/epargne/banque-eq)
+- [KOHO : avis 2026 sur le compte épargne et dépenses](https://fructofinance.ca/epargne/koho)
+- [Neo Financial : avis 2026 sur le compte d'épargne](https://fructofinance.ca/epargne/neo)
+- [Oaken Financial : avis 2026 sur l'épargne](https://fructofinance.ca/epargne/oaken)
+- [Tangerine : avis 2026 sur le compte d'épargne](https://fructofinance.ca/epargne/tangerine)
+- [Wealthsimple : avis 2026 sur le compte Comptant](https://fructofinance.ca/epargne/wealthsimple)
+
+## Méthode
+
+- Données vérifiées sur les sites officiels des institutions et des organismes publics (ARC, Revenu Québec, AMF, OCRI, SADC, Office de la protection du consommateur), avec la date de vérification sur chaque page.
+- [Divulgation](https://fructofinance.ca/divulgation-affiliation) · [À propos](https://fructofinance.ca/a-propos) · [Contact](https://fructofinance.ca/contact) · contact@fructofinance.ca
+
+## Utilisation du contenu
+
+Citation autorisée avec attribution et lien vers la page source. Contenu informatif, qui ne constitue pas un conseil financier personnalisé.
+Dernière mise à jour : 2026-09-25

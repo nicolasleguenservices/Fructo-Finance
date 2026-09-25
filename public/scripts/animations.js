@@ -166,8 +166,14 @@ import { sporeCanvas } from "./particleCanvas.js";
 
     heroVideo();
     updateTrustedPartners();
-    sporesEffect();
     pricingToggle();
+    // Effet décoratif : démarré quand le navigateur est inactif pour ne pas
+    // bloquer le fil principal pendant le chargement (TBT).
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(sporesEffect, { timeout: 2000 });
+    } else {
+      setTimeout(sporesEffect, 200);
+    }
   }
 
   // Run immediately — module scripts are deferred, DOM is already ready
