@@ -60,6 +60,10 @@
     {
       "name": "Mentions légales",
       "url": "/mentions-legales"
+    },
+    {
+      "name": "Politique de confidentialité",
+      "url": "/politique-de-confidentialite"
     }
   ]
 }
