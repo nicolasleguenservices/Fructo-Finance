@@ -96,6 +96,15 @@ const jsonLd: Record<string, unknown>[] = [
       logo: { "@type": "ImageObject", url: `${baseUrl}${config.site.logo}` },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    ...(d.sources.length > 0
+      ? {
+          citation: d.sources.map((s) => ({
+            "@type": "CreativeWork",
+            name: s.name,
+            url: s.url,
+          })),
+        }
+      : {}),
   },
 ];
 
@@ -200,7 +209,7 @@ if (d.faq.length > 0) {
                 class="size-7 rounded-full"
               />
               <span class="font-medium text-text">
-                {author.name} — {author.shortRole ?? author.role}
+                {author.name}, {author.shortRole ?? author.role}
               </span>
             </span>
             <span>
@@ -266,6 +275,43 @@ if (d.faq.length > 0) {
           >
             <Content />
           </div>
+
+          <!-- Sources officielles consultées (signal de fiabilité YMYL) -->
+          {
+            d.sources.length > 0 && (
+              <section
+                class="mt-12 rounded-2xl border border-border p-6"
+                aria-labelledby="sources-titre"
+              >
+                <h2
+                  id="sources-titre"
+                  class="mb-4 text-h5 text-secondary"
+                >
+                  Sources
+                </h2>
+                <ol class="list-decimal space-y-2 pl-5 text-sm text-text-dark">
+                  {d.sources.map((s) => (
+                    <li>
+                      <cite class="not-italic">
+                        <a
+                          href={s.url}
+                          rel="noopener"
+                          target="_blank"
+                          class="text-primary underline"
+                        >
+                          {s.name}
+                        </a>
+                      </cite>
+                      , consulté le{" "}
+                      <time datetime={s.consulted.toISOString().slice(0, 10)}>
+                        {frenchDate(s.consulted)}
+                      </time>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )
+          }
 
           <!-- FAQ : accordéon « boîte cliquable », identique aux pages catégories -->
           {

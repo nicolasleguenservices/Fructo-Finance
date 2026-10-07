@@ -55,7 +55,7 @@ export const clusterContent: Record<ClusterId, ClusterContent> = {
         id: "protection-placements",
         heading: "La protection de vos placements",
         paragraphs: [
-          "Au Canada, les comptes détenus chez un courtier membre de l'OCRI sont protégés par le Fonds canadien de protection des épargnants (FCPE) jusqu'à concurrence de 1 000 000 $ en cas de faillite du courtier. Cette protection ne couvre pas les pertes liées aux fluctuations normales du marché.",
+          "Au Canada, les comptes détenus chez un courtier membre de l'OCRI sont protégés par le Fonds canadien de protection des investisseurs (FCPI) jusqu'à 1 000 000 $ par catégorie de comptes (comptes généraux, comptes de retraite et REEE) en cas de faillite du courtier. Cette protection ne couvre pas les pertes liées aux fluctuations normales du marché.",
         ],
       },
     ],
@@ -73,7 +73,7 @@ export const clusterContent: Record<ClusterId, ClusterContent> = {
       {
         question: "Un courtier en ligne au Québec est-il sécuritaire ?",
         answer:
-          "Les courtiers légitimes sont encadrés par l'OCRI et membres du Fonds canadien de protection des investisseurs (FCPE), qui protège les avoirs jusqu'à un certain plafond en cas de faillite du courtier (ce qui ne couvre pas les pertes liées au marché). Vérifiez toujours l'inscription du courtier.",
+          "Les courtiers légitimes sont encadrés par l'OCRI et membres du Fonds canadien de protection des investisseurs (FCPI), qui protège les avoirs jusqu'à un certain plafond en cas de faillite du courtier (ce qui ne couvre pas les pertes liées au marché). Vérifiez toujours l'inscription du courtier.",
       },
       {
         question: "Quels comptes puis-je ouvrir : CELI, REER ou CELIAPP ?",

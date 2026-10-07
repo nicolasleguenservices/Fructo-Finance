@@ -29,7 +29,7 @@
         "Frais de change USD : ~1,5 % par conversion (0 $ sur actions US avec l'offre Premium à ~10 $/mois)",
         "Comptes offerts : CELI, REER, CELIAPP, REEE (autogéré ou géré, avec IQEE : Wealthsimple Investments inc. figure sur la liste des fournisseurs de Revenu Québec), compte non enregistré",
         "Frais d'administration : 0 $ de frais de tenue de compte, aucun dépôt minimum",
-        "Réglementation : membre OCRI et FCPE"
+        "Réglementation : membre OCRI et FCPI"
       ],
       "pros": [
         "Interface française épurée",
@@ -57,7 +57,7 @@
         "investisseurs FNB passifs",
         "adeptes du mobile"
       ],
-      "regulateur": "OCRI et FCPE",
+      "regulateur": "OCRI et FCPI",
       "url_officiel": "https://www.wealthsimple.com",
       "last_verified": "2026-08-21",
       "filters": [
@@ -88,27 +88,28 @@
         "commission_note": "À confirmer selon le programme partenaire",
         "rel": ""
       },
-      "resume": "Achat de FNB gratuit et vente d'actions/FNB dès ~4,95 $, pour investisseurs intermédiaires.",
+      "resume": "0 $ de commission sur les actions et les FNB, comptes en double devise, pour investisseurs intermédiaires.",
       "highlights": [
-        "Commission : achat de FNB gratuit; vente de FNB et actions dès ~4,95 $ (jusqu'à ~9,95 $)",
-        "Frais de change USD : (comptes en USD possibles)",
+        "Commission actions/FNB : 0 $ (titres canadiens et américains, en ligne)",
+        "Options : 0 $ sur actions américaines ; 0,99 $ par contrat au Canada et sur indices américains",
+        "Comptes en double devise (USD détenus directement)",
         "Comptes offerts : CELI, REER, CELIAPP, REEE, FERR, non enregistré",
-        "Réglementation : membre OCRI et FCPE"
+        "Réglementation : membre OCRI et FCPI"
       ],
       "pros": [
-        "Achat de FNB gratuit",
+        "Sans commission sur les actions et les FNB",
+        "Comptes en double devise",
         "Outils avancés (Questrade Edge)",
-        "Large choix de comptes",
-        "Bonne évolutivité"
+        "Aucun minimum de compte ni frais d'inactivité"
       ],
       "cons": [
-        "Vente de FNB payante",
+        "Options canadiennes à 0,99 $ par contrat",
         "Courbe d'apprentissage un peu plus élevée pour un pur débutant"
       ],
       "fees": {
-        "commission_actions_fnb": "Achat FNB 0 $, actions dès ~4,95 $",
-        "frais_change_usd": "",
-        "frais_administration": ""
+        "commission_actions_fnb": "0 $",
+        "frais_change_usd": "évitables avec les comptes en double devise",
+        "frais_administration": "aucuns frais annuels de compte ni d'inactivité"
       },
       "comptes_supportes": [
         "CELI",
@@ -122,9 +123,9 @@
         "investisseurs intermédiaires",
         "portefeuille multi-comptes"
       ],
-      "regulateur": "OCRI et FCPE",
+      "regulateur": "OCRI et FCPI",
       "url_officiel": "https://www.questrade.com",
-      "last_verified": "2026-08-21",
+      "last_verified": "2026-10-07",
       "filters": [
         "celi",
         "reer",
@@ -155,7 +156,7 @@
       "highlights": [
         "Commission actions/FNB : 0 $ (depuis 2021)",
         "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
-        "Réglementation : membre OCRI et FCPE"
+        "Réglementation : membre OCRI et FCPI"
       ],
       "pros": [
         "Sans commission",
@@ -182,7 +183,7 @@
         "marchés US",
         "clientèle québécoise"
       ],
-      "regulateur": "OCRI et FCPE",
+      "regulateur": "OCRI et FCPI",
       "url_officiel": "https://www.bnc.ca",
       "last_verified": "2026-08-21",
       "filters": [
@@ -216,7 +217,7 @@
       "highlights": [
         "Comptes offerts : CELI, REER, CELIAPP, REEE, FERR, non enregistré",
         "Frais d'administration : possibles sous un solde minimal (souvent ~15 000 $)",
-        "Réglementation : membre OCRI et FCPE"
+        "Réglementation : membre OCRI et FCPI"
       ],
       "pros": [
         "Intégration complète avec AccèsD",
@@ -242,7 +243,7 @@
         "membres Desjardins",
         "francophones qui veulent centraliser avec AccèsD"
       ],
-      "regulateur": "OCRI et FCPE",
+      "regulateur": "OCRI et FCPI",
       "url_officiel": "https://www.disnat.com",
       "last_verified": "2026-08-21",
       "filters": [
@@ -274,7 +275,7 @@
         "Commission : FNB sélectionnés à 0 $; actions ~8,75 $ (ou ~6,95 $ au niveau « investisseur plus », sous conditions de volume/actifs)",
         "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
         "Frais d'administration : ~25 $/trimestre sous un certain solde",
-        "Réglementation : membre OCRI et FCPE"
+        "Réglementation : membre OCRI et FCPI"
       ],
       "pros": [
         "FNB sélectionnés gratuits",
@@ -300,7 +301,7 @@
         "investisseurs qui veulent de bons outils d'analyse",
         "FNB sans commission"
       ],
-      "regulateur": "OCRI et FCPE",
+      "regulateur": "OCRI et FCPI",
       "url_officiel": "https://www.qtrade.ca",
       "last_verified": "2026-08-21",
       "filters": [
@@ -329,7 +330,7 @@
       "resume": "0 $ de commission et outils d'analyse avancés, pour traders actifs.",
       "highlights": [
         "Commission actions/FNB : 0 $",
-        "Réglementation : Moomoo Financial Canada, courtier d'exécution d'ordres, enregistré au Québec, membre du FCPE (protection jusqu'à 1 M$)"
+        "Réglementation : Moomoo Financial Canada, courtier d'exécution d'ordres, enregistré au Québec, membre du FCPI (protection jusqu'à 1 M$)"
       ],
       "pros": [
         "Sans commission",
@@ -348,7 +349,7 @@
         "traders actifs",
         "amateurs d'outils d'analyse avancés"
       ],
-      "regulateur": "Moomoo Financial Canada, membre du FCPE (jusqu'à 1 M$)",
+      "regulateur": "Moomoo Financial Canada, membre du FCPI (jusqu'à 1 M$)",
       "url_officiel": "https://www.moomoo.com/ca",
       "last_verified": "2026-08-21",
       "filters": [
@@ -421,7 +422,7 @@
         "Commission : parmi les plus basses, structure par paliers",
         "Frais de change : taux de change avantageux",
         "Comptes offerts : CELI, REER, compte non enregistré; pas de CELIAPP",
-        "Réglementation : membre OCRI et FCPE"
+        "Réglementation : membre OCRI et FCPI"
       ],
       "pros": [
         "Accès à de très nombreux marchés et devises",
@@ -447,7 +448,7 @@
         "marchés mondiaux",
         "gros portefeuilles"
       ],
-      "regulateur": "OCRI et FCPE",
+      "regulateur": "OCRI et FCPI",
       "url_officiel": "https://www.interactivebrokers.ca",
       "last_verified": "2026-08-21",
       "filters": [
@@ -480,7 +481,7 @@
         "Commission actions/FNB : ~6,99 $/opération",
         "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
         "Frais d'administration : ~25 $/trimestre sous seuil",
-        "Réglementation : membre OCRI et FCPE"
+        "Réglementation : membre OCRI et FCPI"
       ],
       "pros": [
         "La moins chère des grandes banques",
@@ -505,7 +506,7 @@
       "ideal_pour": [
         "clients CIBC voulant une grande banque à moindre coût"
       ],
-      "regulateur": "OCRI et FCPE",
+      "regulateur": "OCRI et FCPI",
       "url_officiel": "https://www.cibc.com",
       "last_verified": "2026-08-21",
       "filters": [
@@ -537,7 +538,7 @@
         "Commission actions/FNB : 9,95 $/opération (réduit à 6,95 $ dès 150 opérations/trimestre); certains FNB et fonds sans commission",
         "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
         "Frais d'administration : ~25 $/trimestre si le solde est sous ~15 000 $ (exemptions possibles)",
-        "Réglementation : membre OCRI et FCPE"
+        "Réglementation : membre OCRI et FCPI"
       ],
       "pros": [
         "Écosystème RBC",
@@ -563,7 +564,7 @@
         "clients RBC",
         "investisseurs voulant sécurité et outils de recherche"
       ],
-      "regulateur": "OCRI et FCPE",
+      "regulateur": "OCRI et FCPI",
       "url_officiel": "https://www.rbcdirectinvesting.com",
       "last_verified": "2026-08-21",
       "filters": [
@@ -595,7 +596,7 @@
         "Commission actions/FNB : ~9,99 $/opération",
         "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
         "Frais d'administration : ~25 $/trimestre sous ~15 000 $ (exemptions jeunes/étudiants possibles)",
-        "Réglementation : membre OCRI et FCPE"
+        "Réglementation : membre OCRI et FCPI"
       ],
       "pros": [
         "Écosystème TD",
@@ -621,7 +622,7 @@
         "clients TD",
         "investisseurs voulant l'intégration bancaire"
       ],
-      "regulateur": "OCRI et FCPE",
+      "regulateur": "OCRI et FCPI",
       "url_officiel": "https://www.td.com",
       "last_verified": "2026-08-21",
       "filters": [
@@ -653,7 +654,7 @@
         "Commission actions/FNB : 9,95 $/opération; certains FNB à 0 $",
         "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
         "Frais d'administration : ~25 $/trimestre sous seuil",
-        "Réglementation : membre OCRI et FCPE"
+        "Réglementation : membre OCRI et FCPI"
       ],
       "pros": [
         "Écosystème BMO",
@@ -678,7 +679,7 @@
       "ideal_pour": [
         "clients BMO"
       ],
-      "regulateur": "OCRI et FCPE",
+      "regulateur": "OCRI et FCPI",
       "url_officiel": "https://www.bmo.com",
       "last_verified": "2026-08-21",
       "filters": [
@@ -710,7 +711,7 @@
         "Commission actions/FNB : ~9,99 $/opération (réduit à ~4,99 $ dès 150 opérations/trimestre); achat de certains FNB sans commission",
         "Comptes offerts : CELI, REER, CELIAPP, REEE, non enregistré",
         "Frais d'administration : applicables sous seuil",
-        "Réglementation : membre OCRI et FCPE"
+        "Réglementation : membre OCRI et FCPI"
       ],
       "pros": [
         "Centre éducatif et rapports de recherche",
@@ -736,7 +737,7 @@
         "clients Scotia",
         "investisseurs valorisant la recherche"
       ],
-      "regulateur": "OCRI et FCPE",
+      "regulateur": "OCRI et FCPI",
       "url_officiel": "https://www.scotiaitrade.com",
       "last_verified": "2026-08-21",
       "filters": [
@@ -903,7 +904,7 @@
         "taux_interet_avances": "21,99 %",
         "type_recompenses": "5 pts/$ restaurants, bars et livraison de nourriture, 3 pts/$ diffusion en continu, 2 pts/$ essence, transport en commun et covoiturage, 1 pt/$ ailleurs",
         "bonus_bienvenue": "Jusqu'à 15 000 pts",
-                "reseau": "American Express"
+        "reseau": "American Express"
       },
       "ideal_pour": [
         "épicerie et restaurants",

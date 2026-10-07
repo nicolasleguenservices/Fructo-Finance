@@ -43,6 +43,16 @@ const blogCollection = defineCollection({
     draft: z.boolean().default(false),
     /** Affiche l'encart de divulgation d'affiliation quand true. */
     hasAffiliateLinks: z.boolean().default(false),
+    /** Sources officielles consultées : bloc « Sources » en fin d'article + `citation` du JSON-LD. */
+    sources: z
+      .array(
+        z.object({
+          name: z.string(),
+          url: z.string().url(),
+          consulted: z.coerce.date(),
+        }),
+      )
+      .default(() => []),
     /** FAQ visible en bas d'article + source du JSON-LD FAQPage. */
     faq: z
       .array(z.object({ question: z.string(), answer: z.string() }))
